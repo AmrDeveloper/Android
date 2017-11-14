@@ -24,7 +24,7 @@
         <!--zero layout_height-->
         <item name="android:layout_height">@dimen/zero_dp</item>
         <!--TextColor-->
-        <item name="android:textColor">@color/diamondBlue</item>
+        <item name="android:textColor">@color/white</item>
         <!--16dp Padding left -->
         <item name="android:paddingLeft">@dimen/padding_16</item>
         <!--Color For Link Like Udacity website-->
