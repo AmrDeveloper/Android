@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!--Padding 16-->
+    <dimen name="padding_16">16dp</dimen>
+    <!--zero dp for height-->
+    <dimen name="zero_dp">0dp</dimen>
+    <!--one for weight-->
+    <dimen name="one">1</dimen>
+</resources>

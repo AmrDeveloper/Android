@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black2"
+    tools:context="com.helloandroid.amrdeveloper.helloandroid.MainActivity">
+
+    <!--ImageView For WallPaper-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:scaleType="fitXY"
+        android:src="@drawable/udacity_wallpaper" />
+
+    <!--TextView for Udacity Business Name-->
+    <TextView
+        style="@style/InfoStyle"
+        android:text="@string/inc_name" />
+
+    <!--TextView for Udacity Phone-->
+    <TextView
+        style="@style/InfoStyle"
+        android:text="@string/inc_phone" />
+
+    <!--TextView for Udacity Address in MountainView-->
+    <TextView
+        android:autoLink="phone"
+        style="@style/InfoStyle"
+        android:text="@string/inc_address" />
+
+    <!--TextView for Udacity WebSite Url-->
+    <TextView
+        android:autoLink="web"
+        style="@style/InfoStyle"
+        android:text="@string/inc_website" />
+</LinearLayout>
