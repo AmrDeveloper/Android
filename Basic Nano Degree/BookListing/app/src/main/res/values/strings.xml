@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BookListing</string>
+    <string name="search">Search</string>
+    <string name="noData">No Data</string>
+</resources>

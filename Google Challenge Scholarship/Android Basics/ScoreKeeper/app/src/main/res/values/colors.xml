@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--My Colors-->
+    <color name="myBlue">#37b4e2</color>
+    <color name="myRed">#fe2711</color>
+    <color name="myDarkBlue">#0c0538</color>
+    <color name="myYellow">#fee16e</color>
+    <color name="myWhite">#f2f2f2</color>
+</resources>

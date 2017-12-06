@@ -1,0 +1,47 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="ScoreKeeperTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#37b4e2</item>
+        <item name="colorPrimaryDark">#0c0538</item>
+        <item name="colorAccent">#fe2711</item>
+    </style>
+
+    <!--Style For Every Score Button-->
+    <style name="ButtonStyle" parent="Base.Widget.AppCompat.Button">
+        <!--Width is Wrap Content-->
+        <item name="android:layout_width">wrap_content</item>
+        <!--Height is Wrap Content-->
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">1.2dp</item>
+        <item name="android:background">@color/myBlue</item>
+        <item name="android:textColor">@color/myDarkBlue</item>
+        <item name="android:paddingLeft">@dimen/padding22</item>
+        <item name="android:paddingRight">@dimen/padding22</item>
+    </style>
+
+    <!--Style For TextView-->
+    <style name="TextStyle" parent="Widget.AppCompat.TextView.SpinnerItem">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">@dimen/size20</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:paddingLeft">@dimen/padding10</item>
+        <item name="android:paddingRight">@dimen/padding10</item>
+        <item name="android:textColor">@color/myYellow</item>
+    </style>
+
+    <!--Style For Team Score TextView-->
+    <style name="ScaoreStyle" parent="Widget.AppCompat.TextView.SpinnerItem">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">@dimen/size20</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:paddingLeft">@dimen/padding10</item>
+        <item name="android:paddingRight">@dimen/padding10</item>
+        <item name="android:textColor">@color/myWhite</item>
+        <item name="android:layout_margin">@dimen/margin10</item>
+    </style>
+
+</resources>

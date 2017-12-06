@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/basketwallpaper"
+    android:orientation="vertical"
+    android:padding="@dimen/padding16"
+    tools:context="com.scorekeeper.amrdeveloper.scorekeeper.MainActivity">
+
+    <!--Team A-->
+    <TextView
+        android:id="@+id/playerOne"
+        style="@style/TextStyle"
+        android:layout_alignParentLeft="true"
+        android:text="@string/teamA" />
+
+    <!--Team A Score-->
+    <TextView
+        android:id="@+id/scoreTeamA"
+        style="@style/ScaoreStyle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/playerOne"
+        android:text="@string/point_zero" />
+
+    <!--Team A Score Add 1-->
+    <Button
+        android:id="@+id/playerOneOne"
+        style="@style/ButtonStyle"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/scoreTeamA"
+        android:onClick="teamOnePlusOne"
+        android:text="@string/pointplus1" />
+
+    <!--Team A Score Add 2-->
+    <Button
+        android:id="@+id/playerOneTwo"
+        style="@style/ButtonStyle"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/playerOneOne"
+        android:onClick="teamOnePlusTwo"
+        android:text="@string/pointplus2" />
+
+    <!--Team A Score Add 3-->
+    <Button
+        android:id="@+id/playerOneThree"
+        style="@style/ButtonStyle"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/playerOneTwo"
+        android:onClick="teamOnePlusThree"
+        android:text="@string/pointplus3" />
+
+    <!--Team B-->
+    <TextView
+        android:id="@+id/playerTwo"
+        style="@style/TextStyle"
+        android:layout_alignParentRight="true"
+        android:text="@string/teamB" />
+
+    <!--Team B Score-->
+    <TextView
+        android:id="@+id/scoreTeamB"
+        style="@style/ScaoreStyle"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/playerTwo"
+        android:text="@string/point_zero" />
+
+    <!--Team B Score Add 1-->
+    <Button
+        android:id="@+id/playerTwoOne"
+        style="@style/ButtonStyle"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/scoreTeamB"
+        android:onClick="teamTwoPlusOne"
+        android:text="@string/pointplus1" />
+
+    <!--Team B Score Add 2-->
+    <Button
+        android:id="@+id/playerTwoTwo"
+        style="@style/ButtonStyle"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/playerTwoOne"
+        android:onClick="teamTwoPlusTwo"
+        android:text="@string/pointplus2" />
+
+    <!--Team B Score Add 3-->
+    <Button
+        android:id="@+id/playerTwoThree"
+        style="@style/ButtonStyle"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/playerTwoTwo"
+        android:onClick="teamTwoPlusThree"
+        android:text="@string/pointplus3" />
+
+    <!--Reset Score For Team a and b-->
+    <Button
+        style="@style/ButtonStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/myYellow"
+        android:onClick="scoreReset"
+        android:text="Reset"
+        android:textColor="@color/myDarkBlue"
+        android:textStyle="bold|italic" />
+
+</RelativeLayout>
