@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.educational.amrdeveloper.educationalapp.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/padding16"
+        android:background="@color/black"
+        >
+        <!--Main Title-->
+        <TextView
+            style="@style/TitleTextStyle"
+            android:text="@string/header"
+            android:gravity="center"
+            android:textSize="@dimen/size25"
+            android:fontFamily="serif"
+            />
+        <!--Show Level-->
+        <TextView
+            style="@style/QuestionTextStyle"
+            android:id="@+id/userLevel"
+            android:text="@string/level"
+            android:gravity="center"
+            android:textSize="20sp"
+            />
+
+        <!--Question Title 1-->
+        <TextView
+            style="@style/TitleTextStyle"
+            android:text="@string/question1"
+            />
+        <!--Question 1 Body-->
+        <TextView
+            style="@style/QuestionTextStyle"
+            android:id="@+id/question1"
+            />
+        <!--Question 1 Results-->
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <!--Four Result CheckBox-->
+            <RadioButton
+                android:id="@+id/result1_1"
+                style="@style/RadioStyle"
+                android:text="@string/result1"
+                android:onClick="onQuestionResult1"
+                android:buttonTint="@color/yellow"
+                />
+            <RadioButton
+                android:id="@+id/result1_2"
+                style="@style/RadioStyle"
+                android:text="@string/result2"
+                android:onClick="onQuestionResult1"
+                android:buttonTint="@color/yellow"
+                />
+            <RadioButton
+                android:id="@+id/result1_3"
+                style="@style/RadioStyle"
+                android:text="@string/result3"
+                android:onClick="onQuestionResult1"
+                android:buttonTint="@color/yellow"
+                />
+            <RadioButton
+                style="@style/RadioStyle"
+                android:id="@+id/result1_4"
+                android:text="@string/result4"
+                android:onClick="onQuestionResult1"
+                android:buttonTint="@color/yellow"
+                />
+        </RadioGroup>
+
+        <!--Question Title 2-->
+        <TextView
+            style="@style/TitleTextStyle"
+            android:text="@string/question2"
+            />
+        <!--Question 2 Body-->
+        <TextView
+            android:id="@+id/question2"
+            style="@style/QuestionTextStyle"
+            />
+        <!--Question 2 Result-->
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <!--Four Result CheckBox-->
+            <RadioButton
+                android:id="@+id/result2_1"
+                style="@style/RadioStyle"
+                android:text="@string/result1"
+                android:onClick="onQuestionResult2"
+                android:buttonTint="@color/yellow"
+                />
+            <RadioButton
+                android:id="@+id/result2_2"
+                style="@style/RadioStyle"
+                android:text="@string/result2"
+                android:onClick="onQuestionResult2"
+                android:buttonTint="@color/yellow"
+                />
+            <RadioButton
+                android:id="@+id/result2_3"
+                style="@style/RadioStyle"
+                android:text="@string/result3"
+                android:onClick="onQuestionResult2"
+                android:buttonTint="@color/yellow"
+                />
+            <RadioButton
+                android:id="@+id/result2_4"
+                style="@style/RadioStyle"
+                android:text="@string/result4"
+                android:onClick="onQuestionResult2"
+                android:buttonTint="@color/yellow"
+                />
+        </RadioGroup>
+
+        <!--Question Title 3-->
+        <TextView
+            style="@style/TitleTextStyle"
+            android:text="@string/question3"
+            />
+        <!--Question 3 Body-->
+        <TextView
+            style="@style/QuestionTextStyle"
+            android:id="@+id/question3"
+            />
+        <!--Question 3 Result-->
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <!--Four Result CheckBox-->
+            <RadioButton
+                android:id="@+id/result3_1"
+                style="@style/RadioStyle"
+                android:text="@string/result1"
+                android:onClick="onQuestionResult3"
+                android:buttonTint="@color/yellow"
+                />
+            <RadioButton
+                android:id="@+id/result3_2"
+                style="@style/RadioStyle"
+                android:text="@string/result2"
+                android:onClick="onQuestionResult3"
+                android:buttonTint="@color/yellow"
+                />
+            <RadioButton
+                android:id="@+id/result3_3"
+                style="@style/RadioStyle"
+                android:text="@string/result3"
+                android:onClick="onQuestionResult3"
+                android:buttonTint="@color/yellow"
+                />
+            <RadioButton
+                android:id="@+id/result3_4"
+                style="@style/RadioStyle"
+                android:text="@string/result4"
+                android:onClick="onQuestionResult3"
+                android:buttonTint="@color/yellow"
+                />
+        </RadioGroup>
+
+        <!--Question Title 4-->
+        <TextView
+            style="@style/TitleTextStyle"
+            android:text="@string/question4"
+            />
+        <!--Question 4 Body-->
+        <TextView
+            style="@style/QuestionTextStyle"
+            android:id="@+id/question4"
+            />
+        <!---Question 4 Result-->
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <!--Four Result CheckBox-->
+            <RadioButton
+                android:id="@+id/result4_1"
+                style="@style/RadioStyle"
+                android:onClick="onQuestionResult4"
+                android:text="@string/result1"
+                android:buttonTint="@color/yellow"
+                />
+            <RadioButton
+                android:id="@+id/result4_2"
+                style="@style/RadioStyle"
+                android:onClick="onQuestionResult4"
+                android:text="@string/result2"
+                android:buttonTint="@color/yellow"
+                />
+            <RadioButton
+                android:id="@+id/result4_3"
+                style="@style/RadioStyle"
+                android:onClick="onQuestionResult4"
+                android:text="@string/result3"
+                android:buttonTint="@color/yellow"
+                />
+            <RadioButton
+                android:id="@+id/result4_4"
+                style="@style/RadioStyle"
+                android:onClick="onQuestionResult4"
+                android:text="@string/result4"
+                android:buttonTint="@color/yellow"
+                />
+        </RadioGroup>
+
+        <!--Question Title 5-->
+        <TextView
+            style="@style/TitleTextStyle"
+            android:text="@string/question5"
+            />
+        <!--Question 5 Body-->
+        <TextView
+            style="@style/QuestionTextStyle"
+            android:id="@+id/question5"
+            />
+        <!--Question 5 result-->
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <!--Four Result CheckBox-->
+            <RadioButton
+                android:id="@+id/result5_1"
+                style="@style/RadioStyle"
+                android:text="@string/result1"
+                android:onClick="onQuestionResult5"
+                android:buttonTint="@color/yellow"
+                />
+            <RadioButton
+                android:id="@+id/result5_2"
+                style="@style/RadioStyle"
+                android:text="@string/result2"
+                android:onClick="onQuestionResult5"
+                android:buttonTint="@color/yellow"
+                />
+            <RadioButton
+                android:id="@+id/result5_3"
+                style="@style/RadioStyle"
+                android:text="@string/result3"
+                android:onClick="onQuestionResult5"
+                android:buttonTint="@color/yellow"
+                />
+            <RadioButton
+                android:id="@+id/result5_4"
+                style="@style/RadioStyle"
+                android:text="@string/result4"
+                android:onClick="onQuestionResult5"
+                android:buttonTint="@color/yellow"
+                />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/submit"
+            android:text="@string/submit"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="sumbitResultButton"
+            android:background="#ff4f51"
+            android:layout_margin="5dp"
+            android:textColor="#dbdbdb"
+            />
+    </LinearLayout>
+</ScrollView>

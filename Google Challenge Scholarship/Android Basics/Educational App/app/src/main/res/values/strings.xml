@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Educational App</string>
+    <string name="header">Math Quiz</string>
+    <string name="level">Level : 1</string>
+
+    <!--For Every Question Title-->
+    <string name="questionBody">"Question title</string>
+    <string name="question1">Question 1 :</string>
+    <string name="question2">Question 2 :</string>
+    <string name="question3">Question 3 :</string>
+    <string name="question4">Question 4 :</string>
+    <string name="question5">Question 5 :</string>
+
+    <!--For Every Question Result Check Box -->
+    <string name="result1">Result 1 :</string>
+    <string name="result2">Result 2 :</string>
+    <string name="result3">Result 3 :</string>
+    <string name="result4">Result 4 :</string>
+
+    <!--For Submit Button-->
+    <string name="submit">Submit</string>
+</resources>
