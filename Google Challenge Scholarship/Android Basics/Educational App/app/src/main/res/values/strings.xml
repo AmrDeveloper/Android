@@ -17,6 +17,9 @@
     <string name="result3">Result 3 :</string>
     <string name="result4">Result 4 :</string>
 
+    <string name="full_scaore">Full Score :D</string>
+    <string name="not_full_score">Your Score Is : </string>
+
     <!--For Submit Button-->
     <string name="submit">Submit</string>
 </resources>

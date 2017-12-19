@@ -42,6 +42,7 @@
             />
         <!--Question 1 Results-->
         <RadioGroup
+            android:id="@+id/resultGroup1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
@@ -88,6 +89,7 @@
             />
         <!--Question 2 Result-->
         <RadioGroup
+            android:id="@+id/resultGroup2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
@@ -134,6 +136,7 @@
             />
         <!--Question 3 Result-->
         <RadioGroup
+            android:id="@+id/resultGroup3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
@@ -180,6 +183,7 @@
             />
         <!---Question 4 Result-->
         <RadioGroup
+            android:id="@+id/resultGroup4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
@@ -226,6 +230,7 @@
             />
         <!--Question 5 result-->
         <RadioGroup
+            android:id="@+id/resultGroup5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
@@ -266,7 +271,7 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="sumbitResultButton"
+            android:onClick="submitResultButton"
             android:background="#ff4f51"
             android:layout_margin="5dp"
             android:textColor="#dbdbdb"
