@@ -1,0 +1,22 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/background</item>
+        <item name="colorPrimaryDark">@color/background</item>
+        <item name="colorAccent">@color/yello</item>
+    </style>
+
+    <style name="PriceText">
+        <item name="android:textSize">@dimen/size15</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">.5</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/yello</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+</resources>

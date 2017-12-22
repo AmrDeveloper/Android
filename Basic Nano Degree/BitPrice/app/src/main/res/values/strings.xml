@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BitPrice</string>
+    <string name="bitcoin">BitCoin Current Price</string>
+    <string name="usd">United States Dollar</string>
+    <string name="gbp">British Pound Sterling</string>
+    <string name="eur">Euro</string>
+</resources>
