@@ -9,9 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.booklisting.amrdeveloper.booklisting.Adapter.BooksListAdapter;
 import com.booklisting.amrdeveloper.booklisting.Model.Book;
@@ -63,24 +65,25 @@ public class MainActivity extends AppCompatActivity {
         });
         //Adapter Object
         adapter = new BooksListAdapter(this,new ArrayList<Book>());
+
         //set Adapter
         dataList.setAdapter(adapter);
-
         //Main Tool Bar
         mainToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mainToolbar);
         //Set Title For Tool Bar
         getSupportActionBar().setTitle(R.string.app_name);
         //Set Title Color For Tool Bar
-        mainToolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
-
+        //mainToolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
         //Init SearchView
         searchview = (MaterialSearchView) findViewById(R.id.search_view);
+
 
         //Get String to Search
         searchview.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 String bookTag = query.replaceAll(" ","%20").trim();
                 String apiUrl = "https://www.googleapis.com/books/v1/volumes?q=" + bookTag + "&maxResults=26";
                 requestUrl = apiUrl;

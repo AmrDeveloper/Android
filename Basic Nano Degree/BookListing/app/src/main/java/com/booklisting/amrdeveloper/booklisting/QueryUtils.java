@@ -1,9 +1,6 @@
 package com.booklisting.amrdeveloper.booklisting;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
-
 import com.booklisting.amrdeveloper.booklisting.Model.Book;
 
 import org.json.JSONArray;
@@ -195,8 +192,4 @@ public class QueryUtils {
         //Return List Of Data
         return booksInfo;
     }
-
-
-
-
 }
