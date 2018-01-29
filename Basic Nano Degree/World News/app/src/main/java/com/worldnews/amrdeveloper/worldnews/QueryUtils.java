@@ -113,29 +113,36 @@ public class QueryUtils {
      * @return Return List of news after parsing The json String
      */
     private static List<News> readNewsFromJson(String json){
+        //List To Save Data From API
         List<News> newsList = new ArrayList<>();
-
         try{
+
             JSONObject data = new JSONObject(json);
             JSONObject root = data.getJSONObject("response");
             JSONArray resultsArray = root.getJSONArray("results");
 
             for(int i = 0 ; i < resultsArray.length() ; i++){
+                //Current Json Object
                 JSONObject currentObject = resultsArray.getJSONObject(i);
-
+                //Get Attribute from The Current Object in JSON String
                 String webTitle = currentObject.getString("webTitle");
                 String date = currentObject.getString("webPublicationDate");
                 String pillarName = currentObject.getString("pillarName");
                 String newsUrl = currentObject.getString("webUrl");
+
+                JSONObject field = currentObject.getJSONObject("fields");
+
+                String trailText = field.getString("trailText");
+
                 String imageUrl = "";
                 try{
-                    imageUrl = currentObject.getJSONObject("fields").getString("thumbnail");
+                    imageUrl = field.getString("thumbnail");
                 }
-                catch (Exception ex){
+                catch (Exception ex)
+                {
                     imageUrl = "";
                 }
-
-                newsList.add(new News(webTitle,date,pillarName,newsUrl,imageUrl));
+                newsList.add(new News(webTitle,date,pillarName,trailText,newsUrl,imageUrl));
             }
         }
         catch (Exception e){
@@ -148,13 +155,13 @@ public class QueryUtils {
 
     //Public Method to Using With Class To Control all Class
     public static List<News> readDataFromApi(String requestApi){
-
+        //From String to Url
         URL apiUrl = createApiUrl(requestApi);
-
+        //Get Data And Save It On Stream
         String jsonData = makeConnection(apiUrl);
-
+        //Read String and get All News
         List<News> newsList = readNewsFromJson(jsonData);
-
+        //Return News On List
         return newsList;
     }
 }

@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso;
 import com.worldnews.amrdeveloper.worldnews.Model.News;
 import com.worldnews.amrdeveloper.worldnews.R;
 
+import org.w3c.dom.Text;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -43,34 +45,35 @@ public class NewsAdapter extends ArrayAdapter<News> {
         TextView newsTitle = (TextView) view.findViewById(R.id.newsTitle);
         TextView newsPillar = (TextView) view.findViewById(R.id.newsPillar);
         TextView newsData = (TextView) view.findViewById(R.id.newsData);
+        TextView description = (TextView)view.findViewById(R.id.description);
 
         if(!currentNews.getImageUrl().equals("")){
             Picasso.with(getContext()).load(currentNews.getImageUrl()).fit().into(newsImage);
-        }
-        else
-        {
+        }else{
             newsImage.setVisibility(View.GONE);
         }
 
         newsTitle.setText(currentNews.getTitle());
         newsPillar.setText(currentNews.getPillar());
-        newsData.setText(formatDate(currentNews.getDate()));
+        newsData.setText(dateFormat(currentNews.getDate()));
+        description.setText(currentNews.getShortDescription());
 
         return view;
     }
 
+
     //Format The Date
-    private static String formatDate(String currentDate) {
+    private String dateFormat(String date){
         // This is the time format from guardian JSON "2017-10-29T06:00:20Z"
         // will be changed to 29-10-2017 format
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         try {
-            Date newDate = format.parse(currentDate);
+            Date newDate = format.parse(date);
             format = new SimpleDateFormat("dd-MM-yyyy, h:mm a");
-            currentDate = format.format(newDate);
-        }catch (ParseException e){
-            Log.e("Adapter","Problem with parsing the date format");
+            date = format.format(newDate);
+        } catch (ParseException e) {
+            Log.e("Adapter", "Problem with parsing the date format");
         }
-        return currentDate;
+        return date;
     }
 }
