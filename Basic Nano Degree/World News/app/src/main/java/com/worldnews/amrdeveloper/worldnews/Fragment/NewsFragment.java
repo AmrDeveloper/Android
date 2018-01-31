@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.worldnews.amrdeveloper.worldnews.Adapter.NewsAdapter;
+import com.worldnews.amrdeveloper.worldnews.Adapter.NewsListAdapter;
 import com.worldnews.amrdeveloper.worldnews.Loaders.NewsAsyncLoader;
 import com.worldnews.amrdeveloper.worldnews.Model.News;
 import com.worldnews.amrdeveloper.worldnews.R;
@@ -27,7 +27,7 @@ import java.util.List;
 public class NewsFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<News>>{
 
     private ListView newsListView;
-    private NewsAdapter newsAdapter;
+    private NewsListAdapter newsAdapter;
 
     private final int LOADER_ID = 1;
 
@@ -41,7 +41,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
 
         newsListView = (ListView)rootView.findViewById(R.id.newsListView);
 
-        newsAdapter = new NewsAdapter(getActivity());
+        newsAdapter = new NewsListAdapter(getActivity());
 
         newsListView.setAdapter(newsAdapter);
         newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -64,7 +64,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        Loader<List<News>> dataLoader = new NewsAsyncLoader(getContext(),API_LINK);
+        Loader<List<News>> dataLoader = new NewsAsyncLoader(getActivity(),API_LINK);
         return dataLoader;
     }
 

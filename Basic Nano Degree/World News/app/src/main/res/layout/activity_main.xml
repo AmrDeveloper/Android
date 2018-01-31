@@ -10,10 +10,12 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/sliding_tabs"
         android:layout_width="match_parent"
-        app:tabGravity="fill"
         android:layout_height="wrap_content"
         android:background="@color/darkRed"
+        android:layout_gravity="center_horizontal"
         android:textAlignment="center"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
         app:tabSelectedTextColor="#ccc"
         app:tabTextColor="#fff" />
 

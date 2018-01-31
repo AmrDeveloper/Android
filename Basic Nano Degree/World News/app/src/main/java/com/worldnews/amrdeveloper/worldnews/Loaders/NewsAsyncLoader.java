@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
 
 import com.worldnews.amrdeveloper.worldnews.Model.News;
-import com.worldnews.amrdeveloper.worldnews.QueryUtils;
+import com.worldnews.amrdeveloper.worldnews.Query.QueryUtils;
 
 import java.util.List;
 

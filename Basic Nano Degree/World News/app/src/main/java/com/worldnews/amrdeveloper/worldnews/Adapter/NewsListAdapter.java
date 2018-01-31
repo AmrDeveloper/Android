@@ -25,9 +25,9 @@ import java.util.Date;
  * Created by AmrDeveloper on 1/21/2018.
  */
 
-public class NewsAdapter extends ArrayAdapter<News> {
+public class NewsListAdapter extends ArrayAdapter<News> {
 
-    public NewsAdapter(@NonNull Context context) {
+    public NewsListAdapter(@NonNull Context context) {
         super(context, 0);
     }
 

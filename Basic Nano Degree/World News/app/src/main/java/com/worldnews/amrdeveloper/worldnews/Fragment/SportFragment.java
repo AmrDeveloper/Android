@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.worldnews.amrdeveloper.worldnews.Adapter.NewsAdapter;
+import com.worldnews.amrdeveloper.worldnews.Adapter.NewsListAdapter;
 import com.worldnews.amrdeveloper.worldnews.Loaders.NewsAsyncLoader;
 import com.worldnews.amrdeveloper.worldnews.Model.News;
 import com.worldnews.amrdeveloper.worldnews.R;
@@ -31,7 +31,7 @@ import java.util.List;
 public class SportFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<News>> {
 
     private ListView newsListView;
-    private NewsAdapter newsAdapter;
+    private NewsListAdapter newsAdapter;
 
     private final int LOADER_ID = 1;
     private final String API_LINK = "https://content.guardianapis.com/search?section=sport&show-fields=thumbnail,trailText&page-size=20&api-key=246cb6ff-865d-4763-9284-168fdf56cf13";
@@ -44,7 +44,7 @@ public class SportFragment extends Fragment implements LoaderManager.LoaderCallb
 
         newsListView = (ListView) rootView.findViewById(R.id.newsListView);
 
-        newsAdapter = new NewsAdapter(getActivity());
+        newsAdapter = new NewsListAdapter(getActivity());
 
         newsListView.setAdapter(newsAdapter);
         newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -67,7 +67,7 @@ public class SportFragment extends Fragment implements LoaderManager.LoaderCallb
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        Loader<List<News>> dataLoader = new NewsAsyncLoader(getContext(), API_LINK);
+        Loader<List<News>> dataLoader = new NewsAsyncLoader(getActivity(), API_LINK);
         return dataLoader;
     }
 

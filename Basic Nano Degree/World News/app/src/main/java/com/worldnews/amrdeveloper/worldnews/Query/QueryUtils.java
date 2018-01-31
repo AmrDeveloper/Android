@@ -1,4 +1,4 @@
-package com.worldnews.amrdeveloper.worldnews;
+package com.worldnews.amrdeveloper.worldnews.Query;
 
 
 import android.util.Log;
