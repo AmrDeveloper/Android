@@ -25,9 +25,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ListView;
 
 import com.example.android.pets.database.PetContract.PetEntry;
+
+import java.util.List;
 
 /**
  * Displays list of pets that were entered and stored in the app.
@@ -49,7 +51,7 @@ public class CatalogActivity extends AppCompatActivity {
             }
         });
 
-        insertPets();
+
         displayDataBaseInfo();
     }
 
@@ -67,42 +69,16 @@ public class CatalogActivity extends AppCompatActivity {
         };
 
         //Get Data
-        Cursor cursor = getContentResolver().query(PetEntry.CONTENT_URI,projection,null,null,null);
-        try
-        {
-            // Display the number of rows in the Cursor (which reflects the number of rows in the
-            // pets table in the database).
-            //TODO :TextView displayView = (TextView) findViewById(R.id.text_view_pet);
+        Cursor cursor = getContentResolver().query(
+                PetEntry.CONTENT_URI,
+                projection
+                ,null,
+                null,
+                null);
 
-            StringBuilder stringBuilder = new StringBuilder();
-
-            // Figure out the index of each column
-            int idColumnIndex = cursor.getColumnIndex(PetEntry._ID);
-            int nameColumnIndex = cursor.getColumnIndex(PetEntry.COLUMN_PET_NAME);
-            int breedColumnIndex = cursor.getColumnIndex(PetEntry.COLUMN_PET_BREED);
-            int weightColumnIndex = cursor.getColumnIndex(PetEntry.COLUMN_PET_WEIGHT);
-
-
-            //Put All Data In String Builder
-            while(cursor.moveToNext()){
-
-                int currentId = cursor.getInt(idColumnIndex);
-                String currentName = cursor.getString(nameColumnIndex);
-                String currentBreed = cursor.getString(breedColumnIndex);
-                String currentWeight = cursor.getString(weightColumnIndex);
-
-                //Append Like Great Software Engineer :D
-                stringBuilder.append(currentId + "-" + currentName + "-" + currentBreed + "-" + currentWeight + ".\n");
-            }
-            //Display All pets Information
-            //TODO : displayView.setText("Pets Number : " + cursor.getCount() + "\n" + stringBuilder.toString());
-        }
-        finally
-        {
-            // Always close the cursor when you're done reading from it. This releases all its
-            // resources and makes it invalid.
-            cursor.close();
-        }
+        ListView petsListView = (ListView)findViewById(R.id.petsListView);
+        PetCursorAdapter cursorAdapter = new PetCursorAdapter(this,cursor);
+        petsListView.setAdapter(cursorAdapter);
     }
 
     //Insert Pet In DataBase
