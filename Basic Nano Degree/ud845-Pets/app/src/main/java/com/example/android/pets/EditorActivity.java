@@ -173,7 +173,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         String nameString = mNameEditText.getText().toString().trim();
         String breedString = mBreedEditText.getText().toString().trim();
         String weightString = mWeightEditText.getText().toString().trim();
-        int weightInteger = Integer.parseInt(weightString);
 
         //Assert data is valid or return without saving
         if (currentUri == null &&
@@ -266,7 +265,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 // Save Pet to Database
                 if (currentUri == null) {
                     savePetIntoDataBase();
-                } else {
+                }
+                else {
                     updatePetIntoDataBase();
                 }
                 //Finish Activity
