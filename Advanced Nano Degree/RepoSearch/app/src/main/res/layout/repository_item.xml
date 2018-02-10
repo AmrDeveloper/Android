@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/grayWhite"
+    android:padding="@dimen/dimen10"
+    android:layout_marginBottom="@dimen/dimen10"
+    >
+
+    <TextView
+        android:id="@+id/repoName"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/name" />
+
+    <TextView
+        android:id="@+id/repoLang"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/repoName"
+        android:text="@string/language" />
+
+    <TextView
+        android:id="@+id/repoOwner"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/repoLang"
+        android:text="@string/owner" />
+
+    <TextView
+        android:id="@+id/repoStars"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/repoOwner"
+        android:text="@string/stars"
+        />
+
+</RelativeLayout>

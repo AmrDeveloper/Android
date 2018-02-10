@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">RepoSearch</string>
+
+    <string name="search">Search</string>
+    <string name="error_message">Failed to get result, please try again.</string>
+    <string name="hint_message">Type a Query For Github!</string>
+    <string name="language">Language</string>
+    <string name="name">Name</string>
+    <string name="owner">Owner</string>
+    <string name="stars">Stars</string>
+
+</resources>
