@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:layout_weight="6"
         android:scaleType="fitXY"
-        android:src="@drawable/udacity_wallpaper" />
+        android:src="@drawable/udacity_car" />
 
     <!--TextView for Udacity Business Name-->
     <TextView

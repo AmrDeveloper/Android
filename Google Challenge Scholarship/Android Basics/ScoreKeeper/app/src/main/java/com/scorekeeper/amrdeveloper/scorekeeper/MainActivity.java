@@ -17,94 +17,111 @@ public class MainActivity extends AppCompatActivity {
     //TextView For Team B Score
     private TextView scoreTeamB;
 
-    private String scoreFotter = " points";
-
+    private final String POINT = " point";
+    private final String POINTS = " points";
+    private final String TEAM_A = "teamA";
+    private final String TEAM_B = "teamB";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //TODO : Initializes TextViews for Team one and two
-        this.scoreTeamA = (TextView) findViewById(R.id.scoreTeamA);
-        this.scoreTeamB = (TextView) findViewById(R.id.scoreTeamB);
+        //Initializes TextViews for Team one and two
+        initTextViews();
 
         //Check if savedInstanceState equal null or not
         if(savedInstanceState != null){
             //get The last Score
-            this.teamAScore = savedInstanceState.getInt("teamA",0);
-            this.teamBScore = savedInstanceState.getInt("teamB",0);
+            this.teamAScore = savedInstanceState.getInt(TEAM_A,0);
+            this.teamBScore = savedInstanceState.getInt(TEAM_B,0);
             //Update Ui
-            this.scoreTeamA.setText(teamAScore + scoreFotter);
-            this.scoreTeamB.setText(teamBScore + scoreFotter);
+            setScoreInTextView(scoreTeamA,teamAScore);
+            setScoreInTextView(scoreTeamB,teamBScore);
         }
     }
 
-    // TODO : Team A Score Add One
+    //Initializes TextViews
+    private void initTextViews(){
+        this.scoreTeamA =  findViewById(R.id.scoreTeamA);
+        this.scoreTeamB =  findViewById(R.id.scoreTeamB);
+    }
+
+    //Team A Score Add One
     public void teamOnePlusOne(View v) {
         //First update Score
         this.teamAScore = teamAScore + 1;
         //Update Ui
-        scoreTeamA.setText(teamAScore + scoreFotter);
+        setScoreInTextView(scoreTeamA,teamAScore);
     }
 
-    // TODO : Team A Score Add Two
+    //Team A Score Add Two
     public void teamOnePlusTwo(View v) {
         //First update Score
         this.teamAScore = teamAScore + 2;
         //Update Ui
-        scoreTeamA.setText(teamAScore + scoreFotter);
+        setScoreInTextView(scoreTeamA,teamAScore);
     }
 
-    // TODO : Team A Score Add Three
+    //Team A Score Add Three
     public void teamOnePlusThree(View v) {
         //First update Score
         this.teamAScore = teamAScore + 3;
         //Update Ui
-        scoreTeamA.setText(teamAScore + scoreFotter);
+        setScoreInTextView(scoreTeamA,teamAScore);
     }
 
-    // TODO : Team B Score Add Two
+    //Team B Score Add Two
     public void teamTwoPlusOne(View v) {
         //First update Score
         this.teamBScore = teamBScore + 1;
         //Update Ui
-        scoreTeamB.setText(teamBScore + scoreFotter);
+        setScoreInTextView(scoreTeamB,teamBScore);
     }
 
-    // TODO : Team B Score Add Two
+    // Team B Score Add Two
     public void teamTwoPlusTwo(View v) {
         //First update Score
         this.teamBScore = teamBScore + 2;
         //Update Ui
-        scoreTeamB.setText(teamBScore + scoreFotter);
+        setScoreInTextView(scoreTeamB,teamBScore);
     }
 
-    // TODO : Team B Score Add Three
+    //Team B Score Add Three
     public void teamTwoPlusThree(View v) {
         //First update Score
         this.teamBScore = teamBScore + 3;
         //Update Ui
-        scoreTeamB.setText(teamBScore + scoreFotter);
+        setScoreInTextView(scoreTeamB,teamBScore);
     }
 
-    //TODO : Reset Score For Team A And B
+    //Reset Score For Team A And B
     public void scoreReset(View v) {
         //Reset Two Team Score to zero
         this.teamAScore = 0;
         this.teamBScore = 0;
         //Update Ui
-        scoreTeamA.setText(teamAScore + scoreFotter);
-        scoreTeamB.setText(teamBScore + scoreFotter);
+        setScoreInTextView(scoreTeamA,teamAScore);
+        setScoreInTextView(scoreTeamB,teamBScore);
+    }
+
+    //Set Score in TextView and check if score is one or more
+    private void setScoreInTextView(TextView text ,int score){
+        if(score == 1){
+           text.setText(score + POINT);
+        }
+        else{
+            text.setText(score + POINTS);
+        }
     }
 
     @Override
-    //TODO : Save Current Score Before Activity Destroyed
+    //Save Current Score Before Activity Destroyed
     protected void onSaveInstanceState(Bundle outState) {
         //Put Current Team A Score on Bundle
-        outState.putInt("teamA",this.teamAScore);
+        outState.putInt(TEAM_A,teamAScore);
         //Put Current Team B Score on Bundle
-        outState.putInt("teamB",this.teamBScore);
+        outState.putInt(TEAM_B,teamBScore);
         super.onSaveInstanceState(outState);
     }
 

@@ -1,0 +1,119 @@
+<resources>
+    <string name="app_name">TourGuide</string>
+
+    <!--Pharaonic Strings-->
+    <string name="pyramids_name">Pyramids of Giza</string>
+    <string name="pyramids_description">This complex of ancient monuments includes the three pyramid complexes known as the Great Pyramids,
+        the massive sculpture known as the Great Sphinx, several cemeteries,
+        a workers\' village and an industrial complex.
+        It is located in the Western Desert,
+        approximately 9 km  west of the Nile river at the old town of Giza, and about 13 km
+        southwest of Cairo city centre.</string>
+
+    <string name="pyramid_of_djoser_name">Pyramid of Djoser</string>
+    <string name="pyramid_of_djoser_description">is an archeological remain in the Saqqara necropolis, Egypt,
+        northwest of the city of Memphis. It was built ca. 27th century BC during the Third dynasty
+        for the burial of Pharaoh Djoser by his vizier, Imhotep. The pyramid is the central
+        feature of a vast mortuary complex in an enormous courtyard surrounded by ceremonial structures and decoration.</string>
+
+    <string name="sphinx_name">Sphinx</string>
+    <string name="sphinx_description">A sphinx is a mythical creature with the head of a human and the body of a lion.</string>
+
+    <string name="abu_simbel_name">Abu Simbel Temple</string>
+    <string name="abu_simbel_description">village in Nubia, southern Egypt,
+        near the border with Sudan. They are situated on the western bank of Lake Nasser,
+        about 230 km southwest of Aswan (about 300 km by road).
+        The complex is part of the UNESCO World Heritage Site known as the
+        "Nubian Monuments" which run from Abu Simbel downriver to Philae (near Aswan).
+        The twin temples were originally carved out of the mountainside in the 13th century BC
+        , during the 19th dynasty reign of the Pharaoh Ramesses II.
+        They serve as a lasting monument to the king and his queen Nefertari,
+        and commemorate his victory at the Battle of Kadesh. Their huge external rock relief figures have become iconic</string>
+
+    <string name="valley_of_the_kings_name">Valley of the Kings</string>
+    <string name="valley_of_the_kings_description">is a valley in Egypt where, for a period of nearly 500 years from the 16th to 11th century BC
+        , rock cut tombs were excavated for the Pharaohs and powerful nobles of the New Kingdom</string>
+
+    <!--Religious Strings-->
+    <string name="mount_sinai_name">Mount Sinai</string>
+    <string name="mount_sinai_description">Mount Horeb or Gabal Musa,
+        is a mountain in the Sinai Peninsula of Egypt that is a possible location of the biblical Mount Sinai
+        , which is considered a holy site by the Abrahamic religions. Mount Sinai is mentioned many times
+        in the Book of Exodus and other books of the Bible, and the Quran. According to Jewish,
+        Christian, and Islamic tradition, the biblical Mount Sinai was the place where Moses received the Ten Commandments.</string>
+
+    <string name="hanging_church">The Hanging Church</string>
+    <string name="hanging_church_description">also known as the Hanging Church  is one of the oldest churches in Egypt and
+        the history of a church on this site dates to the 3rd century AD</string>
+
+    <string name="azhar_mosque_name">Al-Azhar Mosque</string>
+    <string name="azhar_mosque_description">is an Egyptian mosque in Islamic Cairo. Al-Mu\'izz li-Din Allah of the Fatimid dynasty
+        commissioned its construction for the newly established capital city in 970.
+        Its name is usually thought to allude to the Islamic prophet Muhammad\'s daughter Fatimah,
+        a revered figure in Islam who was given the title az-Zahrā
+        It was the first mosque established in Cairo, a city that has since gained the nickname
+        "the City of a Thousand Minarets</string>
+
+    <string name="saint_catherine_name">Saint Catherine Monastery</string>
+    <string name="saint_catherine_description">Built between 548 and 565, the monastery is one of the oldest working Christian monasteries in the world
+        . The site contains the world\'s oldest continually operating library,
+        possessing many unique books including the Syriac Sinaiticus and, until 1859,
+        the Codex Sinaiticus. A small town with hotels and swimming pools, called Saint Katherine City,
+        has grown around the monastery.</string>
+
+    <!--Modern Strings-->
+    <string name="bibliotheca_alex_name">Bibliotheca Alexandrina</string>
+    <string name="bibliotheca_alex_description"> is a major library and cultural center located on the shore of the Mediterranean
+        Sea in the Egyptian city of Alexandria. It is both a commemoration of the
+        Library of Alexandria that was lost in antiquity, and an attempt to
+        rekindle something of the brilliance that this earlier center of study and erudition represented.</string>
+
+    <string name="egyptian_museum_name">Egyptian Museum</string>
+    <string name="egyptian_museum_description">known commonly as the Egyptian Museum or Museum of Cairo,
+        in Cairo, Egypt, is home to an extensive collection of ancient Egyptian antiquities
+        . It has 120,000 items, with a representative amount on display, the remainder
+        in storerooms. The edifice is one of the largest museums in the region. As of July 2017, the museum is open to the public.</string>
+
+    <string name="cairo_tower_name">Cairo Tower</string>
+    <string name="cairo_tower_description">is a free-standing concrete tower located in Cairo, Egypt
+        . At 187 m (614 ft), it has been the tallest structure
+        in Egypt and North Africa for about 50 years. It was the
+        tallest structure in Africa for 10 years, until 1971 when
+        it was surpassed by Hillbrow Tower in South Africa</string>
+
+    <string name="luxor_museum_name">Luxor Museum</string>
+    <string name="luxor_museum_description">The Luxor Museum was inaugurated in 1975
+        . It is a two-story buildingThe range of artifacts on display
+        is far more restricted than the country\'s main collections
+        in the Museum of Antiquities in Cairo; this was, however,
+        deliberate, since the museum prides itself on the quality of
+        the pieces it has, the uncluttered way in which they are
+        displayed, and the clear multilingual labeling used</string>
+
+    <!--Other Strings-->
+    <string name="ras_muhammad_np_name">Ras Muhammad National Park</string>
+    <string name="ras_muhammad_np_description">is a national park in Egypt at the southern extreme of
+        the Sinai Peninsula, overlooking the Gulf of Suez on the
+        west and the Gulf of Aqaba to the east.</string>
+
+    <string name="khan_el_khalili_name">Khan el-Khalili</string>
+    <string name="khan_el_khalili_description"> is a major souk in the historic center of Islamic Cairo.
+        The bazaar district is one of Cairo's main attractions for tourists and Egyptians alike. </string>
+
+    <string name="saladin_citadel_name">Saladin Citadel</string>
+    <string name="saladin_citadel_description">is a medieval Islamic fortification in Cairo
+        , Egypt. The location, on Mokattam hill near the center of Cairo, was
+        once famous for its fresh breeze and grand views of the city. It is
+        now a preserved historic site, with mosques and museums. In 1976,
+        it was proclaimed by UNESCO as a part of the World Heritage Site
+        Historic Cairo (Islamic Cairo) which was "the new centre of the
+        Islamic world, reaching its golden age in the 14th century</string>
+
+    <string name="qaitbay_name">Citadel of Qaitbay</string>
+    <string name="qaitbay_description">Tis a
+        15th-century defensive fortress located on the Mediterranean
+        sea coast, in Alexandria, Egypt. It was established in 1477 AD
+        (882 AH) by Sultan Al-Ashraf Sayf al-Din Qa'it Bay. The Citadel
+        is situated on the eastern side of the northern tip of Pharos
+        Island at the mouth of the Eastern Harbour</string>
+</resources>
