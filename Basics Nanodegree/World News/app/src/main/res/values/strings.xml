@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">World News</string>
+    <string name="no_data">Sorry No Data</string>
+    <string name="no_connection">No Internet Connection</string>
+</resources>
