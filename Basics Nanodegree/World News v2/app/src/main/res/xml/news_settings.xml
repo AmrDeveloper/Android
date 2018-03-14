@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="@string/news_country_key"
+        android:title="@string/news_country_label"
+        android:defaultValue="@string/news_country_default"
+        android:summary="@string/news_country_default"
+        />
+
+    <ListPreference
+        android:defaultValue="@string/news_order_default"
+        android:entries="@array/order_by"
+        android:entryValues="@array/order_by"
+        android:key="@string/news_order_key"
+        android:title="@string/news_order_label"
+        android:summary="@string/news_order_default"
+        />
+
+</PreferenceScreen>
