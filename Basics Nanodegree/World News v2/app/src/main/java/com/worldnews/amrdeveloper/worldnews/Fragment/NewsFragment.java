@@ -108,8 +108,9 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
                 getString(R.string.news_order_default)
         );
 
+
         Uri baseUri = Uri.parse(Api.API_LINK);
-        Uri.Builder uriBuilder = baseUri.buildUpon();
+        Uri.Builder uriBuilder = baseUri.buildUpon()
 
         //Append Attribute to The Link
         uriBuilder.appendQueryParameter(Api.QUERY, country);
@@ -119,6 +120,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         uriBuilder.appendQueryParameter(Api.SHOW_FIELDS, Api.API_FIELDS_INPUT);
         uriBuilder.appendQueryParameter(Api.PAGE_SIZE, Api.PAGE_SIZE_NUM);
         uriBuilder.appendQueryParameter(Api.API_KEY, Api.MY_API_KEY);
+
 
         //Start Loader
         Loader<List<News>> dataLoader = new NewsAsyncLoader(getActivity(), uriBuilder.toString());

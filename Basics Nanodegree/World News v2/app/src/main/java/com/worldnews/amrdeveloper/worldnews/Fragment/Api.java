@@ -11,7 +11,9 @@ public final class Api {
      */
     final static String QUERY = "q";
     final static String API_KEY = "api-key";
-    final static String SECTION = "section";
+    final static String SECTION = "tag";
+    //final static String SECTION = "section";
+
     final static String PAGE_SIZE_NUM = "10";
     final static String ORDER_BY = "order-by";
     final static String SHOW_TAGS = "show-tags";
