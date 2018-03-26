@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import static com.inventory1.amrdeveloper.inventoryv1.ProductContract.ProductEntry.TABLE_NAME;
+
 /**
  * Created by AmrDeveloper on 3/20/2018.
  */
@@ -23,7 +25,7 @@ public class DbHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
         // Create a String that contains the SQL statement to create the Products table
-        String SQL_CREATE_PETS_TABLE = "CREATE TABLE " + ProductContract.ProductEntry.TABLE_NAME + " (" +
+        String SQL_CREATE_PETS_TABLE = "CREATE TABLE " + TABLE_NAME + " (" +
                 ProductContract.ProductEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 ProductContract.ProductEntry.COLUMN_NAME + " TEXT NOT NULL," +
                 ProductContract.ProductEntry.COLUMN_PRICE + " REAL NOT NULL," +
@@ -36,7 +38,10 @@ public class DbHelper extends SQLiteOpenHelper{
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        //Drop The Old DataBase Table
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        //Re Create New DataBase Table
+        onCreate(db);
     }
 }
