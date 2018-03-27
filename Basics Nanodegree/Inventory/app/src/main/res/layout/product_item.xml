@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="1dp"
+    android:id="@+id/itemLayout"
+    >
+
+    <ImageView
+        android:id="@+id/productImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/productName"
+        android:src="@color/yellow" />
+
+    <TextView
+        android:layout_marginTop="@dimen/dimen3"
+        android:id="@+id/productName"
+        android:background="@color/green"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dimen5"
+        android:text="Product Name"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/productPrice"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/productName"
+        android:layout_toRightOf="@id/productImage"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dimen15"
+        android:text="product Price"
+        android:background="@color/brown"
+        android:textColor="@color/yellow" />
+
+    <TextView
+        android:id="@+id/productQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/productPrice"
+        android:layout_toRightOf="@id/productImage"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dimen15"
+        android:background="@color/brown"
+        android:text="Product Quantity"
+        android:textColor="@color/yellow" />
+
+    <ImageButton
+        android:id="@+id/productSaleOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@id/productQuantity"
+        android:background="@color/brown"
+        android:src="@drawable/sale_product" />
+
+</RelativeLayout>

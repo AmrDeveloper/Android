@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yellow"
+    tools:context="com.inventory.amrdeveloper.inventory.DetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <EditText
+            android:id="@+id/productName"
+            android:hint="Product Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/brown"
+            android:padding="@dimen/dimen20"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/dimen3"
+            />
+
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:scaleType="fitXY"
+            android:layout_marginBottom="@dimen/dimen3"
+            />
+
+        <Button
+            android:text="Get Photo"
+            android:onClick="getImageFromPhone"
+            android:background="@color/green"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:id="@+id/getProductPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/productPrice"
+            android:hint="Price :"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/brown"
+            android:padding="@dimen/dimen20"
+            android:inputType="number"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/dimen3"
+            />
+
+        <EditText
+            android:id="@+id/productQuantity"
+            android:hint="Quantity :"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/brown"
+            android:padding="@dimen/dimen20"
+            android:inputType="number"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/dimen3"
+            />
+
+        <EditText
+            android:id="@+id/productSupplier"
+            android:hint="supplier :"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/brown"
+            android:padding="@dimen/dimen20"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/dimen3"
+            />
+
+        <EditText
+            android:id="@+id/supplierPhone"
+            android:hint="Phone :"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/brown"
+            android:padding="@dimen/dimen20"
+            android:inputType="phone"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/dimen3"
+            />
+
+    </LinearLayout>
+
+</ScrollView>

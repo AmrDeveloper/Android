@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Inventory</string>
+    <string name="empty_inventory">Empty Inventory</string>
+    <string name="insert">Insert</string>
+    <string name="delete_all">Delete All</string>
+    <string name="save">Save</string>
+    <string name="points">Points</string>
+    <string name="delete">Delete</string>
+</resources>
