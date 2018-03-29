@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dimen3"
             android:background="@color/brown"
-            android:hint="Product Name"
+            android:hint="@string/product_name"
             android:padding="@dimen/dimen20"
             android:textColor="@color/white" />
 
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:background="@color/green"
             android:onClick="getImageFromPhone"
-            android:text="Get Photo"
+            android:text="@string/get_photo"
             android:textAllCaps="false"
             android:textColor="@color/white" />
 
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dimen3"
             android:background="@color/brown"
-            android:hint="Price :"
+            android:hint="@string/price"
             android:inputType="number"
             android:padding="@dimen/dimen20"
             android:textColor="@color/white" />
@@ -64,7 +64,8 @@
                 android:background="@color/green"
                 android:onClick="plusOneQuantity"
                 android:padding="@dimen/dimen20"
-                android:text="plus"
+                android:text="@string/plus"
+                android:textAllCaps="false"
                 android:textColor="@color/white" />
 
             <EditText
@@ -87,10 +88,9 @@
                 android:layout_weight="1"
                 android:background="@color/green"
                 android:onClick="minOneQuantity"
-                android:text="min"
+                android:text="@string/min"
+                android:textAllCaps="false"
                 android:textColor="@color/white" />
-
-
         </LinearLayout>
 
         <EditText
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dimen3"
             android:background="@color/brown"
-            android:hint="supplier :"
+            android:hint="@string/supplier"
             android:padding="@dimen/dimen20"
             android:textColor="@color/white" />
 
@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dimen3"
             android:background="@color/brown"
-            android:hint="Phone :"
+            android:hint="@string/phone"
             android:inputType="phone"
             android:padding="@dimen/dimen20"
             android:textColor="@color/white" />
@@ -120,8 +120,8 @@
             android:layout_height="wrap_content"
             android:background="@color/green"
             android:onClick="callSupplierButton"
-            android:text="Call Supplier" />
-
+            android:text="@string/call_supplier"
+            android:textAllCaps="false"
+            />
     </LinearLayout>
-
 </ScrollView>

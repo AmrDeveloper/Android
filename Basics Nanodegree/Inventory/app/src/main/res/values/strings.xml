@@ -17,4 +17,12 @@
     <string name="empty_product">No Product in Inventory</string>
     <string name="unit">Unit</string>
     <string name="units">Units</string>
+    <string name="product_name">Product Name</string>
+    <string name="get_photo">Get Photo</string>
+    <string name="price">Price :</string>
+    <string name="plus">Plus</string>
+    <string name="min">Min</string>
+    <string name="supplier">Supplier :</string>
+    <string name="phone">phone :</string>
+    <string name="call_supplier">Call Supplier</string>
 </resources>

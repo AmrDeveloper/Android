@@ -32,5 +32,4 @@
         android:onClick="floatButtonGoAddActivity"
         android:src="@drawable/sale_product"
         app:backgroundTint="@color/brown" />
-
 </RelativeLayout>
