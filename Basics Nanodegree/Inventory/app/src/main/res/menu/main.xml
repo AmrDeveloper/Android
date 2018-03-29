@@ -4,14 +4,14 @@
 
    <item
        android:id="@+id/insertDummy"
-       android:title="Insert Dummy"
+       android:title="@string/insert_dummy"
        app:showAsAction="never"
        >
    </item>
 
    <item
        android:id="@+id/deleteProducts"
-       android:title="Delete All"
+       android:title="@string/delete_products"
        app:showAsAction="never"
        >
    </item>

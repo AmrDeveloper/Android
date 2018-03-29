@@ -2,16 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="1dp"
+    android:layout_margin="@dimen/dimen1"
     android:id="@+id/itemLayout"
     >
 
     <ImageView
         android:id="@+id/productImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/dimen100"
+        android:layout_height="@dimen/dimen100"
         android:layout_below="@id/productName"
-        android:src="@color/yellow" />
+        android:background="@color/darkBlue"
+        />
 
     <TextView
         android:layout_marginTop="@dimen/dimen3"
@@ -27,12 +28,12 @@
     <TextView
         android:id="@+id/productPrice"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/dimen50"
         android:layout_below="@id/productName"
         android:layout_toRightOf="@id/productImage"
         android:gravity="center_vertical"
         android:padding="@dimen/dimen15"
-        android:text="product Price"
+        android:text="00.00"
         android:background="@color/brown"
         android:textColor="@color/yellow" />
 
@@ -45,7 +46,7 @@
         android:gravity="center_vertical"
         android:padding="@dimen/dimen15"
         android:background="@color/brown"
-        android:text="Product Quantity"
+        android:text="@string/unit"
         android:textColor="@color/yellow" />
 
     <ImageButton
@@ -57,5 +58,4 @@
         android:layout_alignBottom="@id/productQuantity"
         android:background="@color/brown"
         android:src="@drawable/sale_product" />
-
 </RelativeLayout>

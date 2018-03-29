@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.inventory.amrdeveloper.inventory.MainActivity">
-
+    tools:context="com.inventory.amrdeveloper.inventory.Activity.MainActivity">
 
     <ListView
         android:id="@+id/productList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray"
+        android:background="@color/gray" />
+
+    <TextView
+        android:id="@+id/emptyTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/empty_product"
+        android:gravity="center"
+        android:visibility="invisible"
         />
 
     <android.support.design.widget.FloatingActionButton
@@ -22,6 +30,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/dimen10"
         android:onClick="floatButtonGoAddActivity"
-        />
+        android:src="@drawable/sale_product"
+        app:backgroundTint="@color/brown" />
 
 </RelativeLayout>

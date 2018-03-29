@@ -147,34 +147,53 @@ public class SQLiteProvider extends ContentProvider {
         }
     }
 
-    private int updateProduct(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String selection, @Nullable String[] selectionArgs) {
-        // Otherwise, get Writable database to update the data
+    //Update Product Method to Check every information is valid to put it on database
+    private int updateProduct(@NonNull Uri uri,
+                              @Nullable ContentValues contentValues,
+                              @Nullable String selection,
+                              @Nullable String[] selectionArgs) {
 
-        String name = contentValues.getAsString(ProductContract.ProductEntry.COLUMN_NAME);
-        Double price = contentValues.getAsDouble(ProductContract.ProductEntry.COLUMN_PRICE);
-        String supplier = contentValues.getAsString(ProductContract.ProductEntry.COLUMN_SUPPLIER);
-        Integer quantity = contentValues.getAsInteger(ProductContract.ProductEntry.COLUMN_QUANTITY);
-        byte[] image = contentValues.getAsByteArray(ProductContract.ProductEntry.COLUMN_IMAGE);
-
-        if (name == null || name.equals("")) {
-            throw new IllegalArgumentException("product requires a name");
+        if (contentValues.containsKey(ProductContract.ProductEntry.COLUMN_NAME)) {
+            String name = contentValues.getAsString(ProductContract.ProductEntry.COLUMN_NAME);
+            if (name == null) {
+                throw new IllegalArgumentException("Product requires a name");
+            }
         }
-
-        if (price == null) {
-            throw new IllegalArgumentException("product requires a price");
+        if (contentValues.containsKey(ProductContract.ProductEntry.COLUMN_PRICE)) {
+            Double price = contentValues.getAsDouble(ProductContract.ProductEntry.COLUMN_PRICE);
+            if (price != null && price < 0) {
+                throw new IllegalArgumentException("Product requires a price");
+            }
         }
-
-        if (supplier == null) {
-            throw new IllegalArgumentException("product requires a supplier");
+        if (contentValues.containsKey(ProductContract.ProductEntry.COLUMN_IMAGE)) {
+            byte[] image = contentValues.getAsByteArray(ProductContract.ProductEntry.COLUMN_IMAGE);
+            if (image == null) {
+                throw new IllegalArgumentException("Product requires an image");
+            }
         }
-
-        if (quantity == null) {
-            throw new IllegalArgumentException("product requires a quantity");
+        if (contentValues.containsKey(ProductContract.ProductEntry.COLUMN_QUANTITY)) {
+            Integer quantity = contentValues.getAsInteger(ProductContract.ProductEntry.COLUMN_QUANTITY);
+            if (quantity != null && quantity < 0) {
+                throw new IllegalArgumentException("Product requires valid quantity");
+            }
         }
-
-        if(contentValues.size() == 0){
+        if (contentValues.containsKey(ProductContract.ProductEntry.COLUMN_SUPPLIER)) {
+            String supplier = contentValues.getAsString(ProductContract.ProductEntry.COLUMN_SUPPLIER);
+            if (supplier == null) {
+                throw new IllegalArgumentException("Product requires a supplier");
+            }
+        }
+        if (contentValues.containsKey(ProductContract.ProductEntry.COLUMN_PHONE)) {
+            String phone = contentValues.getAsString(ProductContract.ProductEntry.COLUMN_SUPPLIER);
+            if (phone == null) {
+                throw new IllegalArgumentException("Phone Number is required");
+            }
+        }
+        if (contentValues.size() == 0) {
             return 0;
         }
+
+
         SQLiteDatabase database = mDataBaseHelper.getWritableDatabase();
         int rowUpdated = database.update(ProductContract.ProductEntry.TABLE_NAME, contentValues, selection, selectionArgs);
 

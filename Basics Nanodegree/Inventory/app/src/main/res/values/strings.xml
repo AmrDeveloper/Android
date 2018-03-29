@@ -2,8 +2,19 @@
     <string name="app_name">Inventory</string>
     <string name="empty_inventory">Empty Inventory</string>
     <string name="insert">Insert</string>
-    <string name="delete_all">Delete All</string>
+    <string name="insert_dummy">Insert Dummy</string>
+    <string name="delete_products">Delete All</string>
     <string name="save">Save</string>
     <string name="points">Points</string>
     <string name="delete">Delete</string>
+    <string name="save_product">Save Product</string>
+    <string name="update_product">Update Product</string>
+    <string name="order_product">Order Product</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_message">Delete This Product ?</string>
+    <string name="keep_editing">Editing</string>
+    <string name="unsaved_changes_dialog_msg">Product UnSaved</string>
+    <string name="empty_product">No Product in Inventory</string>
+    <string name="unit">Unit</string>
+    <string name="units">Units</string>
 </resources>

@@ -5,89 +5,122 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
-    tools:context="com.inventory.amrdeveloper.inventory.DetailActivity">
+    tools:context="com.inventory.amrdeveloper.inventory.Activity.DetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/productName"
-            android:hint="Product Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/brown"
-            android:padding="@dimen/dimen20"
-            android:textColor="@color/white"
             android:layout_marginBottom="@dimen/dimen3"
-            />
+            android:background="@color/brown"
+            android:hint="Product Name"
+            android:padding="@dimen/dimen20"
+            android:textColor="@color/white" />
 
         <ImageView
             android:id="@+id/productImage"
             android:layout_width="match_parent"
-            android:layout_height="190dp"
-            android:scaleType="fitXY"
+            android:layout_height="@dimen/dimen190"
             android:layout_marginBottom="@dimen/dimen3"
-            />
+            android:scaleType="fitXY" />
 
         <Button
-            android:text="Get Photo"
-            android:onClick="getImageFromPhone"
-            android:background="@color/green"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
             android:id="@+id/getProductPhoto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@color/green"
+            android:onClick="getImageFromPhone"
+            android:text="Get Photo"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/productPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen3"
+            android:background="@color/brown"
             android:hint="Price :"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/brown"
-            android:padding="@dimen/dimen20"
             android:inputType="number"
-            android:textColor="@color/white"
-            android:layout_marginBottom="@dimen/dimen3"
-            />
+            android:padding="@dimen/dimen20"
+            android:textColor="@color/white" />
 
-        <EditText
-            android:id="@+id/productQuantity"
-            android:hint="Quantity :"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/brown"
-            android:padding="@dimen/dimen20"
-            android:inputType="number"
-            android:textColor="@color/white"
-            android:layout_marginBottom="@dimen/dimen3"
-            />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/productPlus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/dimen3"
+                android:layout_weight="1"
+                android:background="@color/green"
+                android:onClick="plusOneQuantity"
+                android:padding="@dimen/dimen20"
+                android:text="plus"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/productQuantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen3"
+                android:layout_weight="1"
+                android:background="@color/brown"
+                android:gravity="center"
+                android:inputType="number"
+                android:padding="@dimen/dimen20"
+                android:text="0"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/productMin"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/green"
+                android:onClick="minOneQuantity"
+                android:text="min"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
 
         <EditText
             android:id="@+id/productSupplier"
-            android:hint="supplier :"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/brown"
-            android:padding="@dimen/dimen20"
-            android:textColor="@color/white"
             android:layout_marginBottom="@dimen/dimen3"
-            />
+            android:background="@color/brown"
+            android:hint="supplier :"
+            android:padding="@dimen/dimen20"
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/supplierPhone"
-            android:hint="Phone :"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/brown"
-            android:padding="@dimen/dimen20"
-            android:inputType="phone"
-            android:textColor="@color/white"
             android:layout_marginBottom="@dimen/dimen3"
-            />
+            android:background="@color/brown"
+            android:hint="Phone :"
+            android:inputType="phone"
+            android:padding="@dimen/dimen20"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/callSupplier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/green"
+            android:onClick="callSupplierButton"
+            android:text="Call Supplier" />
 
     </LinearLayout>
 

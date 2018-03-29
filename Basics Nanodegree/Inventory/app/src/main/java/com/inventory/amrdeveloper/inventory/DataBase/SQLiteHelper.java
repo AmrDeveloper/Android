@@ -29,7 +29,7 @@ public class SQLiteHelper extends SQLiteOpenHelper{
                 ProductContract.ProductEntry.COLUMN_NAME + " TEXT NOT NULL, " +
                 ProductContract.ProductEntry.COLUMN_PRICE + " REAL NOT NULL, " +
                 ProductContract.ProductEntry.COLUMN_IMAGE + " BLOB NOT NULL," +
-                //ProductContract.ProductEntry.COLUMN_PHONE + " TEXT NOT NULL," +
+                ProductContract.ProductEntry.COLUMN_PHONE + " TEXT NOT NULL," +
                 ProductContract.ProductEntry.COLUMN_QUANTITY + " INTEGER  NOT NULL, " +
                 ProductContract.ProductEntry.COLUMN_SUPPLIER + " TEXT  NOT NULL);";
 
@@ -41,6 +41,7 @@ public class SQLiteHelper extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         //ReCreate Sqlite DataBase if version is different
         //sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME);
+        //onCreate(sqLiteDatabase);
     }
 
 

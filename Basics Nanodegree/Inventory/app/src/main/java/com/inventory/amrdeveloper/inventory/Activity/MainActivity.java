@@ -1,4 +1,4 @@
-package com.inventory.amrdeveloper.inventory;
+package com.inventory.amrdeveloper.inventory.Activity;
 
 import android.app.LoaderManager;
 import android.content.ContentValues;
@@ -13,7 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import com.inventory.amrdeveloper.inventory.Adapter.ProductAdapter;
 import com.inventory.amrdeveloper.inventory.DataBase.ProductContract;
+import com.inventory.amrdeveloper.inventory.R;
 
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         ListView productList = findViewById(R.id.productList);
         mCursorAdapter = new ProductAdapter(this,null);
         productList.setAdapter(mCursorAdapter);
+        productList.setEmptyView(findViewById(R.id.emptyTextView));
         //Loading Data From DataBase
         getLoaderManager().initLoader(PRODUCT_LOADER,null,this);
     }
@@ -41,8 +44,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         values.put(ProductContract.ProductEntry.COLUMN_PRICE, 16000);
         values.put(ProductContract.ProductEntry.COLUMN_IMAGE,new byte[]{});
         values.put(ProductContract.ProductEntry.COLUMN_QUANTITY, 5);
+        values.put(ProductContract.ProductEntry.COLUMN_PHONE, "01212909090");
         values.put(ProductContract.ProductEntry.COLUMN_SUPPLIER, "Apple Inc");
-
         getContentResolver().insert(ProductContract.ProductEntry.CONTENT_URI, values);
     }
 
@@ -83,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 ProductContract.ProductEntry.COLUMN_NAME,
                 ProductContract.ProductEntry.COLUMN_PRICE,
                 ProductContract.ProductEntry.COLUMN_IMAGE,
+                ProductContract.ProductEntry.COLUMN_PHONE,
                 ProductContract.ProductEntry.COLUMN_QUANTITY,
                 ProductContract.ProductEntry.COLUMN_SUPPLIER
         };

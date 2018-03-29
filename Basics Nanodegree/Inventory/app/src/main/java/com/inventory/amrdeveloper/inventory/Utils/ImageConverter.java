@@ -1,4 +1,4 @@
-package com.inventory.amrdeveloper.inventory;
+package com.inventory.amrdeveloper.inventory.Utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

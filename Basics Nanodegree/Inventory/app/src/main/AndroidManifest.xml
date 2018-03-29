@@ -9,19 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailActivity"
-            android:parentActivityName="com.inventory.amrdeveloper.inventory.MainActivity" >
+        <activity android:name=".Activity.DetailActivity"
+            android:parentActivityName="com.inventory.amrdeveloper.inventory.Activity.MainActivity" >
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.inventory.amrdeveloper.inventory.MainActivity" />
+                android:value="com.inventory.amrdeveloper.inventory.Activity.MainActivity" />
         </activity>
         <provider
             android:authorities="com.amrdeveloper.product"
