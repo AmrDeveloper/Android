@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:background="@color/whitePurple"
+    >
+
+    <ImageView
+        android:id="@+id/singerImage"
+        android:contentDescription="Singer Image"
+        android:layout_width="match_parent"
+        android:layout_height="245dp"
+        android:background="#000"
+        android:scaleType="fitXY"
+        />
+
+    <TextView
+        android:id="@+id/singerName"
+        android:text="Adele"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold|italic"
+        android:textSize="20sp"
+        android:textColor="@color/darkPurple"
+        android:layout_gravity="bottom"
+        android:background="@color/purple"
+        android:padding="5dp"
+        android:gravity="center"
+        android:fontFamily="monospace"
+        android:layout_margin="5dp"
+
+        />
+
+</FrameLayout>
