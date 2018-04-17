@@ -1,12 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blackPurple"
+    android:orientation="vertical"
     tools:context="com.musicapp.amrdeveloper.musicapp.PlayerActivity">
 
+    <TextView
+        android:id="@+id/musicName"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".4"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:padding="@dimen/dimen5dp"
+        android:text="Skyfall"
+        android:textColor="@color/whitePurple"
+        android:textSize="@dimen/dimen25sp"
+        android:textStyle="italic" />
 
+    <TextView
+        android:id="@+id/singerName"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".3"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="Adele"
+        android:textColor="@color/purple"
+        android:textSize="@dimen/dimen20sp"
+        android:textStyle="italic" />
 
+    <ImageView
+        android:id="@+id/singerImage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/dimen10dp"
+        android:layout_marginRight="@dimen/dimen10dp"
+        android:layout_weight=".8"
+        android:scaleType="fitXY"
+        android:src="@drawable/adele" />
 
+    <SeekBar
+        android:id="@+id/songSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".2"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight=".4"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/dimen10dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/skipPreviousButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:layout_marginRight="@dimen/dimen15dp"
+            android:src="@mipmap/skip_previous_icon" />
+
+        <ImageButton
+            android:id="@+id/playSongButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@mipmap/play_song_icon" />
+
+        <ImageButton
+            android:id="@+id/skipNextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/dimen15sp"
+            android:background="@null"
+            android:src="@mipmap/skip_next_icon" />
+    </LinearLayout>
 </LinearLayout>

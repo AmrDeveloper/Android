@@ -16,8 +16,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SongsActivity" android:label="Songs" />
-        <activity android:name=".PlayerActivity" android:label="Player"></activity>
+        <activity
+            android:name=".SongsActivity"
+            android:label="@string/songs_list"
+            android:parentActivityName=".MainActivity"
+            >
+            <!--Add Up Button To Songs Activity-->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".PlayerActivity" android:label="@string/music_player"></activity>
     </application>
 
 </manifest>

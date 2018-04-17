@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="5dp"
+    android:padding="@dimen/dimen5dp"
     android:background="@color/whitePurple"
     >
 
@@ -11,8 +11,8 @@
         android:id="@+id/singerImage"
         android:contentDescription="Singer Image"
         android:layout_width="match_parent"
-        android:layout_height="245dp"
-        android:background="#000"
+        android:layout_height="@dimen/dimen245dp"
+        android:background="@color/black"
         android:scaleType="fitXY"
         />
 
@@ -22,14 +22,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold|italic"
-        android:textSize="20sp"
+        android:textSize="@dimen/dimen15sp"
         android:textColor="@color/darkPurple"
         android:layout_gravity="bottom"
         android:background="@color/purple"
-        android:padding="5dp"
+        android:padding="@dimen/dimen2dp"
         android:gravity="center"
         android:fontFamily="monospace"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/dimen2dp"
 
         />
 
