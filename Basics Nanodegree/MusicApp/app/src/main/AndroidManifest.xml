@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,16 +17,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SongsActivity"
+            android:name=".Activity.SongsActivity"
             android:label="@string/songs_list"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".Activity.MainActivity"
             >
             <!--Add Up Button To Songs Activity-->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".Activity.MainActivity" />
         </activity>
-        <activity android:name=".PlayerActivity" android:label="@string/music_player"></activity>
+        <activity android:name=".Activity.PlayerActivity" android:label="@string/music_player"></activity>
     </application>
 
 </manifest>

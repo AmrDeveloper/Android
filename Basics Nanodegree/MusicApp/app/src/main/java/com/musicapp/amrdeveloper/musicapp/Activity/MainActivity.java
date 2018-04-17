@@ -1,4 +1,4 @@
-package com.musicapp.amrdeveloper.musicapp;
+package com.musicapp.amrdeveloper.musicapp.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,8 +7,11 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.musicapp.amrdeveloper.musicapp.R;
+import com.musicapp.amrdeveloper.musicapp.Adapter.RecyclerSingerAdapter;
+import com.musicapp.amrdeveloper.musicapp.Model.Singer;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,11 +22,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final List<Singer> singer = new ArrayList<>();
-        singer.add(new Singer("Adele",R.drawable.adele));
-        singer.add(new Singer("Jennifer Lopez",R.drawable.jennifer_lopez));
-        singer.add(new Singer("Britney Spears",R.drawable.britney_spears));
-        singer.add(new Singer("Sia",R.drawable.sia));
+        final ArrayList<Singer> singer = new ArrayList<>();
+        singer.add(new Singer(getString(R.string.adele),R.drawable.adele));
+        singer.add(new Singer(getString(R.string.jennifer_lopez),R.drawable.jennifer_lopez));
+        singer.add(new Singer(getString(R.string.britney_spears),R.drawable.britney_spears));
+        singer.add(new Singer(getString(R.string.sia),R.drawable.sia));
 
         RecyclerSingerAdapter singerAdapter = new RecyclerSingerAdapter(singer, new RecyclerSingerAdapter.OnItemClickListener() {
             @Override

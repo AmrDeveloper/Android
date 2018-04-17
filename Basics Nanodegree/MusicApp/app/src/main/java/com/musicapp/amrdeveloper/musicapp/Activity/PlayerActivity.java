@@ -1,4 +1,4 @@
-package com.musicapp.amrdeveloper.musicapp;
+package com.musicapp.amrdeveloper.musicapp.Activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.musicapp.amrdeveloper.musicapp.R;
 
 public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
@@ -41,6 +43,8 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
     private double finalTime = 0;
     private int forwardTime = 5000;
     private int backwardTime = 5000;
+
+    private final int TIME_TO_SKIP = 5000;
 
 
     private final Handler myHandler = new Handler();
@@ -213,6 +217,7 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
         songSeekBar.setOnSeekBarChangeListener(this);
     }
 
+    //Update Singer Image View By Singer Image
     private void getCurrentSingerPhoto() {
         switch (singer) {
             case "Adele":

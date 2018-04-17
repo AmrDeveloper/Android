@@ -1,4 +1,4 @@
-package com.musicapp.amrdeveloper.musicapp;
+package com.musicapp.amrdeveloper.musicapp.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.musicapp.amrdeveloper.musicapp.Activity.PlayerActivity;
+import com.musicapp.amrdeveloper.musicapp.R;
+import com.musicapp.amrdeveloper.musicapp.Model.Song;
 
 import java.util.List;
 
@@ -69,8 +72,8 @@ public class RecyclerSongAdapter extends RecyclerView.Adapter<RecyclerSongAdapte
 
     class SongViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView songName;
-        private ImageButton songPlayButton;
+        private final TextView songName;
+        private final ImageButton songPlayButton;
 
         public SongViewHolder(View itemView) {
             super(itemView);

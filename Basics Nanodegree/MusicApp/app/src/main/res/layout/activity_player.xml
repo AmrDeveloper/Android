@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/blackPurple"
     android:orientation="vertical"
-    tools:context="com.musicapp.amrdeveloper.musicapp.PlayerActivity">
+    tools:context="com.musicapp.amrdeveloper.musicapp.Activity.PlayerActivity">
 
     <TextView
         android:id="@+id/musicName"

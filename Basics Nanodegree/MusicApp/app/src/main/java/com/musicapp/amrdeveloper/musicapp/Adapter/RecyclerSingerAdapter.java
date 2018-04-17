@@ -1,4 +1,4 @@
-package com.musicapp.amrdeveloper.musicapp;
+package com.musicapp.amrdeveloper.musicapp.Adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.List;
+import com.musicapp.amrdeveloper.musicapp.R;
+import com.musicapp.amrdeveloper.musicapp.Model.Singer;
+
+import java.util.ArrayList;
 
 /**
  * Created by AmrDeveloper on 4/3/2018.
@@ -17,16 +20,15 @@ import java.util.List;
 
 public class RecyclerSingerAdapter extends RecyclerView.Adapter<RecyclerSingerAdapter.SingerViewHolder> {
 
-    private List<Singer> mSingerList;
+    private ArrayList<Singer> mSingerList;
     private final OnItemClickListener onItemClickListener;
 
-    //InterFace for Implements OnClickListener
     public interface OnItemClickListener {
         void onClickedItemListener(String singerName);
     }
 
 
-    public RecyclerSingerAdapter(List<Singer> mSingerList , OnItemClickListener onItemClickListener) {
+    public RecyclerSingerAdapter(ArrayList<Singer> mSingerList , OnItemClickListener onItemClickListener) {
         this.mSingerList = mSingerList;
         this.onItemClickListener = onItemClickListener;
     }
@@ -63,8 +65,8 @@ public class RecyclerSingerAdapter extends RecyclerView.Adapter<RecyclerSingerAd
 
     class SingerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private ImageView singerImage;
-        private TextView singerName;
+        private final ImageView singerImage;
+        private final TextView singerName;
 
         public SingerViewHolder(View itemView) {
             super(itemView);
