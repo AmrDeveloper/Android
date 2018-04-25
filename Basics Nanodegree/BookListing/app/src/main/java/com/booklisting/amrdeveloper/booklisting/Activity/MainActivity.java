@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean onQueryTextSubmit(String query) {
                 String bookTag = query.replaceAll(" ", "%20").trim();
-                requestUrl = "https://www.googleapis.com/books/v1/volumes?q=" + bookTag + "&maxResults=26";
+                requestUrl = "https://www.googleapis.com/books/v1/volumes?q=" + bookTag + "&maxResults=10";
 
                 makeBooksSearchQuery();
                 return false;
