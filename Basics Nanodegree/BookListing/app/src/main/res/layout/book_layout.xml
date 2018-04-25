@@ -2,28 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/grayWhite"
     android:orientation="vertical"
-    android:background="#f2f2f2"
-    android:padding="5dp"
-    >
+    android:padding="@dimen/dimen5dp">
 
-        <ImageView
-            android:id="@+id/book_image"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:src="@drawable/native_book"
-            android:scaleType="fitXY"
-            />
+    <ImageView
+        android:id="@+id/book_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen150dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/native_book" />
 
-        <TextView
-            android:id="@+id/book_title"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#fff"
-            android:padding="5dp"
-            android:textStyle="italic"
-            android:textSize="15dp"
-            android:lines="2"
-            />
-
+    <TextView
+        android:id="@+id/book_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen50dp"
+        android:background="@android:color/white"
+        android:padding="@dimen/dimen5dp"
+        android:textSize="@dimen/dimen15sp"
+        android:textStyle="italic"
+        android:lines="2"
+        />
 </LinearLayout>

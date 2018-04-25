@@ -5,36 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    tools:context="com.booklisting.amrdeveloper.booklisting.InfoActivity">
+    android:padding="@dimen/dimen16dp"
+    tools:context=".Activity.InfoActivity">
 
     <TextView
         android:id="@+id/book_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Book Title"
-        android:padding="5dp"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/dimen5dp"
         android:lines="2"
-        android:textStyle="bold|italic"
-        />
+        android:padding="@dimen/dimen5dp"
+        android:text="Book Title"
+        android:textStyle="bold|italic" />
 
     <TextView
-        android:text="cate"
-        android:padding="5dp"
-        android:gravity="center"
-        android:layout_margin="5dp"
         android:id="@+id/book_cate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen5dp"
+        android:gravity="center"
+        android:padding="@dimen/dimen5dp"
+        android:text="cate" />
 
     <TextView
         android:id="@+id/book_desc"
-        android:padding="5dp"
-        android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
-
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dimen5dp"
+        android:padding="@dimen/dimen5dp" />
 </LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.booklisting.amrdeveloper.booklisting.MainActivity">
+    tools:context=".Activity.MainActivity">
 
     <!--MyToolBar-->
     <FrameLayout
@@ -14,36 +14,34 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            app:titleTextColor="#fff"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary" />
+            android:background="@color/purple"
+            app:titleTextColor="@android:color/white" />
 
         <com.miguelcatalan.materialsearchview.MaterialSearchView
             android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:searchCloseIcon="@drawable/ic_action_navigation_close"
+            android:textColor="@color/green"
+            android:textColorHint="@color/green"
             app:searchBackIcon="@drawable/ic_action_navigation_arrow_back"
-            />
+            app:searchBackground="@color/purple"
+            app:searchCloseIcon="@drawable/ic_action_navigation_close" />
 
     </FrameLayout>
 
     <!--ListView To Show Data-->
     <GridView
         android:id="@+id/dataList"
-        android:numColumns="2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </GridView>
+        android:layout_height="match_parent"
+        android:numColumns="2" />
 
     <TextView
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/noData"
         android:gravity="center"
-        />
-
-
+        android:text="@string/noData" />
 </LinearLayout>
