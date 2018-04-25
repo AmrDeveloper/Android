@@ -1,6 +1,7 @@
 package com.booklisting.amrdeveloper.booklisting.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity
     //api request url
     private String requestUrl;
     //GridView for display data
-    private GridView dataList;
+    private GridView dataGridView;
     //Main Tool Bar on Application
     private Toolbar mainToolbar;
     //Search View To Search on Data
@@ -48,11 +49,11 @@ public class MainActivity extends AppCompatActivity
         }
 
         //Grid View
-        dataList = findViewById(R.id.dataList);
+        dataGridView = findViewById(R.id.dataList);
         //Set Empty View
-        dataList.setEmptyView(findViewById(R.id.empty_view));
+        dataGridView.setEmptyView(findViewById(R.id.empty_view));
         //Set On item Click Listener
-        dataList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        dataGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //When User Click , using intent and go to InfoActivity
@@ -70,9 +71,12 @@ public class MainActivity extends AppCompatActivity
         adapter = new BooksListAdapter(this, new ArrayList<Book>());
 
         //set Adapter
-        dataList.setAdapter(adapter);
+        dataGridView.setAdapter(adapter);
         //Main Tool Bar
         mainToolbar = findViewById(R.id.toolbar);
+        //Set Toolbar Title Color
+        mainToolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
+        //Set ToolBar as Action Bar
         setSupportActionBar(mainToolbar);
         //Set Title For Tool Bar
         getSupportActionBar().setTitle(R.string.app_name);
@@ -96,7 +100,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
         //Run Only If Search Url not equal null to avoid from NullPointerException
         if (requestUrl != null) {
             getSupportLoaderManager().initLoader(BOOK_SEARCH_LOADER, null, this);
@@ -110,9 +113,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onLoadFinished(Loader<List<Book>> loader, List<Book> books) {
-        //Clear Last Data
+        //Clear Old Data From ListView
         adapter.clear();
-        //Put All List on Adapter
+        //Put new Data in ListView
         adapter.addAll(books);
     }
 
@@ -129,6 +132,7 @@ public class MainActivity extends AppCompatActivity
         MenuItem item = menu.findItem(R.id.search_icon);
         //Set This Menu on SearchView
         searchview.setMenuItem(item);
+
         return true;
     }
 
