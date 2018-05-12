@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">World News</string>
+
+    <!--Messages to Show-->
+    <string name="no_data">Sorry No Data</string>
+    <string name="no_connection">No Internet Connection</string>
+
+    <!--Menu Name-->
+    <string name="news_settings">Settings</string>
+
+    <!--News Country Edit-->
+    <string name="news_country_label" translatable="false">Country</string>
+    <string name="news_country_key" translatable="false">q</string>
+    <string name="news_country_default" translatable="false">egypt</string>
+
+    <!--News Order By List-->
+    <string name="news_order_label" translatable="false">Order By</string>
+    <string name="news_order_key" translatable="false">order_by</string>
+    <string name="news_order_default" translatable="false">newest</string>
+
+    <!--Values-->
+    <string name="newest" translatable="false">newest</string>
+    <string name="oldest" translatable="false">oldest</string>
+    <string name="relevance" translatable="false">relevance</string>
+</resources>
