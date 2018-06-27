@@ -30,7 +30,6 @@
         android:gravity="center"
         android:fontFamily="monospace"
         android:layout_margin="@dimen/dimen2dp"
-
         />
 
 </FrameLayout>

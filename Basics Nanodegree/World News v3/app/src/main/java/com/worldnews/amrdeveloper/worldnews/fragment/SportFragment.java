@@ -1,6 +1,9 @@
 package com.worldnews.amrdeveloper.worldnews.fragment;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
@@ -17,7 +20,9 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.worldnews.amrdeveloper.worldnews.adapter.NewsCursorAdapter;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsListAdapter;
+import com.worldnews.amrdeveloper.worldnews.data.NewsLoaderManager;
 import com.worldnews.amrdeveloper.worldnews.loaders.NewsAsyncLoader;
 import com.worldnews.amrdeveloper.worldnews.model.News;
 import com.worldnews.amrdeveloper.worldnews.R;
@@ -41,6 +46,9 @@ public class SportFragment extends Fragment implements LoaderManager.LoaderCallb
 
     //Loader Final Id
     private final int LOADER_ID = 1;
+
+    private NetworkInfo networkInfo;
+
 
     @Nullable
     @Override
@@ -70,9 +78,26 @@ public class SportFragment extends Fragment implements LoaderManager.LoaderCallb
             }
         });
 
-        //Call Loader
-        LoaderManager loaderManager = getLoaderManager();
-        loaderManager.initLoader(LOADER_ID, null, this);
+        // Get a reference to the ConnectivityManager to check state of network connectivity
+        ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        // Get details on the currently active default data network
+        networkInfo = connMgr.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Get a reference to the LoaderManager, in order to interact with loaders.
+            LoaderManager loaderManager = getLoaderManager();
+            // Initialize the loader. Pass in the int ID constant defined above and pass in null for
+            // the bundle. Pass in this activity for the LoaderCallbacks parameter.
+            loaderManager.initLoader(LOADER_ID, null, this);
+        } else {
+            // Update empty state with no connection error message
+            errorMessage.setText(R.string.no_connection);
+            //Get data from database
+            NewsCursorAdapter newsCursorAdapter = new NewsCursorAdapter(getContext(), null);
+            newsListView.setAdapter(newsCursorAdapter);
+            getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, new NewsLoaderManager(getContext(), newsCursorAdapter));
+        }
 
         return rootView;
     }
@@ -117,12 +142,23 @@ public class SportFragment extends Fragment implements LoaderManager.LoaderCallb
 
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
-        //Hide Loading Bar and show ListView
-        loadingBar.setVisibility(View.INVISIBLE);
-        newsListView.setVisibility(View.VISIBLE);
+        ///Hide the indicator after the data is appeared
+        loadingBar.setVisibility(View.GONE);
 
-        //update The List View by new data
-        newsAdapter.addAll(data);
+        // Check if connection is still available, otherwise show appropriate message
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // If there is a valid list of news stories, then add them to the adapter's
+            // data set. This will trigger the ListView to update.
+            if (data != null && !data.isEmpty()) {
+                newsAdapter.addAll(data);
+            } else {
+                errorMessage.setVisibility(View.VISIBLE);
+                errorMessage.setText(getString(R.string.no_data));
+            }
+
+        } else {
+            errorMessage.setText(R.string.no_connection);
+        }
     }
 
     @Override

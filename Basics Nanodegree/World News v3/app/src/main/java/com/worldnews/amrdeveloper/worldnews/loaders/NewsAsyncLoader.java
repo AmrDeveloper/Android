@@ -30,7 +30,9 @@ public class NewsAsyncLoader extends AsyncTaskLoader<List<News>> {
     public List<News> loadInBackground() {
         //Load And Parser Data From Api Url
         List<News> listOfNews = QueryUtils.readDataFromApi(apiUrl);
+
         insertBulkNews(listOfNews);
+
         return listOfNews;
     }
 

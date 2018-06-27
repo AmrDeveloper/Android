@@ -56,6 +56,8 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
      */
     private NewsListAdapter newsAdapter;
 
+    private NetworkInfo networkInfo;
+
     //Loader Final Id
     public final static int LOADER_ID = 1;
 
@@ -88,12 +90,11 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
             }
         });
 
-
         // Get a reference to the ConnectivityManager to check state of network connectivity
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         // Get details on the currently active default data network
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        networkInfo = connMgr.getActiveNetworkInfo();
 
         if (networkInfo != null && networkInfo.isConnected()) {
             // Get a reference to the LoaderManager, in order to interact with loaders.
@@ -103,11 +104,12 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
             loaderManager.initLoader(LOADER_ID, null, this);
         } else {
             // Update empty state with no connection error message
-            NewsCursorAdapter newsCursorAdapter = new NewsCursorAdapter(getContext(),null);
+            errorMessage.setText(R.string.no_connection);
+            //Get data from database
+            NewsCursorAdapter newsCursorAdapter = new NewsCursorAdapter(getContext(), null);
             newsListView.setAdapter(newsCursorAdapter);
-            getActivity().getSupportLoaderManager().initLoader(LOADER_ID,null,new NewsLoaderManager(getContext(),newsCursorAdapter));
+            getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, new NewsLoaderManager(getContext(), newsCursorAdapter));
         }
-
         return rootView;
     }
 
@@ -152,13 +154,23 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
+        ///Hide the indicator after the data is appeared
+        loadingBar.setVisibility(View.GONE);
 
-        //Hide Loading Bar and show ListView
-        loadingBar.setVisibility(View.INVISIBLE);
-        newsListView.setVisibility(View.VISIBLE);
+        // Check if connection is still available, otherwise show appropriate message
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // If there is a valid list of news stories, then add them to the adapter's
+            // data set. This will trigger the ListView to update.
+            if (data != null && !data.isEmpty()) {
+                newsAdapter.addAll(data);
+            } else {
+                errorMessage.setVisibility(View.VISIBLE);
+                errorMessage.setText(getString(R.string.no_data));
+            }
 
-        //update The List View by new data
-        newsAdapter.addAll(data);
+        } else {
+            errorMessage.setText(R.string.no_connection);
+        }
     }
 
     @Override

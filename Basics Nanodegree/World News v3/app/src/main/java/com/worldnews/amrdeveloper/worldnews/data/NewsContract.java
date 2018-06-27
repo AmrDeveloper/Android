@@ -38,8 +38,6 @@ public final class NewsContract {
         public final static String COLUMN_NEWS_DATE = "date";
         public final static String COLUMN_NEWS_AUTHOR = "author";
         public final static String COLUMN_NEWS_DESC = "desc";
-
-
     }
 
 

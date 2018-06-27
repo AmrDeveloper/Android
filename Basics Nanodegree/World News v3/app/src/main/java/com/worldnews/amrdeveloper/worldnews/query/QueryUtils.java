@@ -3,6 +3,7 @@ package com.worldnews.amrdeveloper.worldnews.query;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -31,13 +32,12 @@ public class QueryUtils {
      * @param apiString The Api Link as String
      * @return Return api link as URL objects
      */
-    private static URL createApiUrl(String apiString){
+    private static URL createApiUrl(String apiString) {
         URL url = null;
-        try{
+        try {
             url = new URL(apiString);
-        }
-        catch (IOException ex){
-            Log.v(LOG_TAG,"Can't Create URL");
+        } catch (IOException ex) {
+            Log.v(LOG_TAG, "Can't Create URL");
         }
         return url;
     }
@@ -46,19 +46,18 @@ public class QueryUtils {
      * @param inputStream
      * @return read input Stream and return result on string
      */
-    private static String readInputStream(InputStream inputStream){
+    private static String readInputStream(InputStream inputStream) {
         StringBuilder stringBuilder = new StringBuilder();
-        try{
+        try {
             InputStreamReader streamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
             BufferedReader bufferedReader = new BufferedReader(streamReader);
             String line = bufferedReader.readLine();
-            while(line != null){
+            while (line != null) {
                 stringBuilder.append(line);
                 line = bufferedReader.readLine();
             }
-        }
-        catch (Exception e){
-            Log.v(LOG_TAG,"Can't Read Stream");
+        } catch (Exception e) {
+            Log.v(LOG_TAG, "Can't Read Stream");
         }
         return stringBuilder.toString();
     }
@@ -67,44 +66,40 @@ public class QueryUtils {
      * @param link to open connection with it
      * @return return Json from api
      */
-    private static String makeConnection(URL link){
+    private static String makeConnection(URL link) {
         String jsonResponse = "";
-        if(link == null){
+        if (link == null) {
             return jsonResponse;
         }
         InputStream inputStream = null;
         HttpsURLConnection urlConnection = null;
-        try
-        {
+        try {
             //Open Connection
-            urlConnection = (HttpsURLConnection)link.openConnection();
+            urlConnection = (HttpsURLConnection) link.openConnection();
             //Server Request
             urlConnection.setRequestMethod("GET");
             urlConnection.setReadTimeout(10000);
             urlConnection.setConnectTimeout(15000);
             urlConnection.connect();
             //Check if connection is done or not
-            if(urlConnection.getResponseCode() == 200){
+            if (urlConnection.getResponseCode() == 200) {
                 //Get Input Stream
                 inputStream = urlConnection.getInputStream();
                 //Reading From Stream using My Method
                 jsonResponse = readInputStream(inputStream);
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             Log.v(LOG_TAG, "Cant Open Https Connection");
-        }
-        finally {
+        } finally {
             //On The End Close All Connection
-            if(inputStream != null){
-                try{
+            if (inputStream != null) {
+                try {
                     inputStream.close();
-                }
-                catch (IOException e){
-                    Log.v(LOG_TAG,"Can't Close Connection");
+                } catch (IOException e) {
+                    Log.v(LOG_TAG, "Can't Close Connection");
                 }
             }
-            if(urlConnection != null){
+            if (urlConnection != null) {
                 urlConnection.disconnect();
             }
         }
@@ -115,15 +110,16 @@ public class QueryUtils {
      * @param json
      * @return Return List of news after parsing The json String
      */
-    private static List<News> readNewsFromJson(String json ){
+    private static List<News> readNewsFromJson(String json) {
+
         //List To Save Data From Api
         List<News> newsList = new ArrayList<>();
-        try{
+        try {
             JSONObject data = new JSONObject(json);
             JSONObject root = data.getJSONObject("response");
             JSONArray resultsArray = root.getJSONArray("results");
 
-            for(int i = 0 ; i < resultsArray.length() ; i++){
+            for (int i = 0; i < resultsArray.length(); i++) {
                 //Current Json Object
                 JSONObject currentObject = resultsArray.getJSONObject(i);
                 //Get Attribute from The Current Object in JSON String
@@ -137,38 +133,34 @@ public class QueryUtils {
 
                 Bitmap image;
                 //Download Image From Url
-                try{
+                try {
                     String imageUrl = field.getString("thumbnail");
                     InputStream is = new URL(imageUrl).openStream();
                     image = BitmapFactory.decodeStream(is);
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     image = null;
                 }
 
                 //Get News Author
                 JSONArray tags = currentObject.getJSONArray("tags");
                 String author = "";
-                if(tags.length() >= 1){
+                if (tags.length() >= 1) {
                     author = tags.getJSONObject(0).getString("webTitle");
-                }
-                else{
+                } else {
                     author = "unnamed";
                 }
                 //Create News object and add it to ArrayList Of News
-                newsList.add(new News(webTitle,date,pillarName,trailText,newsUrl,image,author));
+                newsList.add(new News(webTitle, date, pillarName, trailText, newsUrl, image, author));
             }
-        }
-        catch (Exception e){
-            Log.v(LOG_TAG,e.getMessage());
+        } catch (Exception e) {
+            Log.v(LOG_TAG, e.getMessage());
         }
 
         return newsList;
     }
 
     //Public Method to Using With Class To Control all Class
-    public static List<News> readDataFromApi(String requestApi){
+    public static List<News> readDataFromApi(String requestApi) {
         //From String to Url
         URL apiUrl = createApiUrl(requestApi);
         //Get Data And Save It On Stream

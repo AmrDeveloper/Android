@@ -4,4 +4,6 @@
     <dimen name="dimen10">10dp</dimen>
     <dimen name="dimen5">5dp</dimen>
     <dimen name="dimen8">8dp</dimen>
+
+    <dimen name="dimen13sp">13sp</dimen>
 </resources>

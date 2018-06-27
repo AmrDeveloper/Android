@@ -22,111 +22,63 @@ import com.worldnews.amrdeveloper.worldnews.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    //ViewPager For Show four News Fragment
-    private ViewPager viewpager;
-    //TabLayout For Switch Between Fragments
-    private TabLayout tabLayout;
-    //TextView to show no internet Connection Message
-    private TextView noConnection;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Init Views
-        viewpager = findViewById(R.id.viewpager);
-        tabLayout = findViewById(R.id.sliding_tabs);
-        noConnection = findViewById(R.id.noConnection);
 
-        //Method for Tab Layout Setting Mode
-        setTabLayoutMode();
-    }
+        // Find the view pager that will allow the user to swipe between fragments.
+        ViewPager viewPager = findViewById(R.id.viewpager);
 
-    //get height and width and switch TabLayout Mode Between Fixed and Scrollable
-    private void setTabLayoutMode() {
+        // Create an adapter that knows which fragment should be shown on each page.
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+        // Set the adapter onto the view pager.
+        viewPager.setAdapter(adapter);
+
+        // Find the tab layout that shows the tabs.
+        TabLayout tabLayout = findViewById(R.id.sliding_tabs);
+
+        // Connect the tab layout with the view pager.
+        tabLayout.setupWithViewPager(viewPager);
+
+        // If we want to change the mode after rotation.
         DisplayMetrics metrics = new DisplayMetrics();
-        WindowManager window = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-        window.getDefaultDisplay().getMetrics(metrics);
-
-        //Get Height And Width 
+        WindowManager wm = (WindowManager) viewPager.getContext().getSystemService(Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(metrics);
+        // Gets the width of screen.
         int width = metrics.widthPixels;
+        // Gets the Height of screen.
         int height = metrics.heightPixels;
 
-        //landscape
+        // Landscape Orientation
         if (width > height) {
+            // Change the mode to fixed
             tabLayout.setTabMode(TabLayout.MODE_FIXED);
         }
-        //portrait
-        else {
-            tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        }
     }
 
-    //Check Internet Connection
-    /*
-    private boolean checkInternetConnection() {
-
-        // Get a reference to the ConnectivityManager to check state of network connectivity
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        // Get details on the currently active default data network
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        // If there is a network connection, fetch data
-        if (networkInfo != null && networkInfo.isConnected()) {
-            // Get a reference to the LoaderManager, in order to interact with loaders.
-            return true;
-        }
-        return false;
-    }
-    */
 
     @Override
     protected void onStart() {
         super.onStart();
-        viewpager.setVisibility(View.VISIBLE);
-        tabLayout.setVisibility(View.VISIBLE);
-        noConnection.setVisibility(View.INVISIBLE);
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewpager.setAdapter(adapter);
-
-        tabLayout.setupWithViewPager(viewpager);
-        //Simple Method to Change Mode
-        setTabLayoutMode();
-        /*
-        if(checkInternetConnection()){
-            viewpager.setVisibility(View.VISIBLE);
-            tabLayout.setVisibility(View.VISIBLE);
-            noConnection.setVisibility(View.INVISIBLE);
-
-            ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-            viewpager.setAdapter(adapter);
-
-            tabLayout.setupWithViewPager(viewpager);
-            //Simple Method to Change Mode
-            setTabLayoutMode();
-        }
-        else{
-            viewpager.setVisibility(View.GONE);
-            tabLayout.setVisibility(View.GONE);
-            noConnection.setVisibility(View.VISIBLE);
-        }
-        */
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //Inflate Menu Object
-        getMenuInflater().inflate(R.menu.settings_menu,menu);
+        getMenuInflater().inflate(R.menu.settings_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int menuId = item.getItemId();
-        if(menuId == R.id.setting_menu){
+        if (menuId == R.id.setting_menu) {
             //Go to Settings Activity
-            Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
         }
         return true;
