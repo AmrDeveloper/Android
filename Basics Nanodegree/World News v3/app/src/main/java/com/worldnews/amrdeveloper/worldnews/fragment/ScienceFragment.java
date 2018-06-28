@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.worldnews.amrdeveloper.worldnews.activities.WebViewrActivity;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsCursorAdapter;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsListAdapter;
 import com.worldnews.amrdeveloper.worldnews.data.NewsLoaderManager;
@@ -71,9 +72,9 @@ public class ScienceFragment extends Fragment implements LoaderManager.LoaderCal
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 News current = newsAdapter.getItem(i);
                 //Create News Uri From String url
-                Uri newsLink = Uri.parse(current.getNewsUrl());
                 //Open This Uri in Browser Using Intent
-                Intent intent = new Intent(Intent.ACTION_VIEW, newsLink);
+                Intent intent = new Intent(getActivity(), WebViewrActivity.class);
+                intent.putExtra("newsUrl",current.getNewsUrl());
                 startActivity(intent);
             }
         });

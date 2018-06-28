@@ -19,12 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SettingsActivity"></activity>
-        <!--Add Provider-->
+        <activity android:name=".activities.SettingsActivity" />
+        <!-- Add Provider -->
         <provider
-            android:authorities="com.worldnews.amrdeveloper.worldnews"
             android:name=".data.NewsDataProvider"
-            android:exported="false"/>
+            android:authorities="com.worldnews.amrdeveloper.worldnews"
+            android:exported="false" />
+
+        <activity android:name=".activities.WebViewrActivity"></activity>
     </application>
 
 </manifest>
