@@ -12,18 +12,17 @@ public class ReminderTasks {
     public static final String ACTION_CHARGING_REMINDER = "charging-reminder";
 
     public static void executeTask(Context context, String action) {
-        if (action.equals(ACTION_INCREMENT_WATER_COUNT)) {
+        if (action.equals(ACTION_INCREMENT_WATER_COUNT))
             incrementWaterCount(context);
-        } else if (action.equals(ACTION_DISMISS_NOTIFICATION)) {
-            NotificationUtils.clearAllNotification(context);
-        } else if (action.equals(ACTION_CHARGING_REMINDER)) {
+        else if (action.equals(ACTION_DISMISS_NOTIFICATION))
+            NotificationUtils.clearAllNotifications(context);
+        else if (action.equals(ACTION_CHARGING_REMINDER))
             issueChargingReminder(context);
-        }
     }
 
     private static void incrementWaterCount(Context context) {
         PreferenceUtilities.incrementWaterCount(context);
-        NotificationUtils.clearAllNotification(context);
+        NotificationUtils.clearAllNotifications(context);
     }
 
     private static void issueChargingReminder(Context context) {
