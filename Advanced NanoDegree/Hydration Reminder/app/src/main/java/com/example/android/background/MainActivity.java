@@ -31,7 +31,6 @@ import android.widget.Toast;
 import com.example.android.background.sync.ReminderTasks;
 import com.example.android.background.sync.ReminderUtilities;
 import com.example.android.background.sync.WaterReminderIntentService;
-import com.example.android.background.utilities.NotificationUtils;
 import com.example.android.background.utilities.PreferenceUtilities;
 
 public class MainActivity extends AppCompatActivity implements
@@ -67,12 +66,12 @@ public class MainActivity extends AppCompatActivity implements
         prefs.registerOnSharedPreferenceChangeListener(this);
 
         mChargeIntentFilter = new IntentFilter();
+
         mChargeIntentFilter.addAction(Intent.ACTION_POWER_CONNECTED);
         mChargeIntentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
 
         mChargingReceiver = new ChargingBroadcastReceiver();
     }
-
 
     @Override
     protected void onResume() {
@@ -98,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements
      */
     private void updateWaterCount() {
         int waterCount = PreferenceUtilities.getWaterCount(this);
-        mWaterCountDisplay.setText(waterCount + "");
+        mWaterCountDisplay.setText(String.valueOf(waterCount));
     }
 
     /**

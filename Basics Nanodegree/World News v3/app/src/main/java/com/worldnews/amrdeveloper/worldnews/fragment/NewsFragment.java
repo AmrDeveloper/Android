@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.util.Log;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +36,9 @@ import java.util.List;
  * Created by AmrDeveloper on 1/29/2018.
  */
 
-public class NewsFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<News>> {
+public class NewsFragment extends Fragment
+        implements LoaderManager.LoaderCallbacks<List<News>>,
+        SwipeRefreshLayout.OnRefreshListener {
 
 
     /**
@@ -59,6 +61,11 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
 
     private NetworkInfo networkInfo;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+
+    private LoaderManager.LoaderCallbacks<List<News>> loaderCallbacksObject = this;
+
+
     //Loader Final Id
     public final static int LOADER_ID = 1;
 
@@ -73,6 +80,23 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
 
         newsAdapter = new NewsListAdapter(getActivity());
 
+        swipeRefreshLayout = rootView.findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(this);
+
+        /**
+         * Showing Swipe Refresh animation on activity create
+         * As animation won't start on onCreate, post runnable is used
+         */
+
+        swipeRefreshLayout.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        swipeRefreshLayout.setRefreshing(true);
+                                        getLoaderManager().restartLoader(LOADER_ID, null, loaderCallbacksObject);
+                                    }
+                                }
+        );
+
         newsListView = rootView.findViewById(R.id.newsListView);
         //Set Empty View to show error message when no data
         newsListView.setEmptyView(errorMessage);
@@ -86,7 +110,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
                 //Create News Uri From String url
                 //Open This Uri in Browser Using Intent
                 Intent intent = new Intent(getActivity(), WebViewrActivity.class);
-                intent.putExtra("newsUrl",current.getNewsUrl());
+                intent.putExtra("newsUrl", current.getNewsUrl());
                 startActivity(intent);
             }
         });
@@ -116,7 +140,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-
+        Toast.makeText(getContext(), "Runn", Toast.LENGTH_SHORT).show();
         //Show Loading Bar and hide ListView and Error TextView
         loadingBar.setVisibility(View.VISIBLE);
         errorMessage.setVisibility(View.INVISIBLE);
@@ -163,15 +187,18 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
             // If there is a valid list of news stories, then add them to the adapter's
             // data set. This will trigger the ListView to update.
             if (data != null && !data.isEmpty()) {
+                newsAdapter.clear();
                 newsAdapter.addAll(data);
             } else {
                 errorMessage.setVisibility(View.VISIBLE);
                 errorMessage.setText(getString(R.string.no_data));
             }
 
+            //Here
         } else {
             errorMessage.setText(R.string.no_connection);
         }
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -180,16 +207,9 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         newsAdapter.clear();
     }
 
-
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        //getLoaderManager().restartLoader(LOADER_ID, null, this);
-    }
-
-    @Override
-    public void onAttachFragment(Fragment childFragment) {
-        super.onAttachFragment(childFragment);
-        //getLoaderManager().restartLoader(LOADER_ID, null, this);
+    public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(true);
+        getLoaderManager().restartLoader(LOADER_ID, null, loaderCallbacksObject);
     }
 }

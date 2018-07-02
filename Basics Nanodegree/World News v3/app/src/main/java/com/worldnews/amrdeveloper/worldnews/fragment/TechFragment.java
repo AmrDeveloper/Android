@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,9 @@ import java.util.List;
  * Created by AmrDeveloper on 1/29/2018.
  */
 
-public class TechFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<News>> {
+public class TechFragment extends Fragment
+        implements LoaderManager.LoaderCallbacks<List<News>>,
+        SwipeRefreshLayout.OnRefreshListener {
 
     private ListView newsListView;
     private TextView errorMessage;
@@ -50,6 +53,10 @@ public class TechFragment extends Fragment implements LoaderManager.LoaderCallba
 
     private NetworkInfo networkInfo;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+
+    private LoaderManager.LoaderCallbacks<List<News>> loaderCallbacksObject = this;
+
 
     @Nullable
     @Override
@@ -60,6 +67,23 @@ public class TechFragment extends Fragment implements LoaderManager.LoaderCallba
         loadingBar = rootView.findViewById(R.id.loadingBar);
 
         newsAdapter = new NewsListAdapter(getActivity());
+
+        swipeRefreshLayout = rootView.findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(this);
+
+        /**
+         * Showing Swipe Refresh animation on activity create
+         * As animation won't start on onCreate, post runnable is used
+         */
+
+        swipeRefreshLayout.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        swipeRefreshLayout.setRefreshing(true);
+                                        getLoaderManager().restartLoader(LOADER_ID, null, loaderCallbacksObject);
+                                    }
+                                }
+        );
 
         newsListView = rootView.findViewById(R.id.newsListView);
         //Set Empty View to show error message when no data
@@ -149,6 +173,7 @@ public class TechFragment extends Fragment implements LoaderManager.LoaderCallba
             // If there is a valid list of news stories, then add them to the adapter's
             // data set. This will trigger the ListView to update.
             if (data != null && !data.isEmpty()) {
+                newsAdapter.clear();
                 newsAdapter.addAll(data);
             } else {
                 errorMessage.setVisibility(View.VISIBLE);
@@ -164,5 +189,11 @@ public class TechFragment extends Fragment implements LoaderManager.LoaderCallba
     public void onLoaderReset(Loader<List<News>> loader) {
         //Clear The Data From ListView
         newsAdapter.clear();
+    }
+
+    @Override
+    public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(true);
+        getLoaderManager().restartLoader(LOADER_ID, null, loaderCallbacksObject);
     }
 }
