@@ -1,0 +1,16 @@
+<resources>
+
+    <!-- Twitter Custom Theme -->
+    <style name="TweetTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/lactic</item>
+        <item name="colorPrimaryDark">@color/lactic2</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="ProgressDialogTheme" parent="Theme.AppCompat.Dialog">
+        <item name="colorAccent">@color/white</item>
+        <item name="android:textColorPrimary">@color/lactic2</item>
+        <item name="android:background">@color/lactic</item>
+    </style>
+</resources>
