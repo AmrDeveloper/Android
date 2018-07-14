@@ -18,11 +18,17 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //Design
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 
+    //Views
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+
+    //Twitter SDK
     implementation 'com.twitter.sdk.android:twitter:3.1.0'
     implementation 'com.twitter.sdk.android:twitter-core:3.1.1'
     implementation 'com.twitter.sdk.android:tweet-ui:3.1.1'

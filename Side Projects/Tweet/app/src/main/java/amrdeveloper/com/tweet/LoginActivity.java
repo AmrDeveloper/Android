@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void userLogin(TwitterSession session){
          String username = session.getUserName();
-         Intent intent = new Intent(this,MainActivity.class);
+         Intent intent = new Intent(this,TweetsActivity.class);
          intent.putExtra("username",username);
          startActivity(intent);
     }
