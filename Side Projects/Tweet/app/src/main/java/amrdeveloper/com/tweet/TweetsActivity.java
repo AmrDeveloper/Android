@@ -70,20 +70,9 @@ public class TweetsActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 //Do some magic
-                final SearchTimeline searchTimeline = new SearchTimeline.Builder()
-                        .query(query)
-                        .build();
-
-                final TweetTimelineRecyclerViewAdapter adapter =
-                        new TweetTimelineRecyclerViewAdapter.Builder(getApplicationContext())
-                                .setTimeline(searchTimeline)
-                                .setViewStyle(R.style.tw__TweetLightWithActionsStyle)
-                                .build();
-
-                recyclerView.setAdapter(adapter);
+                tweetsSearch(query);
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 //Do some magic
