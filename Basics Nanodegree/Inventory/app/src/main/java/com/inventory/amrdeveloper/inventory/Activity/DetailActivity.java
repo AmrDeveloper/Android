@@ -1,5 +1,6 @@
 package com.inventory.amrdeveloper.inventory.Activity;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentUris;
@@ -8,9 +9,11 @@ import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -48,12 +51,15 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
     private Bitmap bitMapImage;
 
     //Current Product Uri
+    private byte[] imageByteArray;
     private Uri currentUri;
     private static final int PRODUCT_LOADER = 1;
     private static final int GALLERY_REQUEST = 100;
+    private static final int READ_EXTERNAL_STORAGE = 0;
 
     //Boolean Var To Check if this product changed or not
     private boolean mProductHasChanged = false;
+
     private final View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -82,7 +88,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     //initialization The Views
-    private void initializationViews(){
+    private void initializationViews() {
         this.productName = findViewById(R.id.productName);
         this.productPrice = findViewById(R.id.productPrice);
         this.productQuantity = findViewById(R.id.productQuantity);
@@ -95,7 +101,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     //Set on Touch Listener
-    private void viewsSetTouchListener(){
+    private void viewsSetTouchListener() {
         this.productName.setOnTouchListener(mTouchListener);
         this.productPrice.setOnTouchListener(mTouchListener);
         this.productQuantity.setOnTouchListener(mTouchListener);
@@ -108,6 +114,12 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
 
     //Get The Image Using Intent Request
     public void getImageFromPhone(View view) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (this.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                this.requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_EXTERNAL_STORAGE);
+                return;
+            }
+        }
         try {
             Intent intent = new Intent(
                     Intent.ACTION_PICK,
@@ -121,7 +133,9 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
         }
     }
 
+
     //Call Supplier Using Intent
+
     public void callSupplierButton(View view) {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:" + supplierPhone.getText().toString().trim()));
@@ -197,14 +211,13 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
 
         String phone = supplierPhone.getText().toString();
 
-        byte[] image = ImageConverter.getBytesFromBitmap(bitMapImage);
-        if (image == null)
-            image = new byte[]{};
+        if (imageByteArray == null)
+            imageByteArray = new byte[]{};
 
         ContentValues values = new ContentValues();
         values.put(ProductContract.ProductEntry.COLUMN_NAME, name);
         values.put(ProductContract.ProductEntry.COLUMN_PRICE, price);
-        values.put(ProductContract.ProductEntry.COLUMN_IMAGE, image);
+        values.put(ProductContract.ProductEntry.COLUMN_IMAGE, imageByteArray);
         values.put(ProductContract.ProductEntry.COLUMN_PHONE, phone);
         values.put(ProductContract.ProductEntry.COLUMN_QUANTITY, quantity);
         values.put(ProductContract.ProductEntry.COLUMN_SUPPLIER, supplier);
@@ -227,6 +240,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
                 Toast.makeText(this, "Sorry Invalid Information", Toast.LENGTH_SHORT).show();
                 return;
             }
+            ContentValues values = new ContentValues();
 
             String name = productName.getText().toString();
             double price = Double.parseDouble(productPrice.getText().toString());
@@ -234,13 +248,13 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
             String supplier = productSupplier.getText().toString();
             String phone = supplierPhone.getText().toString();
             byte[] bitmapArr = ImageConverter.getBytesFromBitmap(bitMapImage);
-            if (bitmapArr == null)
-                bitmapArr = new byte[]{};
 
-            ContentValues values = new ContentValues();
+            if (bitmapArr != null) {
+                values.put(ProductContract.ProductEntry.COLUMN_IMAGE, bitmapArr);
+            }
+
             values.put(ProductContract.ProductEntry.COLUMN_NAME, name);
             values.put(ProductContract.ProductEntry.COLUMN_PRICE, price);
-            values.put(ProductContract.ProductEntry.COLUMN_IMAGE, bitmapArr);
             values.put(ProductContract.ProductEntry.COLUMN_QUANTITY, quantity);
             values.put(ProductContract.ProductEntry.COLUMN_PHONE, phone);
             values.put(ProductContract.ProductEntry.COLUMN_SUPPLIER, supplier);
@@ -341,7 +355,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
         } else {
             updateActivitySettings(menu);
         }
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -456,16 +470,15 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //Check if this request is My Intent Request
-        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
-            //Get The Image File in Uri
-            Uri uri = data.getData();
-            //Update Ui
-            productImage.setImageURI(uri);
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            Uri selectedImage = data.getData();
+            productImage.setImageURI(selectedImage);
+
             try {
-                bitMapImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-            } catch (IOException ex) {
-                Log.v("Order", "Can't Convert Uri to Bitmap");
+                bitMapImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                imageByteArray = ImageConverter.getBytesFromBitmap(bitMapImage);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

@@ -2,7 +2,6 @@ package amrdeveloper.com.tweet;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -12,21 +11,32 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterApiClient;
 import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.models.Tweet;
+import com.twitter.sdk.android.core.services.StatusesService;
 import com.twitter.sdk.android.tweetcomposer.ComposerActivity;
 import com.twitter.sdk.android.tweetui.SearchTimeline;
 import com.twitter.sdk.android.tweetui.TweetTimelineRecyclerViewAdapter;
 import com.twitter.sdk.android.tweetui.UserTimeline;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class TweetsActivity extends AppCompatActivity {
 
     private MaterialSearchView searchView;
     private Toolbar mainToolbar;
     private RecyclerView recyclerView;
-    private FloatingActionButton createTweetButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,21 +51,20 @@ public class TweetsActivity extends AppCompatActivity {
                 .build();
 
         recyclerView = findViewById(R.id.tweetsRecyclerView);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
-        final TweetTimelineRecyclerViewAdapter adapter =
-                new TweetTimelineRecyclerViewAdapter.Builder(this)
+        final TweetTimelineRecyclerViewAdapter adapter = new TweetTimelineRecyclerViewAdapter.Builder(this)
                         .setTimeline(userTimeline)
                         .setViewStyle(R.style.tw__TweetLightWithActionsStyle)
                         .build();
+
 
         // Add Item Decoration
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 layoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setAdapter(adapter);
+
 
         mainToolbar = findViewById(R.id.toolbar);
         //Set Toolbar Title Color
@@ -73,6 +82,7 @@ public class TweetsActivity extends AppCompatActivity {
                 tweetsSearch(query);
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
                 //Do some magic
@@ -81,7 +91,7 @@ public class TweetsActivity extends AppCompatActivity {
         });
     }
 
-    private void tweetsSearch(String query){
+    private void tweetsSearch(String query) {
         final SearchTimeline searchTimeline = new SearchTimeline.Builder()
                 .query(query)
                 .build();
@@ -95,7 +105,7 @@ public class TweetsActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    public void sendTweetDialog(View view){
+    public void sendTweetDialog(View view) {
         final TwitterSession session = TwitterCore.getInstance().getSessionManager()
                 .getActiveSession();
         final Intent intent = new ComposerActivity.Builder(TweetsActivity.this)
@@ -115,4 +125,22 @@ public class TweetsActivity extends AppCompatActivity {
 
         return true;
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
