@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.worldnews.amrdeveloper.worldnews.activities.WebViewrActivity">
+    tools:context="com.worldnews.amrdeveloper.worldnews.activities.WebViewerActivity">
 
     <WebView
         android:id="@+id/webView"

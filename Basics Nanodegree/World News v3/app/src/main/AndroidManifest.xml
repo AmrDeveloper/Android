@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity">
+        <!-- Activities -->
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,13 +21,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.SettingsActivity" />
+        <activity android:name=".activities.WebViewerActivity" />
+        <activity android:name=".activities.MainActivity"></activity>
+
         <!-- Add Provider -->
         <provider
             android:name=".data.NewsDataProvider"
             android:authorities="com.worldnews.amrdeveloper.worldnews"
             android:exported="false" />
-
-        <activity android:name=".activities.WebViewrActivity"></activity>
     </application>
-
 </manifest>

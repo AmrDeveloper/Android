@@ -8,7 +8,7 @@ import android.webkit.WebViewClient;
 
 import com.worldnews.amrdeveloper.worldnews.R;
 
-public class WebViewrActivity extends AppCompatActivity {
+public class WebViewerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

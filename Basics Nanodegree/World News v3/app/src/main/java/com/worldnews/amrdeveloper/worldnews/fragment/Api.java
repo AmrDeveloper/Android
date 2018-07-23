@@ -28,4 +28,10 @@ public final class Api {
     final static String SECTION_SCIENCE = "science";
     final static String SECTION_SPORT = "sport";
     final static String SECTION_TECH = "technology";
+
+    //Data
+    final static String SECTION_NEWS_DATA = "World news";
+    final static String SECTION_SCIENCE_DATA = "Science";
+    final static String SECTION_SPORT_DATA = "Sport";
+    final static String SECTION_TECH_DATA = "Technology";
 }

@@ -1,9 +1,10 @@
-package amrdeveloper.com.tweet;
+package com.worldnews.amrdeveloper.worldnews.activities;
 
 import android.content.Intent;
-import android.graphics.Color;
+import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -15,8 +16,11 @@ import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
+import com.worldnews.amrdeveloper.worldnews.R;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private static final String LOG_TAG = LoginActivity.class.getSimpleName();
 
     private TwitterLoginButton twitterLoginButton;
 
@@ -25,8 +29,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Twitter.initialize(this);
         setContentView(R.layout.activity_login);
+        isUserLogin();
 
         twitterLoginButton = findViewById(R.id.twitterLoginButton);
+        twitterLoginButton.setBackgroundColor(getResources().getColor(R.color.darkRed));
         twitterLoginButton.setCallback(new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
@@ -36,8 +42,9 @@ public class LoginActivity extends AppCompatActivity {
                 String token = authToken.token;
                 String secret = authToken.secret;
 
-                userLogin(session);
+                userLoginSuccess(session);
             }
+
             @Override
             public void failure(TwitterException exception) {
                 // Do something on failure
@@ -46,11 +53,27 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void userLogin(TwitterSession session) {
+    /**
+     * @param session : TwitterSession To get user information if login is success
+     */
+    private void userLoginSuccess(TwitterSession session) {
         String username = session.getUserName();
-        Intent intent = new Intent(this, TweetsActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("username", username);
         startActivity(intent);
+    }
+
+    private void isUserLogin() {
+        TwitterSession session = TwitterCore.getInstance().getSessionManager().getActiveSession();
+        try {
+            String username = session.getUserName();
+            if (!TextUtils.isEmpty(username)) {
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            }
+        } catch (NullPointerException e) {
+            Log.v(LOG_TAG, "No username");
+        }
     }
 
     @Override

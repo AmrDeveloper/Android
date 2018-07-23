@@ -22,7 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.worldnews.amrdeveloper.worldnews.activities.WebViewrActivity;
+import com.worldnews.amrdeveloper.worldnews.activities.WebViewerActivity;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsCursorAdapter;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsListAdapter;
 import com.worldnews.amrdeveloper.worldnews.data.NewsLoaderManager;
@@ -67,7 +67,7 @@ public class NewsFragment extends Fragment
 
 
     //Loader Final Id
-    public final static int LOADER_ID = 1;
+    public final static int NEWS_LOADER_ID = 1;
 
     @Nullable
     @Override
@@ -92,7 +92,7 @@ public class NewsFragment extends Fragment
                                     @Override
                                     public void run() {
                                         swipeRefreshLayout.setRefreshing(true);
-                                        getLoaderManager().restartLoader(LOADER_ID, null, loaderCallbacksObject);
+                                        getLoaderManager().restartLoader(NEWS_LOADER_ID, null, loaderCallbacksObject);
                                     }
                                 }
         );
@@ -109,7 +109,7 @@ public class NewsFragment extends Fragment
                 News current = newsAdapter.getItem(i);
                 //Create News Uri From String url
                 //Open This Uri in Browser Using Intent
-                Intent intent = new Intent(getActivity(), WebViewrActivity.class);
+                Intent intent = new Intent(getActivity(), WebViewerActivity.class);
                 intent.putExtra("newsUrl", current.getNewsUrl());
                 startActivity(intent);
             }
@@ -126,25 +126,24 @@ public class NewsFragment extends Fragment
             LoaderManager loaderManager = getLoaderManager();
             // Initialize the loader. Pass in the int ID constant defined above and pass in null for
             // the bundle. Pass in this activity for the LoaderCallbacks parameter.
-            loaderManager.initLoader(LOADER_ID, null, this);
+            loaderManager.initLoader(NEWS_LOADER_ID, null, this);
         } else {
             // Update empty state with no connection error message
             errorMessage.setText(R.string.no_connection);
             //Get data from database
             NewsCursorAdapter newsCursorAdapter = new NewsCursorAdapter(getContext(), null);
             newsListView.setAdapter(newsCursorAdapter);
-            getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, new NewsLoaderManager(getContext(), newsCursorAdapter));
+            NewsLoaderManager dataLoader = new NewsLoaderManager(getContext(),Api.SECTION_NEWS_DATA, newsCursorAdapter);
+            getActivity().getSupportLoaderManager().initLoader(NEWS_LOADER_ID, null,dataLoader);
         }
         return rootView;
     }
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        Toast.makeText(getContext(), "Runn", Toast.LENGTH_SHORT).show();
         //Show Loading Bar and hide ListView and Error TextView
         loadingBar.setVisibility(View.VISIBLE);
         errorMessage.setVisibility(View.INVISIBLE);
-        newsListView.setVisibility(View.INVISIBLE);
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         //Get Country Current value from Edit Preferences
@@ -210,6 +209,6 @@ public class NewsFragment extends Fragment
     @Override
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
-        getLoaderManager().restartLoader(LOADER_ID, null, loaderCallbacksObject);
+        getLoaderManager().restartLoader(NEWS_LOADER_ID, null, loaderCallbacksObject);
     }
 }

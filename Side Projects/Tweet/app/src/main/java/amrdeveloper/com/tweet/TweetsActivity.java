@@ -11,26 +11,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
-import com.twitter.sdk.android.core.Callback;
-import com.twitter.sdk.android.core.Result;
-import com.twitter.sdk.android.core.TwitterApiClient;
 import com.twitter.sdk.android.core.TwitterCore;
-import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
-import com.twitter.sdk.android.core.models.Tweet;
-import com.twitter.sdk.android.core.services.StatusesService;
 import com.twitter.sdk.android.tweetcomposer.ComposerActivity;
 import com.twitter.sdk.android.tweetui.SearchTimeline;
 import com.twitter.sdk.android.tweetui.TweetTimelineRecyclerViewAdapter;
 import com.twitter.sdk.android.tweetui.UserTimeline;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Response;
 
 public class TweetsActivity extends AppCompatActivity {
 
@@ -48,6 +36,8 @@ public class TweetsActivity extends AppCompatActivity {
 
         final UserTimeline userTimeline = new UserTimeline.Builder()
                 .screenName(username)
+                .includeReplies(true)
+                .includeRetweets(true)
                 .build();
 
         recyclerView = findViewById(R.id.tweetsRecyclerView);
@@ -58,13 +48,11 @@ public class TweetsActivity extends AppCompatActivity {
                         .setViewStyle(R.style.tw__TweetLightWithActionsStyle)
                         .build();
 
-
         // Add Item Decoration
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 layoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setAdapter(adapter);
-
 
         mainToolbar = findViewById(R.id.toolbar);
         //Set Toolbar Title Color
@@ -82,7 +70,6 @@ public class TweetsActivity extends AppCompatActivity {
                 tweetsSearch(query);
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 //Do some magic
@@ -125,22 +112,4 @@ public class TweetsActivity extends AppCompatActivity {
 
         return true;
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

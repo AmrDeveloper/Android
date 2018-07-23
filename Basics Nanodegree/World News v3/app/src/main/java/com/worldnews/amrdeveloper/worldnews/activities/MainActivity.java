@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         // Find the view pager that will allow the user to swipe between fragments.
         ViewPager viewPager = findViewById(R.id.viewpager);
 
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -82,5 +80,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+       //Do no Thing add can't back to LoginActivity
     }
 }

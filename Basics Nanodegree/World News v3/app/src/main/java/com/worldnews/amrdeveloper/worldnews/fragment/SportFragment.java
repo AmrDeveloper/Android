@@ -21,7 +21,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.worldnews.amrdeveloper.worldnews.activities.WebViewrActivity;
+import com.worldnews.amrdeveloper.worldnews.activities.WebViewerActivity;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsCursorAdapter;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsListAdapter;
 import com.worldnews.amrdeveloper.worldnews.data.NewsLoaderManager;
@@ -49,7 +49,7 @@ public class SportFragment extends Fragment
     private NewsListAdapter newsAdapter;
 
     //Loader Final Id
-    private final int LOADER_ID = 1;
+    private final int LOADER_ID = 3;
 
     private NetworkInfo networkInfo;
 
@@ -97,7 +97,7 @@ public class SportFragment extends Fragment
                 News current = newsAdapter.getItem(i);
                 //Create News Uri From String url
                 //Open This Uri in Browser Using Intent
-                Intent intent = new Intent(getActivity(), WebViewrActivity.class);
+                Intent intent = new Intent(getActivity(), WebViewerActivity.class);
                 intent.putExtra("newsUrl",current.getNewsUrl());
                 startActivity(intent);
             }
@@ -121,7 +121,8 @@ public class SportFragment extends Fragment
             //Get data from database
             NewsCursorAdapter newsCursorAdapter = new NewsCursorAdapter(getContext(), null);
             newsListView.setAdapter(newsCursorAdapter);
-            getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, new NewsLoaderManager(getContext(), newsCursorAdapter));
+            NewsLoaderManager dataLoader = new NewsLoaderManager(getContext(),Api.SECTION_SPORT_DATA, newsCursorAdapter);
+            getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null,dataLoader);
         }
 
         return rootView;
@@ -133,7 +134,6 @@ public class SportFragment extends Fragment
         //Show Loading Bar and hide ListView and Error TextView
         loadingBar.setVisibility(View.VISIBLE);
         errorMessage.setVisibility(View.INVISIBLE);
-        newsListView.setVisibility(View.INVISIBLE);
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         //Get Country value from Shared Preferences
@@ -182,9 +182,11 @@ public class SportFragment extends Fragment
                 errorMessage.setText(getString(R.string.no_data));
             }
 
+            //Here
         } else {
             errorMessage.setText(R.string.no_connection);
         }
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

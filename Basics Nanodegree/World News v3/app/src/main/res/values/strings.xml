@@ -11,7 +11,7 @@
     <!--News Country Edit-->
     <string name="news_country_label" translatable="false">Country</string>
     <string name="news_country_key" translatable="false">q</string>
-    <string name="news_country_default" translatable="false">egypt</string>
+    <string name="news_country_default" translatable="false">usa</string>
 
     <!--News Order By List-->
     <string name="news_order_label" translatable="false">Order By</string>
@@ -22,4 +22,8 @@
     <string name="newest" translatable="false">newest</string>
     <string name="oldest" translatable="false">oldest</string>
     <string name="relevance" translatable="false">relevance</string>
+
+    <!--Twitter SDK Information-->
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">iCcrwbKvO3ZRYDqC2d37g3VNA</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">NLxJwgGUGLFOWtpHCGj98cgnb1bQdVtcXzdPuGeMz7LdEhj0o1</string>
 </resources>

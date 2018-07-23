@@ -125,7 +125,7 @@ public class QueryUtils {
                 //Get Attribute from The Current Object in JSON String
                 String webTitle = currentObject.getString("webTitle");
                 String date = currentObject.getString("webPublicationDate");
-                String pillarName = currentObject.getString("pillarName");
+                String pillarName = currentObject.getString("sectionName");
                 String newsUrl = currentObject.getString("webUrl");
 
                 JSONObject field = currentObject.getJSONObject("fields");
@@ -165,9 +165,7 @@ public class QueryUtils {
         URL apiUrl = createApiUrl(requestApi);
         //Get Data And Save It On Stream
         String jsonData = makeConnection(apiUrl);
-        //Read String and get All News
-        List<News> newsList = readNewsFromJson(jsonData);
-        //Return News On List
-        return newsList;
+        //Read String and return All News
+        return readNewsFromJson(jsonData);
     }
 }

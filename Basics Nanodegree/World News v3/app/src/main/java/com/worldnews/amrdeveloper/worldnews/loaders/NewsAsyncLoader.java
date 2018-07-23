@@ -21,7 +21,7 @@ public class NewsAsyncLoader extends AsyncTaskLoader<List<News>> {
     //Get Current Api Url
     private String apiUrl;
 
-    public NewsAsyncLoader(Context context , String apiUrl ) {
+    public NewsAsyncLoader(Context context , String apiUrl) {
         super(context);
         this.apiUrl = apiUrl;
     }
