@@ -98,7 +98,7 @@ public class SportFragment extends Fragment
                 //Create News Uri From String url
                 //Open This Uri in Browser Using Intent
                 Intent intent = new Intent(getActivity(), WebViewerActivity.class);
-                intent.putExtra("newsUrl",current.getNewsUrl());
+                intent.putExtra("newsUrl", current.getNewsUrl());
                 startActivity(intent);
             }
         });
@@ -121,8 +121,8 @@ public class SportFragment extends Fragment
             //Get data from database
             NewsCursorAdapter newsCursorAdapter = new NewsCursorAdapter(getContext(), null);
             newsListView.setAdapter(newsCursorAdapter);
-            NewsLoaderManager dataLoader = new NewsLoaderManager(getContext(),Api.SECTION_SPORT_DATA, newsCursorAdapter);
-            getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null,dataLoader);
+            NewsLoaderManager dataLoader = new NewsLoaderManager(getContext(), Api.SECTION_SPORT_DATA, newsCursorAdapter);
+            getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, dataLoader);
         }
 
         return rootView;
@@ -161,8 +161,10 @@ public class SportFragment extends Fragment
         uriBuilder.appendQueryParameter(Api.API_KEY, Api.MY_API_KEY);
 
         //Start Loader
-        Loader<List<News>> dataLoader = new NewsAsyncLoader(getActivity(), uriBuilder.toString());
-        return dataLoader;
+        return new NewsAsyncLoader(
+                getActivity()
+                , uriBuilder.toString(),
+                Api.SECTION_SPORT_DATA);
     }
 
     @Override

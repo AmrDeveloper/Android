@@ -1,11 +1,9 @@
-package com.worldnews.amrdeveloper.worldnews.query;
+package com.worldnews.amrdeveloper.worldnews.utils;
 
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.worldnews.amrdeveloper.worldnews.model.News;
 

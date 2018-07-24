@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +14,7 @@ import android.widget.TextView;
 
 import com.worldnews.amrdeveloper.worldnews.model.News;
 import com.worldnews.amrdeveloper.worldnews.R;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.worldnews.amrdeveloper.worldnews.utils.TimeFormatter;
 
 /**
  * Created by AmrDeveloper on 1/21/2018.
@@ -60,27 +56,11 @@ public class NewsListAdapter extends ArrayAdapter<News> {
         //Set Current News Information into Views
         newsTitle.setText(currentNews.getTitle());
         newsPillar.setText(currentNews.getPillar());
-        newsData.setText(dateFormat(currentNews.getDate()));
+        newsData.setText(TimeFormatter.dateFormat(currentNews.getDate()));
         description.setText(currentNews.getShortDescription());
         author.setText(currentNews.getNewsAuthor());
 
         //Return This View Object
         return view;
     }
-
-    //Format The Date
-    private String dateFormat(String date) {
-        // This is the time format from guardian JSON "2017-10-29T06:00:20Z"
-        // will be changed to 29-10-2017 format
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        try {
-            Date newDate = format.parse(date);
-            format = new SimpleDateFormat("dd-MM-yyyy, h:mm a");
-            date = format.format(newDate);
-        } catch (ParseException e) {
-            Log.e("Adapter", "Problem with parsing the date format");
-        }
-        return date;
-    }
-
 }

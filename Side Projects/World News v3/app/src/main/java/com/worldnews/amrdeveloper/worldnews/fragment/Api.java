@@ -13,7 +13,7 @@ public final class Api {
     final static String API_KEY = "api-key";
     final static String SECTION = "section";
 
-    final static String PAGE_SIZE_NUM = "10";
+    final static String PAGE_SIZE_NUM = "20";
     final static String ORDER_BY = "order-by";
     final static String SHOW_TAGS = "show-tags";
     final static String PAGE_SIZE = "page-size";

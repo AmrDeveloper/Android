@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <array name="order_by">
-        <item>@string/newest</item>
-        <item>@string/oldest</item>
-        <item>@string/relevance</item>
-    </array>
-</resources>

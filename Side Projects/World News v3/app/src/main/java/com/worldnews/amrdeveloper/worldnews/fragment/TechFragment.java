@@ -160,8 +160,10 @@ public class TechFragment extends Fragment
         uriBuilder.appendQueryParameter(Api.API_KEY, Api.MY_API_KEY);
 
         //Start Loader
-        Loader<List<News>> dataLoader = new NewsAsyncLoader(getActivity(), uriBuilder.toString());
-        return dataLoader;
+        return new NewsAsyncLoader(
+                        getActivity(),
+                        uriBuilder.toString() ,
+                        Api.SECTION_TECH_DATA);
     }
 
     @Override

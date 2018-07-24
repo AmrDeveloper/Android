@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <ListView
         android:id="@+id/newsListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/darkRed"/>
+        />
 
     <TextView
         android:id="@+id/errorMessage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/no_data"
         android:gravity="center"
-        android:visibility="invisible"
-        />
+        android:text="@string/no_data"
+        android:visibility="invisible" />
 
     <ProgressBar
         android:id="@+id/loadingBar"

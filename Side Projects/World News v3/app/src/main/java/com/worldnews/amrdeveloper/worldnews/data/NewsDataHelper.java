@@ -31,7 +31,7 @@ public class NewsDataHelper extends SQLiteOpenHelper {
                 NewsContract.NewsEntry.COLUMN_NEWS_DESC + " TEXT , " +
                 " UNIQUE (" + NewsContract.NewsEntry.COLUMN_NEWS_TITLE + ") ON CONFLICT REPLACE);";
 
-        //execute Sqlite
+        //execute SQLite
         database.execSQL(SQL_CREATE_NEWS_TABLE);
     }
 

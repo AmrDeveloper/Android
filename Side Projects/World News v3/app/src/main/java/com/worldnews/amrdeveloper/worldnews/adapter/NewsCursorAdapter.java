@@ -6,10 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.worldnews.amrdeveloper.worldnews.R;
 import com.worldnews.amrdeveloper.worldnews.data.NewsContract;
+import com.worldnews.amrdeveloper.worldnews.utils.TimeFormatter;
 
 
 /**
@@ -60,6 +62,10 @@ public class NewsCursorAdapter extends CursorAdapter {
         TextView newsData = view.findViewById(R.id.newsData);
         TextView description = view.findViewById(R.id.description);
         TextView author = view.findViewById(R.id.author);
+        ImageView newsImage = view.findViewById(R.id.newsImage);
+
+        //Visibility gone all time because no image in database for all news
+        newsImage.setVisibility(View.GONE);
 
         // Find the columns of news attributes that we're interested in
         int idColumnIndex = cursor.getColumnIndex(NewsContract.NewsEntry._ID);
@@ -73,7 +79,7 @@ public class NewsCursorAdapter extends CursorAdapter {
         final int rowId = cursor.getInt(idColumnIndex);
         String newsTitle = cursor.getString(titleColumnIndex);
         String newsSection = cursor.getString(sectionColumnIndex);
-        String newsDate = cursor.getString(dateColumnIndex);
+        String newsDate = TimeFormatter.dateFormat(cursor.getString(dateColumnIndex));
         String newsAuthor = cursor.getString(authorColumnIndex);
         String newsDesc = cursor.getString(descriptionColumnIndex);
 

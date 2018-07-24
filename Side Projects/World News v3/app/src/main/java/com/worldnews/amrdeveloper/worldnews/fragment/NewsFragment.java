@@ -20,11 +20,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.worldnews.amrdeveloper.worldnews.activities.WebViewerActivity;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsCursorAdapter;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsListAdapter;
+import com.worldnews.amrdeveloper.worldnews.data.NewsContract;
 import com.worldnews.amrdeveloper.worldnews.data.NewsLoaderManager;
 import com.worldnews.amrdeveloper.worldnews.loaders.NewsAsyncLoader;
 import com.worldnews.amrdeveloper.worldnews.model.News;
@@ -64,7 +64,6 @@ public class NewsFragment extends Fragment
     private SwipeRefreshLayout swipeRefreshLayout;
 
     private LoaderManager.LoaderCallbacks<List<News>> loaderCallbacksObject = this;
-
 
     //Loader Final Id
     public final static int NEWS_LOADER_ID = 1;
@@ -126,6 +125,7 @@ public class NewsFragment extends Fragment
             LoaderManager loaderManager = getLoaderManager();
             // Initialize the loader. Pass in the int ID constant defined above and pass in null for
             // the bundle. Pass in this activity for the LoaderCallbacks parameter.
+
             loaderManager.initLoader(NEWS_LOADER_ID, null, this);
         } else {
             // Update empty state with no connection error message
@@ -133,8 +133,8 @@ public class NewsFragment extends Fragment
             //Get data from database
             NewsCursorAdapter newsCursorAdapter = new NewsCursorAdapter(getContext(), null);
             newsListView.setAdapter(newsCursorAdapter);
-            NewsLoaderManager dataLoader = new NewsLoaderManager(getContext(),Api.SECTION_NEWS_DATA, newsCursorAdapter);
-            getActivity().getSupportLoaderManager().initLoader(NEWS_LOADER_ID, null,dataLoader);
+            NewsLoaderManager dataLoader = new NewsLoaderManager(getContext(), Api.SECTION_NEWS_DATA, newsCursorAdapter);
+            getActivity().getSupportLoaderManager().initLoader(NEWS_LOADER_ID, null, dataLoader);
         }
         return rootView;
     }
@@ -171,9 +171,10 @@ public class NewsFragment extends Fragment
         uriBuilder.appendQueryParameter(Api.API_KEY, Api.MY_API_KEY);
 
         //Start Loader
-        Loader<List<News>> dataLoader = new NewsAsyncLoader(getActivity(), uriBuilder.toString());
-
-        return dataLoader;
+        return new NewsAsyncLoader(
+                getActivity(),
+                uriBuilder.toString(),
+                Api.SECTION_NEWS_DATA);
     }
 
     @Override
