@@ -4,6 +4,13 @@
     >
 
     <item
+        android:title="Notification"
+        android:id="@+id/notification_menu"
+        app:showAsAction="never"
+        android:orderInCategory="100"
+        />
+
+    <item
         android:title="@string/news_settings"
         android:id="@+id/setting_menu"
         app:showAsAction="never"

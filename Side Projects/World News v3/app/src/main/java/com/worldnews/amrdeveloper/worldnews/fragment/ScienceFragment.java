@@ -90,18 +90,6 @@ public class ScienceFragment extends Fragment
         //Set Empty View to show error message when no data
         newsListView.setEmptyView(errorMessage);
         newsListView.setAdapter(newsAdapter);
-        //on every news click
-        newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                News current = newsAdapter.getItem(i);
-                //Create News Uri From String url
-                //Open This Uri in Browser Using Intent
-                Intent intent = new Intent(getActivity(), WebViewerActivity.class);
-                intent.putExtra("newsUrl", current.getNewsUrl());
-                startActivity(intent);
-            }
-        });
 
         // Get a reference to the ConnectivityManager to check state of network connectivity
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -162,9 +150,9 @@ public class ScienceFragment extends Fragment
 
         //Start Loader
         return new NewsAsyncLoader(
-                        getActivity(),
-                        uriBuilder.toString(),
-                        Api.SECTION_SCIENCE_DATA);
+                getActivity(),
+                uriBuilder.toString(),
+                Api.SECTION_SCIENCE_DATA);
     }
 
     @Override
@@ -183,8 +171,6 @@ public class ScienceFragment extends Fragment
                 errorMessage.setVisibility(View.VISIBLE);
                 errorMessage.setText(getString(R.string.no_data));
             }
-
-            //Here
         } else {
             errorMessage.setText(R.string.no_connection);
         }

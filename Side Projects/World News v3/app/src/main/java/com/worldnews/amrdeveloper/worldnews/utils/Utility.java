@@ -1,12 +1,14 @@
 package com.worldnews.amrdeveloper.worldnews.utils;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public final class TimeFormatter {
+public final class Utility {
 
     //Format The Date
     public static String dateFormat(String date) {
@@ -23,4 +25,14 @@ public final class TimeFormatter {
         return date;
     }
 
+    /**
+     * @param context : Current Activity content
+     * @param currentNewsUrl : Link to share it
+     */
+    public static void shareCurrentNews(Context context, String currentNewsUrl){
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("text/plain");
+        share.putExtra(Intent.EXTRA_TEXT, currentNewsUrl);
+        context.startActivity(Intent.createChooser(share, "Share This News"));
+    }
 }

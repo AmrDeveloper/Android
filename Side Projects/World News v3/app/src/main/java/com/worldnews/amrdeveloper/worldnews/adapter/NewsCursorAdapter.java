@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.worldnews.amrdeveloper.worldnews.R;
 import com.worldnews.amrdeveloper.worldnews.data.NewsContract;
-import com.worldnews.amrdeveloper.worldnews.utils.TimeFormatter;
+import com.worldnews.amrdeveloper.worldnews.utils.Utility;
 
 
 /**
@@ -79,7 +79,7 @@ public class NewsCursorAdapter extends CursorAdapter {
         final int rowId = cursor.getInt(idColumnIndex);
         String newsTitle = cursor.getString(titleColumnIndex);
         String newsSection = cursor.getString(sectionColumnIndex);
-        String newsDate = TimeFormatter.dateFormat(cursor.getString(dateColumnIndex));
+        String newsDate = Utility.dateFormat(cursor.getString(dateColumnIndex));
         String newsAuthor = cursor.getString(authorColumnIndex);
         String newsDesc = cursor.getString(descriptionColumnIndex);
 
