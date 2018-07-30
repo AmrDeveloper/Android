@@ -27,6 +27,7 @@ public class ReminderTasks {
     private static void readThisNews(Context context) {
         //Test Action
         Intent intent = new Intent(context, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
 
         // If the water count was incremented, clear any notifications

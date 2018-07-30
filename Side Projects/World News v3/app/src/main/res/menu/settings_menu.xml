@@ -2,14 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
-
-    <item
-        android:title="Notification"
-        android:id="@+id/notification_menu"
-        app:showAsAction="never"
-        android:orderInCategory="100"
-        />
-
     <item
         android:title="@string/news_settings"
         android:id="@+id/setting_menu"

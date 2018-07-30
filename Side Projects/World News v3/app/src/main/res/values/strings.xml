@@ -19,6 +19,13 @@
     <string name="news_order_key" translatable="false">order_by</string>
     <string name="news_order_default" translatable="false">newest</string>
 
+     <!--Notification preferences-->
+    <string name="noti_turn_label" translatable="false">Notification</string>
+    <string name="noti_turn_bass_key" translatable="false">noti_key</string>
+    <string name="pref_show_true">Turn on</string>
+    <string name="pref_show_false">Turn off</string>
+
+
     <!--Values-->
     <string name="newest" translatable="false">newest</string>
     <string name="oldest" translatable="false">oldest</string>

@@ -23,16 +23,18 @@ public class ReminderUtilities {
 
     private static boolean sInitialized;
 
+    private static FirebaseJobDispatcher dispatcher;
+
     synchronized public static void scheduleNewsReminder(@NonNull final Context context) {
 
-
         // If the job has already been initialized, return
-        if (sInitialized) return;
+        if (sInitialized)
+            return;
 
         //Create a new GooglePlayDriver
         Driver driver = new GooglePlayDriver(context);
         // Create a new FirebaseJobDispatcher with the driver
-        FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(driver);
+        dispatcher = new FirebaseJobDispatcher(driver);
 
         // Use FirebaseJobDispatcher's newJobBuilder method to build a job which:
         // - has NewsFirebaseJobService as it's service
@@ -97,5 +99,12 @@ public class ReminderUtilities {
         // Set sInitialized to true to mark that we're done setting up the job
         /* The job has been initialized */
         sInitialized = true;
+    }
+
+    public static void unScheduleNewsReminder() {
+        if(dispatcher != null){
+            dispatcher.cancelAll();
+            sInitialized = false;
+        }
     }
 }

@@ -16,7 +16,7 @@ import com.worldnews.amrdeveloper.worldnews.R;
  */
 
 public class SettingsFragment extends PreferenceFragmentCompat
-        implements SharedPreferences.OnSharedPreferenceChangeListener{
+        implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,15 +29,6 @@ public class SettingsFragment extends PreferenceFragmentCompat
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        //Un Register Share Preference Change
-        getPreferenceScreen()
-                .getSharedPreferences()
-                .unregisterOnSharedPreferenceChangeListener(this);
-    }
-
-    @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.news_settings);
 
@@ -47,7 +38,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
         //Get The Number Of Preference
         int itemCount = preferenceScreen.getPreferenceCount();
         //Using Summary Method for all Preference
-        for(int i = 0 ; i < itemCount ; i++){
+        for (int i = 0; i < itemCount; i++) {
             //Get Current Preference
             Preference p = preferenceScreen.getPreference(i);
             if (!(p instanceof CheckBoxPreference)) {
@@ -72,11 +63,11 @@ public class SettingsFragment extends PreferenceFragmentCompat
 
     /**
      * @param preference The should add value to it
-     * @param value to set as summary in preference
+     * @param value      to set as summary in preference
      */
     private void setPreferenceSummary(Preference preference, String value) {
         //If This preference Type Is List
-        if (preference instanceof ListPreference){
+        if (preference instanceof ListPreference) {
             //Casting This Preference to List
             ListPreference listPreference = (ListPreference) preference;
             //Get The Value Index
@@ -92,5 +83,14 @@ public class SettingsFragment extends PreferenceFragmentCompat
             //For EditTextPreference set the summary value
             preference.setSummary(value);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //Un Register Share Preference Change
+        getPreferenceScreen()
+                .getSharedPreferences()
+                .unregisterOnSharedPreferenceChangeListener(this);
     }
 }

@@ -2,6 +2,8 @@ package com.worldnews.amrdeveloper.worldnews.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,18 +15,18 @@ import android.view.WindowManager;
 
 import com.worldnews.amrdeveloper.worldnews.adapter.ViewPagerAdapter;
 import com.worldnews.amrdeveloper.worldnews.R;
-import com.worldnews.amrdeveloper.worldnews.notification.NotificationUtils;
 import com.worldnews.amrdeveloper.worldnews.sync.ReminderUtilities;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  implements SharedPreferences.OnSharedPreferenceChangeListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ReminderUtilities.scheduleNewsReminder(this);
+        // Start Job Services
+        jobServiceStateSetup();
 
         // Find the view pager that will allow the user to swipe between fragments.
         ViewPager viewPager = findViewById(R.id.viewpager);
@@ -55,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
             // Change the mode to fixed
             tabLayout.setTabMode(TabLayout.MODE_FIXED);
         }
-
     }
 
     @Override
@@ -78,9 +79,6 @@ public class MainActivity extends AppCompatActivity {
             //Go to Settings Activity
             goToSettingsActivity();
         }
-        else if(menuId == R.id.notification_menu){
-            NotificationUtils.remindUserBecauseNewNews(this);
-        }
         return true;
     }
 
@@ -89,8 +87,36 @@ public class MainActivity extends AppCompatActivity {
        //Do no Thing add can't back to LoginActivity
     }
 
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.noti_turn_bass_key))) {
+            jobServiceStateSetup();
+        }
+    }
+
     private void goToSettingsActivity(){
         Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
         startActivity(intent);
     }
+
+    private void jobServiceStateSetup(){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean notiState = sharedPreferences.getBoolean(getString(R.string.noti_turn_bass_key),
+                getResources().getBoolean(R.bool.noti_turn_default));
+        if(notiState){
+            ReminderUtilities.scheduleNewsReminder(this);
+        }else{
+            ReminderUtilities.unScheduleNewsReminder();
+        }
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Unregister MainActivity as an OnPreferenceChangedListener to avoid any memory leaks.
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(this);
+    }
+
 }
