@@ -1,4 +1,4 @@
-package com.worldnews.amrdeveloper.worldnews.sync;
+package com.worldnews.amrdeveloper.worldnews.service;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

@@ -15,7 +15,7 @@ import android.view.WindowManager;
 
 import com.worldnews.amrdeveloper.worldnews.adapter.ViewPagerAdapter;
 import com.worldnews.amrdeveloper.worldnews.R;
-import com.worldnews.amrdeveloper.worldnews.sync.ReminderUtilities;
+import com.worldnews.amrdeveloper.worldnews.service.ReminderUtilities;
 
 
 public class MainActivity extends AppCompatActivity  implements SharedPreferences.OnSharedPreferenceChangeListener{

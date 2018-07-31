@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -32,16 +33,21 @@
             android:exported="false" />
 
         <service
-            android:name=".sync.NewNewsIntentService"
+            android:name=".service.NewNewsIntentService"
             android:exported="false" />
-
         <service
-            android:name=".sync.NewsFirebaseJobService"
+            android:name=".service.NewsFirebaseJobService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
-
             </intent-filter>
         </service>
+
+        <receiver android:name=".receiver.RebootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>

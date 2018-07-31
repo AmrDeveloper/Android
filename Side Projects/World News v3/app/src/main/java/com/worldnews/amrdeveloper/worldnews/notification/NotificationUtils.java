@@ -16,8 +16,8 @@ import android.support.v4.app.NotificationCompat.Action;
 
 import com.worldnews.amrdeveloper.worldnews.R;
 import com.worldnews.amrdeveloper.worldnews.activities.MainActivity;
-import com.worldnews.amrdeveloper.worldnews.sync.NewNewsIntentService;
-import com.worldnews.amrdeveloper.worldnews.sync.ReminderTasks;
+import com.worldnews.amrdeveloper.worldnews.service.NewNewsIntentService;
+import com.worldnews.amrdeveloper.worldnews.service.ReminderTasks;
 
 
 public class NotificationUtils {

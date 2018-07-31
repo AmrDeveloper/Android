@@ -1,4 +1,4 @@
-package com.worldnews.amrdeveloper.worldnews.sync;
+package com.worldnews.amrdeveloper.worldnews.service;
 
 import android.app.IntentService;
 import android.content.Intent;
