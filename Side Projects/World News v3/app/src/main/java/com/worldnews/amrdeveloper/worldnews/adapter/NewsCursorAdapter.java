@@ -1,17 +1,23 @@
 package com.worldnews.amrdeveloper.worldnews.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.database.Cursor;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.worldnews.amrdeveloper.worldnews.R;
 import com.worldnews.amrdeveloper.worldnews.data.NewsContract;
 import com.worldnews.amrdeveloper.worldnews.utils.Utility;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -41,7 +47,7 @@ public class NewsCursorAdapter extends CursorAdapter {
      */
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.news_layout,parent,false);
+        return LayoutInflater.from(context).inflate(R.layout.news_layout, parent, false);
     }
 
     /**
@@ -56,6 +62,8 @@ public class NewsCursorAdapter extends CursorAdapter {
      */
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
+        CardView newsItemLayout = view.findViewById(R.id.newsCardView);
+
         // Find individual views that we want to modify in the list item layout
         TextView title = view.findViewById(R.id.newsTitle);
         TextView newsPillar = view.findViewById(R.id.newsPillar);
@@ -63,6 +71,8 @@ public class NewsCursorAdapter extends CursorAdapter {
         TextView description = view.findViewById(R.id.description);
         TextView author = view.findViewById(R.id.author);
         ImageView newsImage = view.findViewById(R.id.newsImage);
+
+        ImageButton shareButton = view.findViewById(R.id.shareButton);
 
         //Visibility gone all time because no image in database for all news
         newsImage.setVisibility(View.GONE);
@@ -89,6 +99,44 @@ public class NewsCursorAdapter extends CursorAdapter {
         newsData.setText(newsDate);
         author.setText(newsAuthor);
         description.setText(newsDesc);
+
+        //OnClick Implementation for List Item
+        newsItemLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                showNoConnectionDialog(context);
+            }
+        });
+
+        //OnClick Implementation for share ImageButton
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                showNoConnectionDialog(context);
+            }
+        });
+    }
+
+    private void showNoConnectionDialog(Context context) {
+        // for the positive and negative buttons on the dialog.
+        AlertDialog.Builder builder = new AlertDialog.Builder(context,R.style.AlertDialogStyle);
+        builder.setMessage(R.string.no_connection);
+
+        // Create and show the AlertDialog
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        //Dismiss Dialog after n time
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            public void run() {
+                alertDialog.dismiss();
+                timer.cancel();
+            }
+        }, 3000);
+
     }
 }
 

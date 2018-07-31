@@ -10,4 +10,9 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
+    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:background">@color/darkRed</item>
+    </style>
 </resources>

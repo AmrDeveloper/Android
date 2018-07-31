@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">World News</string>
 
+    <!--Twitter SDK Information-->
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">iCcrwbKvO3ZRYDqC2d37g3VNA</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">NLxJwgGUGLFOWtpHCGj98cgnb1bQdVtcXzdPuGeMz7LdEhj0o1</string>
+
     <!--Messages to Show-->
     <string name="no_data">Sorry No Data</string>
     <string name="no_connection">No Internet Connection</string>
@@ -25,13 +29,8 @@
     <string name="pref_show_true">Turn on</string>
     <string name="pref_show_false">Turn off</string>
 
-
     <!--Values-->
     <string name="newest" translatable="false">newest</string>
     <string name="oldest" translatable="false">oldest</string>
     <string name="relevance" translatable="false">relevance</string>
-
-    <!--Twitter SDK Information-->
-    <string name="com.twitter.sdk.android.CONSUMER_KEY">iCcrwbKvO3ZRYDqC2d37g3VNA</string>
-    <string name="com.twitter.sdk.android.CONSUMER_SECRET">NLxJwgGUGLFOWtpHCGj98cgnb1bQdVtcXzdPuGeMz7LdEhj0o1</string>
 </resources>
