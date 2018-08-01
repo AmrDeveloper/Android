@@ -1,4 +1,4 @@
-package com.musicapp.amrdeveloper.musicapp.Adapter;
+package com.musicapp.amrdeveloper.musicapp.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.musicapp.amrdeveloper.musicapp.R;
-import com.musicapp.amrdeveloper.musicapp.Model.Singer;
+import com.musicapp.amrdeveloper.musicapp.model.Singer;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.musicapp.amrdeveloper.musicapp.Model;
+package com.musicapp.amrdeveloper.musicapp.model;
 
 /**
  * Created by AmrDeveloper on 4/3/2018.

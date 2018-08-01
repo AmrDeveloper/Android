@@ -1,4 +1,4 @@
-package com.musicapp.amrdeveloper.musicapp.Adapter;
+package com.musicapp.amrdeveloper.musicapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.musicapp.amrdeveloper.musicapp.Activity.PlayerActivity;
+import com.musicapp.amrdeveloper.musicapp.activity.PlayerActivity;
 import com.musicapp.amrdeveloper.musicapp.R;
-import com.musicapp.amrdeveloper.musicapp.Model.Song;
+import com.musicapp.amrdeveloper.musicapp.model.Song;
 
 import java.util.List;
 

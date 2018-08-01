@@ -1,4 +1,4 @@
-package com.musicapp.amrdeveloper.musicapp.Activity;
+package com.musicapp.amrdeveloper.musicapp.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +8,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.musicapp.amrdeveloper.musicapp.R;
-import com.musicapp.amrdeveloper.musicapp.Adapter.RecyclerSingerAdapter;
-import com.musicapp.amrdeveloper.musicapp.Model.Singer;
+import com.musicapp.amrdeveloper.musicapp.adapter.RecyclerSingerAdapter;
+import com.musicapp.amrdeveloper.musicapp.model.Singer;
 
 import java.util.ArrayList;
 

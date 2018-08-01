@@ -1,4 +1,4 @@
-package com.musicapp.amrdeveloper.musicapp.Activity;
+package com.musicapp.amrdeveloper.musicapp.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,11 +15,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.musicapp.amrdeveloper.musicapp.R;
+import com.musicapp.amrdeveloper.musicapp.utils.TimeUtils;
 
 public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
     private TextView musicName;
     private TextView singerName;
+
+    private TextView songTimerCounter;
+    private TextView songTimeFull;
 
     private ImageView singerImage;
 
@@ -43,9 +47,6 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
     private double finalTime = 0;
     private int forwardTime = 5000;
     private int backwardTime = 5000;
-
-    private final int TIME_TO_SKIP = 5000;
-
 
     private final Handler myHandler = new Handler();
     private Runnable UpdateSongTime;
@@ -110,6 +111,9 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
         playSongButton = findViewById(R.id.playSongButton);
         skipNextButton = findViewById(R.id.skipNextButton);
         songSeekBar = findViewById(R.id.songSeekBar);
+        songTimerCounter = findViewById(R.id.songTimerCounter);
+        songTimeFull = findViewById(R.id.songTimeFull);
+
 
         if (isNewSong) {
             startTime = 0;
@@ -154,6 +158,8 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
                     mediaPlayer.start();
                     // Get the length of song
                     finalTime = mediaPlayer.getDuration();
+
+                    songTimeFull.setText(TimeUtils.milliSecondsToTimer((long) finalTime));
                     // Get Which second in the song
                     startTime = mediaPlayer.getCurrentPosition();
 
@@ -210,6 +216,7 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
                     startTime = mediaPlayer.getCurrentPosition();
                     songSeekBar.setProgress((int) startTime);
                     myHandler.postDelayed(this, 100);
+                    songTimerCounter.setText(TimeUtils.milliSecondsToTimer((long) startTime));
                 }
             }
         };

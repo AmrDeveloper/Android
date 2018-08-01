@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/blackPurple"
     android:orientation="vertical"
-    tools:context="com.musicapp.amrdeveloper.musicapp.Activity.PlayerActivity">
+    tools:context="com.musicapp.amrdeveloper.musicapp.activity.PlayerActivity">
 
     <TextView
         android:id="@+id/musicName"
@@ -44,29 +44,56 @@
         android:scaleType="fitXY"
         android:src="@drawable/adele" />
 
-    <SeekBar
-        android:id="@+id/songSeekBar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".2"
-        />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/songTimerCounter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3.5"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            tools:text="99.99"
+            />
+
+        <SeekBar
+            android:id="@+id/songSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/songTimeFull"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3.5"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            tools:text="99.99"
+            />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight=".4"
-        android:gravity="center"
         android:layout_gravity="center"
         android:layout_margin="@dimen/dimen10dp"
+        android:layout_weight=".4"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/skipPreviousButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dimen15dp"
             android:layout_weight="1"
             android:background="@null"
-            android:layout_marginRight="@dimen/dimen15dp"
             android:src="@mipmap/skip_previous_icon" />
 
         <ImageButton
@@ -81,8 +108,8 @@
             android:id="@+id/skipNextButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginLeft="@dimen/dimen15sp"
+            android:layout_weight="1"
             android:background="@null"
             android:src="@mipmap/skip_next_icon" />
     </LinearLayout>
