@@ -37,5 +37,6 @@ public class ReminderTasks {
     private static void alertNewsReminder(Context context) {
         //Reminder user about new news
         NotificationUtils.remindUserBecauseNewNews(context);
+
     }
 }
