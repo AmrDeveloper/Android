@@ -9,14 +9,16 @@ import com.firebase.jobdispatcher.FirebaseJobDispatcher;
 import com.firebase.jobdispatcher.GooglePlayDriver;
 import com.firebase.jobdispatcher.Job;
 import com.firebase.jobdispatcher.Lifetime;
+import com.firebase.jobdispatcher.RetryStrategy;
 import com.firebase.jobdispatcher.Trigger;
 
 import java.util.concurrent.TimeUnit;
 
 public class ReminderUtilities {
 
-    private static final int REMINDER_INTERVAL_MINUTES = 1440;
-    private static final int REMINDER_INTERVAL_SECONDS = (int) (TimeUnit.MINUTES.toSeconds(REMINDER_INTERVAL_MINUTES));
+    //1440 for one day
+    private static final int REMINDER_INTERVAL_HOURS = 24;
+    private static final int REMINDER_INTERVAL_SECONDS = (int) (TimeUnit.HOURS.toSeconds(REMINDER_INTERVAL_HOURS));
     private static final int SYNC_FLEXTIME_SECONDS = REMINDER_INTERVAL_SECONDS;
 
     private static final String REMINDER_JOB_TAG = "news_reminder_tag";
@@ -26,7 +28,6 @@ public class ReminderUtilities {
     private static FirebaseJobDispatcher dispatcher;
 
     synchronized public static void scheduleNewsReminder(@NonNull final Context context) {
-
         // If the job has already been initialized, return
         if (sInitialized)
             return;
@@ -82,8 +83,8 @@ public class ReminderUtilities {
                  * guaranteed, but is more of a guideline for FirebaseJobDispatcher to go off of.
                  */
                 .setTrigger(Trigger.executionWindow(
-                        REMINDER_INTERVAL_SECONDS,
-                        REMINDER_INTERVAL_SECONDS + SYNC_FLEXTIME_SECONDS))
+                        SYNC_FLEXTIME_SECONDS - (int)TimeUnit.HOURS.toSeconds(1),
+                        SYNC_FLEXTIME_SECONDS))
                 /*
                  * If a Job with the tag with provided already exists, this new job will replace
                  * the old one.
@@ -102,7 +103,7 @@ public class ReminderUtilities {
     }
 
     public static void unScheduleNewsReminder() {
-        if(dispatcher != null){
+        if (dispatcher != null) {
             dispatcher.cancelAll();
             sInitialized = false;
         }

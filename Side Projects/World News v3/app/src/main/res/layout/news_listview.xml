@@ -8,15 +8,13 @@
     <ListView
         android:id="@+id/newsListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/errorMessage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="@string/no_data"
         android:visibility="invisible" />
 
     <ProgressBar
@@ -25,6 +23,5 @@
         android:layout_height="@dimen/dimen42"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:visibility="invisible" />
-
+        android:visibility="visible" />
 </android.support.v4.widget.SwipeRefreshLayout>
