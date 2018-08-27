@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import com.worldnews.amrdeveloper.worldnews.R;
 import com.worldnews.amrdeveloper.worldnews.utils.Utility;
@@ -14,6 +16,8 @@ import com.worldnews.amrdeveloper.worldnews.utils.Utility;
 public class WebViewerActivity extends AppCompatActivity {
 
     private String currentNewsUrl;
+
+    private ProgressBar mLoadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +27,16 @@ public class WebViewerActivity extends AppCompatActivity {
         Intent intent = getIntent();
         this.currentNewsUrl = intent.getStringExtra("newsUrl");
 
-        WebView web = findViewById(R.id.webView);
-        web.setWebViewClient(new WebViewClient());
-        web.loadUrl(currentNewsUrl);
+        mLoadingBar = findViewById(R.id.loadingBar);
+
+        WebView mWebView = findViewById(R.id.webView);
+        mWebView.setWebViewClient(new WebViewClient());
+        mWebView.loadUrl(currentNewsUrl);
+        mWebView.setWebViewClient(new WebViewClient() {
+            public void onPageFinished(WebView view, String url) {
+                mLoadingBar.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
     @Override

@@ -2,6 +2,7 @@ package amrdeveloper.com.tweet;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -20,11 +21,15 @@ import com.twitter.sdk.android.tweetui.SearchTimeline;
 import com.twitter.sdk.android.tweetui.TweetTimelineRecyclerViewAdapter;
 import com.twitter.sdk.android.tweetui.UserTimeline;
 
-public class TweetsActivity extends AppCompatActivity {
+public class TweetsActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private MaterialSearchView searchView;
     private Toolbar mainToolbar;
     private RecyclerView recyclerView;
+
+    private SwipeRefreshLayout swipeRefreshLayout;
+
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,27 +37,24 @@ public class TweetsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tweets);
 
         Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
+        username = intent.getStringExtra("username");
 
-        final UserTimeline userTimeline = new UserTimeline.Builder()
-                .screenName(username)
-                .includeReplies(true)
-                .includeRetweets(true)
-                .build();
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(this);
+
 
         recyclerView = findViewById(R.id.tweetsRecyclerView);
+
+        // Set layout manager
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        final TweetTimelineRecyclerViewAdapter adapter = new TweetTimelineRecyclerViewAdapter.Builder(this)
-                        .setTimeline(userTimeline)
-                        .setViewStyle(R.style.tw__TweetLightWithActionsStyle)
-                        .build();
 
         // Add Item Decoration
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 layoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
-        recyclerView.setAdapter(adapter);
+
+        setUpTweets();
 
         mainToolbar = findViewById(R.id.toolbar);
         //Set Toolbar Title Color
@@ -103,6 +105,22 @@ public class TweetsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void setUpTweets(){
+        final UserTimeline userTimeline = new UserTimeline.Builder()
+                .screenName(username)
+                .includeReplies(true)
+                .includeRetweets(true)
+                .build();
+
+        final TweetTimelineRecyclerViewAdapter adapter = new TweetTimelineRecyclerViewAdapter.Builder(this)
+                .setTimeline(userTimeline)
+                .setViewStyle(R.style.tw__TweetLightWithActionsStyle)
+                .build();
+
+        recyclerView.setAdapter(adapter);
+        swipeRefreshLayout.setRefreshing(false);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu, menu);
@@ -111,5 +129,11 @@ public class TweetsActivity extends AppCompatActivity {
         searchView.setMenuItem(item);
 
         return true;
+    }
+
+    @Override
+    public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(true);
+        setUpTweets();
     }
 }

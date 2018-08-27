@@ -1,45 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/toolbar_container"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <FrameLayout
+            android:id="@+id/toolbar_container"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/lactic" />
+            android:layout_height="wrap_content">
 
-        <com.miguelcatalan.materialsearchview.MaterialSearchView
-            android:id="@+id/search_view"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/lactic" />
+
+            <com.miguelcatalan.materialsearchview.MaterialSearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:searchBackIcon="@drawable/ic_action_navigation_arrow_back"
+                app:searchBackground="@color/lactic2"
+                app:searchCloseIcon="@drawable/ic_action_navigation_close" />
+        </FrameLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/tweetsRecyclerView"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar_container" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/createTweetButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            app:searchBackIcon="@drawable/ic_action_navigation_arrow_back"
-            app:searchBackground="@color/lactic2"
-            app:searchCloseIcon="@drawable/ic_action_navigation_close" />
-    </FrameLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/tweetsRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar_container" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/createTweetButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="16dp"
-        android:src="@drawable/twitter"
-        android:onClick="sendTweetDialog"
-        />
-</RelativeLayout>
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:onClick="sendTweetDialog"
+            android:src="@drawable/twitter" />
+    </RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
