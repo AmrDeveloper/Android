@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Login Form</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="no_account_yet_create_one">No account yet? Create one</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="re_enter_password">Re-enter Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="already_a_member_login">Already a member? Login</string>
+    <string name="username">Username</string>
+</resources>
