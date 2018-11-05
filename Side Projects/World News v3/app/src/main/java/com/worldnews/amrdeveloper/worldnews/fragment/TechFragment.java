@@ -1,5 +1,7 @@
 package com.worldnews.amrdeveloper.worldnews.fragment;
 
+import android.app.AlertDialog;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,8 +15,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -31,6 +37,8 @@ import com.worldnews.amrdeveloper.worldnews.model.News;
 import com.worldnews.amrdeveloper.worldnews.R;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by AmrDeveloper on 1/29/2018.
@@ -43,6 +51,10 @@ public class TechFragment extends Fragment
     private ListView newsListView;
     private TextView errorMessage;
     private ProgressBar loadingBar;
+
+    //SearchView Menu
+    private SearchView searchView = null;
+    private SearchView.OnQueryTextListener queryTextListener;
 
     /**
      * Adapter For List of news
@@ -186,5 +198,60 @@ public class TechFragment extends Fragment
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
         getLoaderManager().restartLoader(NEWS_LOADER_ID, null, loaderCallbacksObject);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+
+        inflater.inflate(R.menu.search_menu, menu);
+        inflater.inflate(R.menu.settings_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.app_bar_search);
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+
+        if (searchItem != null) {
+            searchView = (SearchView) searchItem.getActionView();
+        }
+        if (searchView != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+            searchView.setQueryHint("Search for News");
+            queryTextListener = new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    newsAdapter.getFilter().filter(newText);
+                    return true;
+                }
+
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    newsAdapter.getFilter().filter(query);
+                    if(newsAdapter.getCount() == 0){
+                        messageDialog();
+                    }
+
+                    return true;
+                }
+            };
+            searchView.setOnQueryTextListener(queryTextListener);
+        }
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    private void messageDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialogStyle);
+        builder.setMessage("No Match. Please try again");
+
+        // Create and show the AlertDialog
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            public void run() {
+                alertDialog.dismiss();
+                timer.cancel(); // This will cancel the timer of the system
+            }
+        }, 2000); // the timer will count 2 seconds....
     }
 }

@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText _passwordText;
     private Button _loginButton;
     private TextView _signupLink;
+    private TextView forgetPassword;
 
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
@@ -54,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         _passwordText = findViewById(R.id.input_password);
         _loginButton = findViewById(R.id.btn_login);
         _signupLink = findViewById(R.id.link_signup);
+        forgetPassword = findViewById(R.id.forgetPassword);
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +71,13 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+            }
+        });
+
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
             }
         });
     }
@@ -141,7 +150,7 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             try {
                 // Enter URL address where your php file resides
-                url = new URL("http://192.168.1.8/learn/login2.php");
+                url = new URL("http://192.168.1.7/learn/login2.php");
             } catch (MalformedURLException e) {
                 e.printStackTrace();
                 return "exception";
@@ -210,7 +219,7 @@ public class LoginActivity extends AppCompatActivity {
                 //this method will be running on UI thread
                 pdLoading.setMessage("\tLoading...");
                 pdLoading.setCancelable(false);
-                pdLoading.show();
+                //pdLoading.show();
                 /* Here launching another activity when login successful. If you persist login state
                 use sharedPreferences of Android. and logout button to clear sharedPreferences.
                  */

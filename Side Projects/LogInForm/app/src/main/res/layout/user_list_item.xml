@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="5dp"
+    android:id="@+id/userItemLayout"
+    android:background="#ccc"
+    android:orientation="vertical">
+
+    <TextView
+        tools:text="Amorey"
+        android:padding="5dp"
+        android:fontFamily="monospace"
+        android:id="@+id/userNameTxt"
+        android:textStyle="italic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        tools:text="Alexandria"
+        android:padding="5dp"
+        android:textStyle="italic"
+        android:fontFamily="monospace"
+        android:id="@+id/userAddressTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

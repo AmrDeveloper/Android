@@ -33,4 +33,5 @@
     <string name="newest" translatable="false">newest</string>
     <string name="oldest" translatable="false">oldest</string>
     <string name="relevance" translatable="false">relevance</string>
+    <string name="search">Search</string>
 </resources>

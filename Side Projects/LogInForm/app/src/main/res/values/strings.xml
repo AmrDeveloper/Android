@@ -5,6 +5,7 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="no_account_yet_create_one">No account yet? Create one</string>
+    <string name="forget_password">Forget your password?</string>
     <string name="name">Name</string>
     <string name="address">Address</string>
     <string name="mobile_number">Mobile Number</string>
@@ -12,4 +13,5 @@
     <string name="create_account">Create Account</string>
     <string name="already_a_member_login">Already a member? Login</string>
     <string name="username">Username</string>
+
 </resources>

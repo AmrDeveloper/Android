@@ -67,4 +67,8 @@ public class News {
         return this.author;
     }
 
+    @Override
+    public String toString() {
+        return title;
+    }
 }

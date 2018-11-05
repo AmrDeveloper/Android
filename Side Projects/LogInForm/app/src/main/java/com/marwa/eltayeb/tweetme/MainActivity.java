@@ -7,17 +7,30 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.marwa.eltayeb.tweetme.LoginActivity.PREFS_NAME;
 
 public class MainActivity extends AppCompatActivity {
 
+    private UserAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String queryLink = "http://192.168.1.7/learn/query.php";
+
+        List<User> userList = new ArrayList<>();
+        userList.add(new User("Amr","Silicon valley"));
+        ListView userListView = findViewById(R.id.userListView);
+        adapter = new UserAdapter(this,userList);
+        userListView.setAdapter(adapter);
+
     }
 
     @Override
@@ -68,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         moveTaskToBack(true);
     }
 
-    static class DeleteAsyncTask extends AsyncTask<String, Void, Void> {
+    private static class DeleteAsyncTask extends AsyncTask<String, Void, Void> {
 
         @Override
         protected Void doInBackground(String... strings) {
@@ -81,4 +94,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private static class DeleteAsyncTask2 extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            QueryUtils.readDataFromApi("http://192.168.1.7/learn/query.php");
+            return null;
+        }
+    }
 }
