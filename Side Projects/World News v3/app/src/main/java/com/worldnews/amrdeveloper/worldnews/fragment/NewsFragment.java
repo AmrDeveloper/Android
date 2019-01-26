@@ -20,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.support.v7.widget.SearchView;
@@ -94,12 +95,11 @@ public class NewsFragment extends Fragment
          * Showing Swipe Refresh animation on activity create
          * As animation won't start on onCreate, post runnable is used
          */
-
         swipeRefreshLayout.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        swipeRefreshLayout.setRefreshing(true);
                                         getLoaderManager().restartLoader(NEWS_LOADER_ID, null, loaderCallbacksObject);
+                                        newsAdapter.notifyDataSetChanged();
                                     }
                                 }
         );
@@ -108,6 +108,18 @@ public class NewsFragment extends Fragment
         //Set Empty View to show error message when no data
         newsListView.setEmptyView(errorMessage);
         newsListView.setAdapter(newsAdapter);
+        newsListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                int topRowVerticalPosition = (newsListView == null || newsListView.getChildCount() == 0) ? 0 : newsListView.getChildAt(0).getTop();
+                swipeRefreshLayout.setEnabled(firstVisibleItem == 0 && topRowVerticalPosition >= 0);
+            }
+        });
 
         // Get a reference to the ConnectivityManager to check state of network connectivity
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -120,7 +132,6 @@ public class NewsFragment extends Fragment
             LoaderManager loaderManager = getLoaderManager();
             // Initialize the loader. Pass in the int ID constant defined above and pass in null for
             // the bundle. Pass in this activity for the LoaderCallbacks parameter.
-
             loaderManager.initLoader(NEWS_LOADER_ID, null, this);
         } else {
             // Update empty state with no connection error message
@@ -136,10 +147,6 @@ public class NewsFragment extends Fragment
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        //Show Loading Bar and hide ListView and Error TextView
-        loadingBar.setVisibility(View.VISIBLE);
-        errorMessage.setVisibility(View.INVISIBLE);
-
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         //Get Country Current value from Edit Preferences
         String country = sharedPrefs.getString(
@@ -232,7 +239,7 @@ public class NewsFragment extends Fragment
                 @Override
                 public boolean onQueryTextSubmit(String query) {
                     newsAdapter.getFilter().filter(query);
-                    if(newsAdapter.getCount() == 0){
+                    if (newsAdapter.getCount() == 0) {
                         messageDialog();
                     }
 
@@ -244,7 +251,7 @@ public class NewsFragment extends Fragment
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    private void messageDialog(){
+    private void messageDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialogStyle);
         builder.setMessage("No Match. Please try again");
 

@@ -3,7 +3,6 @@ package com.worldnews.amrdeveloper.worldnews.fragment;
 import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -16,19 +15,16 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.worldnews.amrdeveloper.worldnews.activities.WebViewerActivity;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsCursorAdapter;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsListAdapter;
 import com.worldnews.amrdeveloper.worldnews.data.NewsLoaderManager;
@@ -92,8 +88,8 @@ public class TechFragment extends Fragment
         swipeRefreshLayout.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        swipeRefreshLayout.setRefreshing(true);
                                         getLoaderManager().restartLoader(NEWS_LOADER_ID, null, loaderCallbacksObject);
+                                        newsAdapter.notifyDataSetChanged();
                                     }
                                 }
         );
@@ -168,9 +164,6 @@ public class TechFragment extends Fragment
 
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
-        ///Hide the indicator after the data is appeared
-        loadingBar.setVisibility(View.GONE);
-
         // Check if connection is still available, otherwise show appropriate message
         if (networkInfo != null && networkInfo.isConnected()) {
             // If there is a valid list of news stories, then add them to the adapter's

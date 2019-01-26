@@ -8,7 +8,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,12 +21,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.worldnews.amrdeveloper.worldnews.activities.WebViewerActivity;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsCursorAdapter;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsListAdapter;
 import com.worldnews.amrdeveloper.worldnews.data.NewsLoaderManager;
@@ -61,7 +58,7 @@ public class SportFragment extends Fragment
     private NewsListAdapter newsAdapter;
 
     //Loader Final Id
-    private final int LOADER_ID = 3;
+    private final int NEWS_LOADER_ID = 3;
 
     private NetworkInfo networkInfo;
 
@@ -92,8 +89,8 @@ public class SportFragment extends Fragment
         swipeRefreshLayout.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        swipeRefreshLayout.setRefreshing(true);
-                                        getLoaderManager().restartLoader(LOADER_ID, null, loaderCallbacksObject);
+                                        getLoaderManager().restartLoader(NEWS_LOADER_ID, null, loaderCallbacksObject);
+                                        newsAdapter.notifyDataSetChanged();
                                     }
                                 }
         );
@@ -114,7 +111,7 @@ public class SportFragment extends Fragment
             LoaderManager loaderManager = getLoaderManager();
             // Initialize the loader. Pass in the int ID constant defined above and pass in null for
             // the bundle. Pass in this activity for the LoaderCallbacks parameter.
-            loaderManager.initLoader(LOADER_ID, null, this);
+            loaderManager.initLoader(NEWS_LOADER_ID, null, this);
         } else {
             // Update empty state with no connection error message
             errorMessage.setText(R.string.no_connection);
@@ -122,7 +119,7 @@ public class SportFragment extends Fragment
             NewsCursorAdapter newsCursorAdapter = new NewsCursorAdapter(getContext(), null);
             newsListView.setAdapter(newsCursorAdapter);
             NewsLoaderManager dataLoader = new NewsLoaderManager(getContext(), Api.SECTION_SPORT_DATA, newsCursorAdapter);
-            getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, dataLoader);
+            getActivity().getSupportLoaderManager().initLoader(NEWS_LOADER_ID, null, dataLoader);
         }
 
         return rootView;
@@ -131,10 +128,6 @@ public class SportFragment extends Fragment
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        //Show Loading Bar and hide ListView and Error TextView
-        loadingBar.setVisibility(View.VISIBLE);
-        errorMessage.setVisibility(View.INVISIBLE);
-
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         //Get Country value from Shared Preferences
         String country = sharedPrefs.getString(
@@ -197,7 +190,7 @@ public class SportFragment extends Fragment
     @Override
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
-        getLoaderManager().restartLoader(LOADER_ID, null, loaderCallbacksObject);
+        getLoaderManager().restartLoader(NEWS_LOADER_ID, null, loaderCallbacksObject);
     }
 
     @Override

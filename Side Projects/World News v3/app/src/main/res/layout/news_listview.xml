@@ -5,8 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <ListView
         android:id="@+id/newsListView"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:drawSelectorOnTop="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -24,4 +31,5 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:visibility="visible" />
+    </RelativeLayout>
 </android.support.v4.widget.SwipeRefreshLayout>

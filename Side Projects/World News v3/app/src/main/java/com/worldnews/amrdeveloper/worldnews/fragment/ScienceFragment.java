@@ -3,7 +3,6 @@ package com.worldnews.amrdeveloper.worldnews.fragment;
 import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -22,12 +21,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.worldnews.amrdeveloper.worldnews.activities.WebViewerActivity;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsCursorAdapter;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsListAdapter;
 import com.worldnews.amrdeveloper.worldnews.data.NewsLoaderManager;
@@ -91,8 +88,8 @@ public class ScienceFragment extends Fragment
         swipeRefreshLayout.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        swipeRefreshLayout.setRefreshing(true);
                                         getLoaderManager().restartLoader(NEWS_LOADER_ID, null, loaderCallbacksObject);
+                                        newsAdapter.notifyDataSetChanged();
                                     }
                                 }
         );
@@ -130,10 +127,6 @@ public class ScienceFragment extends Fragment
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        //Show Loading Bar and hide ListView and Error TextView
-        loadingBar.setVisibility(View.VISIBLE);
-        errorMessage.setVisibility(View.INVISIBLE);
-
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         //Get Country value from Shared Preferences
         String country = sharedPrefs.getString(
