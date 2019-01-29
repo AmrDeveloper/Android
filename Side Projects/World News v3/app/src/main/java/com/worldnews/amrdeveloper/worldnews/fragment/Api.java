@@ -4,7 +4,7 @@ package com.worldnews.amrdeveloper.worldnews.fragment;
  * Created by AmrDeveloper on 3/14/2018.
  */
 
-public final class Api {
+final class Api {
 
     /**
      * Constants

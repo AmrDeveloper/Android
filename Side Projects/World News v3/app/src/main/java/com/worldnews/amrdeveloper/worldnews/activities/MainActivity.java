@@ -15,10 +15,11 @@ import android.view.WindowManager;
 
 import com.worldnews.amrdeveloper.worldnews.adapter.ViewPagerAdapter;
 import com.worldnews.amrdeveloper.worldnews.R;
+import com.worldnews.amrdeveloper.worldnews.fragment.Event;
 import com.worldnews.amrdeveloper.worldnews.service.ReminderUtilities;
 
 
-public class MainActivity extends AppCompatActivity  implements SharedPreferences.OnSharedPreferenceChangeListener{
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,28 +85,31 @@ public class MainActivity extends AppCompatActivity  implements SharedPreference
 
     @Override
     public void onBackPressed() {
-       //Do no Thing add can't back to LoginActivity
+        //Do no Thing add can't back to LoginActivity
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.news_country_key)) || key.equals(getString(R.string.news_order_key))) {
+            Event.onDataChang();
+        }
         if (key.equals(getString(R.string.noti_turn_bass_key))) {
             jobServiceStateSetup();
         }
     }
 
-    private void goToSettingsActivity(){
+    private void goToSettingsActivity() {
         Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
         startActivity(intent);
     }
 
-    private void jobServiceStateSetup(){
+    private void jobServiceStateSetup() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean notiState = sharedPreferences.getBoolean(getString(R.string.noti_turn_bass_key),
                 getResources().getBoolean(R.bool.noti_turn_default));
-        if(notiState){
+        if (notiState) {
             ReminderUtilities.scheduleNewsReminder(this);
-        }else{
+        } else {
             ReminderUtilities.unScheduleNewsReminder();
         }
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);

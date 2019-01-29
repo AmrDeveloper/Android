@@ -21,9 +21,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsCursorAdapter;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsListAdapter;
@@ -42,7 +44,8 @@ import java.util.TimerTask;
 
 public class SportFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<List<News>>,
-        SwipeRefreshLayout.OnRefreshListener {
+        SwipeRefreshLayout.OnRefreshListener,
+        SharedPreferences.OnSharedPreferenceChangeListener {
 
     private ListView newsListView;
     private TextView errorMessage;
@@ -66,11 +69,9 @@ public class SportFragment extends Fragment
 
     private LoaderManager.LoaderCallbacks<List<News>> loaderCallbacksObject = this;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.news_listview, container, false);
 
         errorMessage = rootView.findViewById(R.id.errorMessage);
@@ -81,24 +82,22 @@ public class SportFragment extends Fragment
         swipeRefreshLayout = rootView.findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
 
-        /**
-         * Showing Swipe Refresh animation on activity create
-         * As animation won't start on onCreate, post runnable is used
-         */
-
-        swipeRefreshLayout.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        getLoaderManager().restartLoader(NEWS_LOADER_ID, null, loaderCallbacksObject);
-                                        newsAdapter.notifyDataSetChanged();
-                                    }
-                                }
-        );
-
         newsListView = rootView.findViewById(R.id.newsListView);
         //Set Empty View to show error message when no data
         newsListView.setEmptyView(errorMessage);
         newsListView.setAdapter(newsAdapter);
+        newsListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                int topRowVerticalPosition = (newsListView == null || newsListView.getChildCount() == 0) ? 0 : newsListView.getChildAt(0).getTop();
+                swipeRefreshLayout.setEnabled(firstVisibleItem == 0 && topRowVerticalPosition >= 0);
+            }
+        });
 
         // Get a reference to the ConnectivityManager to check state of network connectivity
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -120,11 +119,19 @@ public class SportFragment extends Fragment
             newsListView.setAdapter(newsCursorAdapter);
             NewsLoaderManager dataLoader = new NewsLoaderManager(getContext(), Api.SECTION_SPORT_DATA, newsCursorAdapter);
             getActivity().getSupportLoaderManager().initLoader(NEWS_LOADER_ID, null, dataLoader);
+            loadingBar.setVisibility(View.GONE);
         }
-
+        //Register On Change Listener
+        PreferenceManager.getDefaultSharedPreferences(getContext())
+                .registerOnSharedPreferenceChangeListener(this);
+        //Event Listener
+        if (Event.isSportDataChanged) {
+            Toast.makeText(getContext(), "Sport", Toast.LENGTH_SHORT).show();
+            getLoaderManager().restartLoader(NEWS_LOADER_ID, null, loaderCallbacksObject);
+            Event.isSportDataChanged = false;
+        }
         return rootView;
     }
-
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
@@ -164,7 +171,7 @@ public class SportFragment extends Fragment
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
         ///Hide the indicator after the data is appeared
         loadingBar.setVisibility(View.GONE);
-
+        swipeRefreshLayout.setRefreshing(false);
         // Check if connection is still available, otherwise show appropriate message
         if (networkInfo != null && networkInfo.isConnected()) {
             // If there is a valid list of news stories, then add them to the adapter's
@@ -179,8 +186,8 @@ public class SportFragment extends Fragment
         } else {
             errorMessage.setText(R.string.no_connection);
         }
-        swipeRefreshLayout.setRefreshing(false);
     }
+
     @Override
     public void onLoaderReset(Loader<List<News>> loader) {
         //Clear The Data From ListView
@@ -191,6 +198,7 @@ public class SportFragment extends Fragment
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
         getLoaderManager().restartLoader(NEWS_LOADER_ID, null, loaderCallbacksObject);
+        newsAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -219,8 +227,8 @@ public class SportFragment extends Fragment
                 @Override
                 public boolean onQueryTextSubmit(String query) {
                     newsAdapter.getFilter().filter(query);
-                    if(newsAdapter.getCount() == 0){
-                        messageDialog();
+                    if (newsAdapter.getCount() == 0) {
+                        showDialogMessage();
                     }
 
                     return true;
@@ -231,7 +239,23 @@ public class SportFragment extends Fragment
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    private void messageDialog(){
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.news_country_key)) || key.equals(getString(R.string.news_order_key))) {
+            //Update Fragment News
+            getLoaderManager().restartLoader(NEWS_LOADER_ID, null, this);
+            newsAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        PreferenceManager.getDefaultSharedPreferences(getContext())
+                .unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    private void showDialogMessage() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialogStyle);
         builder.setMessage("No Match. Please try again");
 
