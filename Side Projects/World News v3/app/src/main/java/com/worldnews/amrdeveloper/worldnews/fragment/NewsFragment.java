@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsCursorAdapter;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsListAdapter;
-import com.worldnews.amrdeveloper.worldnews.data.NewsLoaderManager;
+import com.worldnews.amrdeveloper.worldnews.loaders.NewsLoaderManager;
 import com.worldnews.amrdeveloper.worldnews.loaders.NewsAsyncLoader;
 import com.worldnews.amrdeveloper.worldnews.model.News;
 import com.worldnews.amrdeveloper.worldnews.R;
@@ -75,6 +75,12 @@ public class NewsFragment extends Fragment
 
     //Loader Final Id
     public final static int NEWS_LOADER_ID = 1;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Nullable
     @Override
@@ -135,7 +141,6 @@ public class NewsFragment extends Fragment
                 .registerOnSharedPreferenceChangeListener(this);
         //Event Listener
         if (Event.isNewsDataChanged) {
-            Toast.makeText(getContext(), "News", Toast.LENGTH_SHORT).show();
             getLoaderManager().restartLoader(NEWS_LOADER_ID, null, loaderCallbacksObject);
             Event.isNewsDataChanged = false;
         }

@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsCursorAdapter;
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsListAdapter;
-import com.worldnews.amrdeveloper.worldnews.data.NewsLoaderManager;
+import com.worldnews.amrdeveloper.worldnews.loaders.NewsLoaderManager;
 import com.worldnews.amrdeveloper.worldnews.loaders.NewsAsyncLoader;
 import com.worldnews.amrdeveloper.worldnews.model.News;
 import com.worldnews.amrdeveloper.worldnews.R;
@@ -126,10 +126,10 @@ public class TechFragment extends Fragment
                 .registerOnSharedPreferenceChangeListener(this);
         //Event Listener
         if (Event.isTechDataChanged) {
-            Toast.makeText(getContext(), "Tech", Toast.LENGTH_SHORT).show();
             getLoaderManager().restartLoader(NEWS_LOADER_ID, null, loaderCallbacksObject);
             Event.isTechDataChanged = false;
         }
+        setHasOptionsMenu(true);
         return rootView;
     }
 
@@ -180,6 +180,7 @@ public class TechFragment extends Fragment
             if (data != null && !data.isEmpty()) {
                 newsAdapter.clear();
                 newsAdapter.addAll(data);
+                newsAdapter.notifyDataSetChanged();
             } else {
                 errorMessage.setVisibility(View.VISIBLE);
                 errorMessage.setText(getString(R.string.no_data));
@@ -200,44 +201,6 @@ public class TechFragment extends Fragment
         swipeRefreshLayout.setRefreshing(true);
         getLoaderManager().restartLoader(NEWS_LOADER_ID, null, loaderCallbacksObject);
         newsAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.clear();
-
-        inflater.inflate(R.menu.search_menu, menu);
-        inflater.inflate(R.menu.settings_menu, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.app_bar_search);
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
-
-        if (searchItem != null) {
-            searchView = (SearchView) searchItem.getActionView();
-        }
-        if (searchView != null) {
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-            searchView.setQueryHint("Search for News");
-            queryTextListener = new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    newsAdapter.getFilter().filter(newText);
-                    return true;
-                }
-
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    newsAdapter.getFilter().filter(query);
-                    if (newsAdapter.getCount() == 0) {
-                        showDialogMessage();
-                    }
-
-                    return true;
-                }
-            };
-            searchView.setOnQueryTextListener(queryTextListener);
-        }
-        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -273,3 +236,4 @@ public class TechFragment extends Fragment
         }, 2000); // the timer will count 2 seconds....
     }
 }
+

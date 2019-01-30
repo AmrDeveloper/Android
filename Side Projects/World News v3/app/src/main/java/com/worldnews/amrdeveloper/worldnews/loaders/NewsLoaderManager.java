@@ -1,4 +1,4 @@
-package com.worldnews.amrdeveloper.worldnews.data;
+package com.worldnews.amrdeveloper.worldnews.loaders;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.support.v4.content.Loader;
 import android.database.Cursor;
 
 import com.worldnews.amrdeveloper.worldnews.adapter.NewsCursorAdapter;
+import com.worldnews.amrdeveloper.worldnews.data.NewsContract;
 
 /**
  * Created by AmrDeveloper on 5/7/2018.

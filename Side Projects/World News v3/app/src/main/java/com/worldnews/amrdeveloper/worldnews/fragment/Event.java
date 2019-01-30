@@ -7,7 +7,10 @@ public class Event {
     static boolean isScienceDataChanged = false;
     static boolean isSportDataChanged = false;
 
-    public static void onDataChang() {
+    /*
+     * Make all booleans true, that mean every fragment have new settings preferences
+     */
+    public static void onDataChange() {
         isNewsDataChanged = true;
         isTechDataChanged = true;
         isScienceDataChanged = true;

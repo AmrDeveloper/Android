@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.news_country_key)) || key.equals(getString(R.string.news_order_key))) {
-            Event.onDataChang();
+            Event.onDataChange();
         }
         if (key.equals(getString(R.string.noti_turn_bass_key))) {
             jobServiceStateSetup();
