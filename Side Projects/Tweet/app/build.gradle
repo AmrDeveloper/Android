@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "amrdeveloper.com.tweet"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
@@ -17,19 +17,25 @@ android {
     }
 }
 
+ext.supportLibraryVersion = '28.0.0'
+ext.materialsearchview = '1.4.0'
+ext.twitterMain = '3.1.0'
+ext.twitterUtils = '3.1.1'
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //Design
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:support-v4:$supportLibraryVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
 
     //Views
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
-    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+    implementation "com.android.support:recyclerview-v7:$supportLibraryVersion"
+    implementation "com.miguelcatalan:materialsearchview:$materialsearchview"
 
     //Twitter SDK
-    implementation 'com.twitter.sdk.android:twitter:3.1.0'
-    implementation 'com.twitter.sdk.android:twitter-core:3.1.1'
-    implementation 'com.twitter.sdk.android:tweet-ui:3.1.1'
-    implementation 'com.twitter.sdk.android:tweet-composer:3.1.1'
+    implementation "com.twitter.sdk.android:twitter:$twitterMain"
+    implementation "com.twitter.sdk.android:twitter-core:$twitterUtils"
+    implementation "com.twitter.sdk.android:tweet-ui:$twitterUtils"
+    implementation "com.twitter.sdk.android:tweet-composer:$twitterUtils"
 }
