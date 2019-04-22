@@ -4,7 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/attemptsNumberTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        tools:text="Attempts Number : 5" />
 
+    <TextView
+        android:id="@+id/hangmanWordTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="25dp"
+        android:textSize="35sp"
+        tools:text="*******" />
+
+    <GridView
+        android:id="@+id/charsGridView"
+        android:numColumns="8"
+        android:background="#8B4513"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:horizontalSpacing="10dp"
+        android:verticalSpacing="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"/>
 </LinearLayout>
