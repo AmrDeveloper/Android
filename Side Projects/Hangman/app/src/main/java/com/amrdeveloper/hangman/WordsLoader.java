@@ -2,7 +2,6 @@ package com.amrdeveloper.hangman;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,6 +16,8 @@ public class WordsLoader {
     private static final Random random = new Random();
     private static final int WORDS_NUMBER = 55900;
     private static final String WORDS_ASSETS_PATH = "words.txt";
+
+    public static final String TAG = WordsLoader.class.getSimpleName();
 
     public WordsLoader(Context context) {
         this.context = context;
@@ -34,7 +35,7 @@ public class WordsLoader {
             }
             wordArray = stringBuilder.toString().split(" ");
         } catch (IOException ioEx) {
-            Log.e("WordsLoader", ioEx.getMessage());
+            Log.e(TAG, ioEx.getMessage());
         }
     }
 
