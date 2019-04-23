@@ -1,6 +1,5 @@
 package com.amrdeveloper.hangman;
 
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -62,15 +61,21 @@ public class MainActivity extends AppCompatActivity {
         currentCharView.setVisibility(View.INVISIBLE);
 
         String currentCharStr = adapter.getItem(position);
-        
-        boolean isValidAnswer = hangmanController.isValidCharacter(currentTrueWords,currentCharStr);
-        if(isValidAnswer){
-            String newWord = hangmanController.showPlayerAnswer(currentTrueWords,encryptedWord,currentCharStr);
+
+        boolean isValidAnswer = hangmanController.isValidCharacter(currentTrueWords, currentCharStr);
+        if (isValidAnswer) {
+            String newWord = hangmanController.showPlayerAnswer(currentTrueWords, encryptedWord, currentCharStr);
             encryptedWord = newWord;
             hangmanWordTxt.setText(encryptedWord);
-        }else{
+            if (newWord.equals(currentTrueWords)) {
+                //TODO : user win show lose dialog
+            }
+        } else {
             currentInvalidAnswers--;
             attemptsNumberTxt.setText(String.format(Locale.ENGLISH, INVALID_NUMBER_FORMAT, currentInvalidAnswers));
+            if (currentInvalidAnswers == 0) {
+                //TODO : user lose show lose dialog with valid word
+            }
         }
     };
 }
