@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textColor="@color/brown"
         android:padding="@dimen/dimen10dp"
         tools:text="Attempts Number : 5" />
 
@@ -22,6 +23,7 @@
         android:gravity="center"
         android:padding="@dimen/dimen25dp"
         android:textSize="@dimen/dimen35sp"
+        android:textColor="@color/orange"
         tools:text="*******" />
 
     <GridView
