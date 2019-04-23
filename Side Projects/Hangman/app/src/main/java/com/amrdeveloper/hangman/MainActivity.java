@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 import java.util.Locale;
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private AdapterView.OnItemClickListener onCharItemClickListener = (parent, view, position, id) -> {
-        View currentChar = adapter.getView(position, view, parent);
-        Toast.makeText(this, "Char : " + adapter.getItem(position), Toast.LENGTH_SHORT).show();
+        View currentCharView = adapter.getView(position, view, parent);
+        String currentCharStr = adapter.getItem(position);
     };
 }
