@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/hangmanChar"
-    android:layout_width="35dp"
-    android:layout_height="35dp"
-    android:background="#FFA500"
+    android:layout_width="@dimen/dimen35dp"
+    android:layout_height="@dimen/dimen35dp"
+    android:background="@color/orange"
     android:fontFamily="serif"
     android:gravity="center"
-    android:text="A"
-    android:textColor="#fff"
-    android:textSize="25sp" />
+    android:textColor="@color/white"
+    android:textSize="@dimen/dimen25sp"
+    tools:text="A" />

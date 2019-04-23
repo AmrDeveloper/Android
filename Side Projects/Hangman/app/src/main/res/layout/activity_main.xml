@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="10dp"
+        android:padding="@dimen/dimen10dp"
         tools:text="Attempts Number : 5" />
 
     <TextView
@@ -20,18 +20,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="25dp"
-        android:textSize="35sp"
+        android:padding="@dimen/dimen25dp"
+        android:textSize="@dimen/dimen35sp"
         tools:text="*******" />
 
     <GridView
         android:id="@+id/charsGridView"
         android:numColumns="8"
-        android:background="#8B4513"
-        android:layout_margin="5dp"
-        android:padding="5dp"
-        android:horizontalSpacing="10dp"
-        android:verticalSpacing="10dp"
+        android:background="@color/brown"
+        android:layout_margin="@dimen/dimen5dp"
+        android:padding="@dimen/dimen5dp"
+        android:horizontalSpacing="@dimen/dimen10dp"
+        android:verticalSpacing="@dimen/dimen10dp"
         android:layout_width="match_parent"
-        android:layout_height="175dp"/>
+        android:layout_height="@dimen/dimen175dp"/>
 </LinearLayout>
