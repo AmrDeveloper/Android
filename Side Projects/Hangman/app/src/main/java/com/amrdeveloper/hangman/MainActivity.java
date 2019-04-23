@@ -1,6 +1,5 @@
 package com.amrdeveloper.hangman;
 
-import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -61,6 +60,32 @@ public class MainActivity extends AppCompatActivity {
         charsGridView.setAdapter(adapter);
     }
 
+    private void showWinDialog(){
+        new AlertDialog.Builder(this)
+                .setTitle("Game Result")
+                .setMessage("Congratulation you win this game, Do you want to play again?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
+                    reCreateGame();
+                })
+                .setNegativeButton(android.R.string.no, (dialog, whichButton) -> {
+                    finish();
+                }).show();
+    }
+
+    private void showLoseDialog(){
+        new AlertDialog.Builder(this)
+                .setTitle("Game Result")
+                .setMessage("You are lose this game, the word is :" + currentTrueWords + ", Do you want to play again?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
+                    reCreateGame();
+                })
+                .setNegativeButton(android.R.string.no, (dialog, whichButton) -> {
+                    finish();
+                }).show();
+    }
+
     private AdapterView.OnItemClickListener onCharItemClickListener = (parent, view, position, id) -> {
         View currentCharView = adapter.getView(position, view, parent);
         currentCharView.setVisibility(View.INVISIBLE);
@@ -73,22 +98,13 @@ public class MainActivity extends AppCompatActivity {
             encryptedWord = newWord;
             hangmanWordTxt.setText(encryptedWord);
             if (newWord.equals(currentTrueWords)) {
-                //TODO : user win show lose dialog
+                showWinDialog();
             }
         } else {
             currentInvalidAnswers--;
             attemptsNumberTxt.setText(String.format(Locale.ENGLISH, INVALID_NUMBER_FORMAT, currentInvalidAnswers));
             if (currentInvalidAnswers == 0) {
-                new AlertDialog.Builder(this)
-                        .setTitle("Game Result")
-                        .setMessage("You are lose this game, the word is " + currentTrueWords + ", do you play again?")
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
-                            reCreateGame();
-                        })
-                        .setNegativeButton(android.R.string.no, (dialog, whichButton) -> {
-                            finish();
-                        }).show();
+                showLoseDialog();
             }
         }
     };
