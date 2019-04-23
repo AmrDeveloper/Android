@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     private void showLoseDialog(){
         new AlertDialog.Builder(this)
                 .setTitle("Game Result")
-                .setMessage("You are lose this game, the word is :" + currentTrueWords + ", Do you want to play again?")
+                .setMessage("You are lose this game, the word is :" + currentTrueWords + "\n, Do you want to play again?")
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
                     reCreateGame();
