@@ -1,5 +1,7 @@
 package com.amrdeveloper.hangman;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         hangmanController = new HangmanController();
         adapter = new CharactersGridAdapter(this, alphabetChars);
 
-        recreateGame();
+        reCreateGame();
     }
 
     private void initViews() {
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         charsGridView.setOnItemClickListener(onCharItemClickListener);
     }
 
-    private void recreateGame(){
+    private void reCreateGame() {
         currentInvalidAnswers = INVALID_ANSWERS_NUMBER;
         currentTrueWords = wordsLoader.getRandomWord();
         encryptedWord = hangmanController.createEncryptedWord(currentTrueWords);
@@ -77,8 +79,16 @@ public class MainActivity extends AppCompatActivity {
             currentInvalidAnswers--;
             attemptsNumberTxt.setText(String.format(Locale.ENGLISH, INVALID_NUMBER_FORMAT, currentInvalidAnswers));
             if (currentInvalidAnswers == 0) {
-                //TODO : user lose show lose dialog with valid word
-
+                new AlertDialog.Builder(this)
+                        .setTitle("Game Result")
+                        .setMessage("You are lose this game, the word is " + currentTrueWords + ", do you play again?")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
+                            reCreateGame();
+                        })
+                        .setNegativeButton(android.R.string.no, (dialog, whichButton) -> {
+                            finish();
+                        }).show();
             }
         }
     };
