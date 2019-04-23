@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 import java.util.Locale;
@@ -60,24 +59,18 @@ public class MainActivity extends AppCompatActivity {
 
     private AdapterView.OnItemClickListener onCharItemClickListener = (parent, view, position, id) -> {
         View currentCharView = adapter.getView(position, view, parent);
-        makeViewClicked(currentCharView);
+        currentCharView.setVisibility(View.INVISIBLE);
 
         String currentCharStr = adapter.getItem(position);
+        
         boolean isValidAnswer = hangmanController.isValidCharacter(currentTrueWords,currentCharStr);
         if(isValidAnswer){
-            Toast.makeText(this, "Valid", Toast.LENGTH_SHORT).show();
             String newWord = hangmanController.showPlayerAnswer(currentTrueWords,encryptedWord,currentCharStr);
             encryptedWord = newWord;
             hangmanWordTxt.setText(encryptedWord);
         }else{
-            Toast.makeText(this, "InValid", Toast.LENGTH_SHORT).show();
             currentInvalidAnswers--;
             attemptsNumberTxt.setText(String.format(Locale.ENGLISH, INVALID_NUMBER_FORMAT, currentInvalidAnswers));
         }
     };
-
-    private void makeViewClicked(View view){
-        view.setClickable(false);
-        view.setBackgroundColor(Color.GRAY);
-    }
 }
