@@ -42,7 +42,8 @@ public class WordsLoader {
             loadWordsString();
         }
         int index = random.nextInt(WORDS_NUMBER + 1);
-        return wordArray[index];
+        //return wordArray[0];
+        return "car";
     }
 }
 
