@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int INVALID_ANSWERS_NUMBER = 5;
     private static final String INVALID_NUMBER_FORMAT = "Attempts Number : %d";
-
+    private static List<String> alphabetChars = AlphabetGenerator.getAlphabetChars();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,26 +34,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initViews();
 
-        List<String> alphabetChars = AlphabetGenerator.getAlphabetChars();
-
         wordsLoader = new WordsLoader(this);
         hangmanController = new HangmanController();
-
-        currentTrueWords = wordsLoader.getRandomWord();
-        encryptedWord = hangmanController.createEncryptedWord(currentTrueWords);
         adapter = new CharactersGridAdapter(this, alphabetChars);
 
-        charsGridView.setAdapter(adapter);
-        charsGridView.setOnItemClickListener(onCharItemClickListener);
-
-        attemptsNumberTxt.setText(String.format(Locale.ENGLISH, INVALID_NUMBER_FORMAT, currentInvalidAnswers));
-        hangmanWordTxt.setText(encryptedWord);
+        recreateGame();
     }
 
     private void initViews() {
-        charsGridView = findViewById(R.id.charsGridView);
         attemptsNumberTxt = findViewById(R.id.attemptsNumberTxt);
         hangmanWordTxt = findViewById(R.id.hangmanWordTxt);
+        charsGridView = findViewById(R.id.charsGridView);
+        charsGridView.setOnItemClickListener(onCharItemClickListener);
+    }
+
+    private void recreateGame(){
+        currentInvalidAnswers = INVALID_ANSWERS_NUMBER;
+        currentTrueWords = wordsLoader.getRandomWord();
+        encryptedWord = hangmanController.createEncryptedWord(currentTrueWords);
+        hangmanWordTxt.setText(encryptedWord);
+        attemptsNumberTxt.setText(String.format(Locale.ENGLISH, INVALID_NUMBER_FORMAT, currentInvalidAnswers));
+        adapter.notifyDataSetChanged();
+        charsGridView.invalidateViews();
+        charsGridView.setAdapter(adapter);
     }
 
     private AdapterView.OnItemClickListener onCharItemClickListener = (parent, view, position, id) -> {
@@ -75,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             attemptsNumberTxt.setText(String.format(Locale.ENGLISH, INVALID_NUMBER_FORMAT, currentInvalidAnswers));
             if (currentInvalidAnswers == 0) {
                 //TODO : user lose show lose dialog with valid word
+
             }
         }
     };
