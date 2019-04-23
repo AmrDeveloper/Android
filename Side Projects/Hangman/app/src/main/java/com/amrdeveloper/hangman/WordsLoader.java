@@ -2,6 +2,7 @@ package com.amrdeveloper.hangman;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,7 +24,7 @@ public class WordsLoader {
 
     private void loadWordsString() {
         try {
-            InputStream inputStream = context.getAssets().open("filename.txt");
+            InputStream inputStream = context.getAssets().open(WORDS_ASSETS_PATH);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder stringBuilder = new StringBuilder();
             String currentLine = reader.readLine();
@@ -42,8 +43,7 @@ public class WordsLoader {
             loadWordsString();
         }
         int index = random.nextInt(WORDS_NUMBER + 1);
-        //return wordArray[0];
-        return "car";
+        return wordArray[index];
     }
 }
 
