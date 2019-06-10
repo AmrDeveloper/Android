@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- dot mean the current location -->
+    <external-path
+        name="external_files"
+        path="."/>
+</paths>
