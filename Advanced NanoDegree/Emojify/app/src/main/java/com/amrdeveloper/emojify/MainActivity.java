@@ -171,14 +171,10 @@ public class MainActivity extends AppCompatActivity {
         // Resample the saved image to fit the ImageView
         mResultsBitmap = BitmapUtils.resamplePic(this, mTempPhotoPath);
 
-        //TODO : Call get number of faces
-        int facesNum =  EmojiClassifier.detectFaces(this,mResultsBitmap);
+        // Detect the faces and overlay the appropriate emoji
+        mResultsBitmap = EmojiClassifier.detectFacesandOverlayEmoji(this, mResultsBitmap);
 
-        if(facesNum != 0){
-            Toast.makeText(this, "Yes it run bro : D", Toast.LENGTH_SHORT).show();
-        }
-
-        // Show result image in ImageView
+        // Set the new bitmap to the ImageView
         resultImageView.setImageBitmap(mResultsBitmap);
     }
 
