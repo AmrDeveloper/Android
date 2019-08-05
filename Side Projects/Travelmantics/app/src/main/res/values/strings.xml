@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Travelmantics</string>
+
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="sign_up">Sign Up</string>
+
+    <string name="title">Title</string>
+    <string name="price">Price</string>
+    <string name="description">Description</string>
+
+    <string name="title_hint">Deal Title</string>
+    <string name="price_hint">Price (numbers only)</string>
+    <string name="description_hint">Description</string>
+    <string name="logout">Logout</string>
+    <string name="new_travel_deal">New Travel Deal</string>
+    <string name="upload_image">Upload Image</string>
+</resources>
