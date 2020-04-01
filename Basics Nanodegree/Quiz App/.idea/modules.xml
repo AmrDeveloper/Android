@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Educational App.iml" filepath="$PROJECT_DIR$/Educational App.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Quiz App.iml" filepath="$PROJECT_DIR$/Quiz App.iml" group="Quiz App" />
+      <module fileurl="file://$PROJECT_DIR$/app/Quiz App-app.iml" filepath="$PROJECT_DIR$/app/Quiz App-app.iml" group="Quiz App/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
